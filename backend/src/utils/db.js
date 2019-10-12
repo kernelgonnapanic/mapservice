@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import options from '../.config'
 
 export const connect = (uri = process.env.ATLAS_URI) => {
   return mongoose
