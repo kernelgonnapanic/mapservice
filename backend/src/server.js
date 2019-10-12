@@ -1,13 +1,11 @@
 import express from 'express'
-const cors = require('cors')
-// const json = require('json')
-const mongoose = require('mongoose')
-const config = require('./.config')
+import cors from 'cors'
+import { connect } from './utils/db'
+import mongoose from 'mongoose'
 
 require('dotenv').config()
 
 const app = express()
-
 const port = process.env.PORT || 5000
 
 app.disable('x-powered-by')
@@ -15,25 +13,19 @@ app.disable('x-powered-by')
 app.use(cors())
 app.use(express.json())
 
-const uri = process.env.ATLAS_URI
+export const start = async () => {
+  try {
+    await connect()
+    app.listen(port, (req, res) => {
+      console.log(`Server running at ${port}`)
+    })
+  } catch (e) {
+    console.log(e)
+  }
+}
 
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true
-})
-
-mongoose
-  .connect(uri, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
-  })
-  .then(() => console.log('DB Connected!'))
-  .catch(err => {
-    console.log(`DB Connection Error: ${err.message}`)
-  })
-
-app.listen(port, (req, res) => {
-  console.log(`Server running at ${port}`)
-})
+// mongoose.connect(uri, {
+//   useNewUrlParser: true,
+//   useCreateIndex: true,
+//   useUnifiedTopology: true
+// })
