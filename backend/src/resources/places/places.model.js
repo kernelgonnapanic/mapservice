@@ -1,23 +1,10 @@
 import mongoose from 'mongoose'
 
-const listSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-      maxlength: 50
-    },
-    description: String,
-    createdBy: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'user',
-      required: true
-    }
-  },
-  { timestamps: true }
-)
+const placeSchema = new mongoose.Schema({
+  title: String,
+  description: String
+})
 
-listSchema.index({ user: 1, name: 1 }, { unique: true })
+placeSchema.index({ user: 1, name: 1 }, { unique: true })
 
-export const List = mongoose.model('list', listSchema)
+export const Place = mongoose.model('list', placeSchema)

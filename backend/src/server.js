@@ -5,9 +5,10 @@ import { config } from './config'
 import placesRouter from './resources/places/places.router'
 
 require('dotenv').config()
-const app = express()
-app.disable('x-powered-by')
 
+const app = express()
+
+app.disable('x-powered-by')
 app.use(cors())
 app.use(express.json())
 

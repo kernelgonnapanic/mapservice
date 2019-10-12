@@ -1,9 +1,11 @@
 import { Router } from 'express'
-import { getData } from './places.controllers'
+import { getData, createPlace, getPlace } from './places.controllers'
 
 const router = Router()
 
 // /api/list
 router.get('/', getData)
+router.post('/place', createPlace)
+router.get('/place/:id', getPlace)
 
 export default router
