@@ -1,11 +1,13 @@
-const express = require('express')
+import express from 'express'
 const cors = require('cors')
 // const json = require('json')
 const mongoose = require('mongoose')
+const config = require('./.config')
 
 require('dotenv').config()
 
 const app = express()
+
 const port = process.env.PORT || 5000
 
 app.disable('x-powered-by')
