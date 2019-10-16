@@ -11,9 +11,20 @@ export const getData = async (req, res) => {
   }
 }
 
+export const middleWare = (req, res, next) => {
+  console.log('I AM MIDDLEWARE')
+  next()
+}
+
 export const createPlace = async (req, res) => {
   const place = new Place({
     title: req.body.title,
+    address: {
+      street: req.body.street,
+      number: req.body.number
+    },
+    type: req.body.address,
+    phoneNumber: req.body.phoneNumber,
     description: req.body.description
   })
 
