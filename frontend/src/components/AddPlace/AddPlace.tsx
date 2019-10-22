@@ -1,75 +1,44 @@
 import React from 'react'
-import {
-	Formik,
-	FormikActions,
-	FormikProps,
-	Form,
-	Field,
-	FieldProps,
-} from 'formik'
+import * as Yup from 'yup'
+import { withFormik, FormikProps, FormikErrors, Form, Field } from 'formik'
 
-interface Props {}
-
-interface MyFormValues {
-	street?: string
-	city?: string
-	number?: number | null
-	placeType?: string
-	phoneNumber?: number | null
-	image?: string
-	description?: string
-	lat?: number | null
-	long?: number | null
+interface FormValues {
+	title: string
+	password: string
 }
 
-const initialValues = {
-	street: '',
-	city: '',
-	number: null,
-	placeType: '',
-	phoneNumber: null,
-	image: '',
-	description: '',
-	lat: null,
-	long: null,
-}
-
-const AddPlace: React.FC<Props> = ({}) => {
+const InnerForm = (props: FormikProps<FormValues>) => {
+	const { touched, errors, isSubmitting } = props
 	return (
-		<div>
-			<h1>My Example</h1>
-			<Formik
-				initialValues={initialValues}
-				onSubmit={(
-					values: MyFormValues,
-					actions: FormikActions<MyFormValues>,
-				) => {
-					console.log({ values, actions })
-					alert(JSON.stringify(values, null, 2))
-					actions.setSubmitting(false)
-				}}
-				render={(formikBag: FormikProps<MyFormValues>) => (
-					<Form>
-						<Field
-							name="firstName"
-							render={({
-								field,
-								form,
-							}: FieldProps<MyFormValues>) => (
-								<div>
-									<input
-										type="text"
-										{...field}
-										placeholder="First Name"
-									/>
-								</div>
-							)}
-						/>
-					</Form>
-				)}
-			/>
-		</div>
+		<Form>
+			<Field type="text" name="title" placeholder="Nazwa" />
+			<Field type="text" name="street" placeholder="Ulica" />
+
+			<button type="submit" disabled={isSubmitting}>
+				Submit
+			</button>
+		</Form>
 	)
 }
 
-export default AddPlace
+interface MyFormProps {
+	initialEmail?: string
+	message: string
+}
+
+const MyForm = withFormik<MyFormProps, FormValues>({
+	mapPropsToValues: props => {
+		return {
+			email: props.initialEmail || '',
+			password: '',
+		}
+	},
+
+	handleSubmit: values => {
+		console.log(values)
+	},
+})(InnerForm)
+
+const addPlace = () => <MyForm message="Sign up" />
+
+export default addPlace
