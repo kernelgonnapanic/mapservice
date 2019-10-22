@@ -27,6 +27,12 @@
 		"react": {
 			"pragma": "React",
 			"version": "detect"
+		},
+		"'import/parsers'": {
+			"'@typescript-eslint/parser'": ["'.ts'", "'.tsx'"]
+		},
+		" import/resolver": {
+			"typescript": {}
 		}
 	},
 	"parser": "@typescript-eslint/parser"
