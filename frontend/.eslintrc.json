@@ -1,5 +1,6 @@
 {
 	"extends": [
+		"react-app",
 		"eslint:recommended",
 		"plugin:react/recommended",
 		"plugin:@typescript-eslint/recommended",
@@ -20,12 +21,26 @@
 				"semi": false,
 				"tab": { "SwitchCase": 1 }
 			}
-		]
+		],
+		"@typescript-eslint/explicit-function-return-type": [
+			"error",
+			{
+				"allowExpressions": true,
+				"allowTypedFunctionExpressions": true
+			}
+		],
+		"react/prop-types": 0
 	},
 	"settings": {
 		"react": {
 			"pragma": "React",
 			"version": "detect"
+		},
+		"'import/parsers'": {
+			"'@typescript-eslint/parser'": ["'.ts'", "'.tsx'"]
+		},
+		" import/resolver": {
+			"typescript": {}
 		}
 	},
 	"parser": "@typescript-eslint/parser"
