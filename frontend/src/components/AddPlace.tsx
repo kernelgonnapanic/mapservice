@@ -1,5 +1,21 @@
 import React, { useReducer } from 'react'
-import { Input, Textarea } from './_layout'
+import { Input, Textarea, Button } from './_layout'
+
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+
+const useStyles = makeStyles((theme: Theme) =>
+	createStyles({
+		root: {
+			flexGrow: 1,
+		},
+		paper: {
+			padding: theme.spacing(2),
+			textAlign: 'center',
+			color: theme.palette.text.secondary,
+		},
+	}),
+)
 
 const AddPlace: React.FC = () => {
 	const [inputsValue, setInputsValue] = useReducer(
@@ -47,49 +63,67 @@ const AddPlace: React.FC = () => {
 		<div>
 			<h1>Dodaj placówkę</h1>
 			<form onSubmit={handleSubmit}>
-				<Input
-					onChange={handleInputChange}
-					value={title}
-					name="title"
-					label="Nazwa"
-				/>
-				<Input
-					onChange={handleInputChange}
-					value={street}
-					name="street"
-					label="Ulica"
-				/>
-				<Input
-					onChange={handleInputChange}
-					value={number}
-					name="number"
-					label="Numer mieszkania"
-				/>
-				<Input
-					onChange={handleInputChange}
-					value={phoneNumber}
-					name="phoneNumber"
-					label="Numer telefonu"
-				/>
-				<Input
-					onChange={handleInputChange}
-					value={lat}
-					name="lat"
-					label="Szerkość geograficzna"
-				/>
-				<Input
-					onChange={handleInputChange}
-					value={long}
-					name="long"
-					label="Długość geograficzna"
-				/>
-				<Textarea
-					onChange={handleInputChange}
-					value={description}
-					name="description"
-					label="Opis"
-				/>
-				<button>Submit</button>
+				<Grid container spacing={1}>
+					<Grid item xs={2}>
+						<Input
+							onChange={handleInputChange}
+							value={title}
+							name="title"
+							label="Nazwa"
+						/>
+					</Grid>
+					<Grid item xs={2}>
+						<Input
+							onChange={handleInputChange}
+							value={street}
+							name="street"
+							label="Ulica"
+						/>
+					</Grid>
+					<Grid item xs={2}>
+						<Input
+							onChange={handleInputChange}
+							value={number}
+							name="number"
+							label="Numer mieszkania"
+						/>
+					</Grid>
+					<Grid item xs={2}>
+						<Input
+							onChange={handleInputChange}
+							value={phoneNumber}
+							name="phoneNumber"
+							label="Numer telefonu"
+						/>
+					</Grid>
+					<Grid item xs={2}>
+						<Input
+							onChange={handleInputChange}
+							value={lat}
+							name="lat"
+							label="Szerkość geograficzna"
+						/>
+					</Grid>
+					<Grid item xs={2}>
+						<Input
+							onChange={handleInputChange}
+							value={long}
+							name="long"
+							label="Długość geograficzna"
+						/>
+					</Grid>
+					<Grid item xs={4}>
+						<Textarea
+							onChange={handleInputChange}
+							value={description}
+							name="description"
+							label="Opis"
+						/>
+					</Grid>
+					<Grid item xs={12}>
+						<Button>Submit</Button>
+					</Grid>
+				</Grid>
 			</form>
 		</div>
 	)
