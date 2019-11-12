@@ -1,6 +1,7 @@
 import { Form, Formik, Field } from 'formik'
 import React from 'react'
 import Input from './Input'
+import Select from './Select'
 
 const AddPlace: React.FC = () => {
 	const initialValues = {
@@ -8,7 +9,7 @@ const AddPlace: React.FC = () => {
 		street: '',
 		number: '',
 		//IMAGE UPLOAD TO DO
-		// placeType: '', //SELECT FETCH FROM API
+		placeType: '', //SELECT FETCH FROM API
 		phoneNumber: '',
 		// description: '', //TEXTAREA
 		// lat: '', //PICKED FROM MAP
@@ -29,6 +30,7 @@ const AddPlace: React.FC = () => {
 					<Field name="title" label="Nazwa" component={Input} />
 					<Field name="street" label="Ulica" component={Input} />
 					<Field name="number" label="Numer" component={Input} />
+					<Field component={Select} name="placeType" label="test" />
 					<Field
 						name="phoneNumber"
 						label="Numer Telefonu"

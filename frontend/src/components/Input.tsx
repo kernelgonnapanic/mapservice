@@ -7,15 +7,8 @@ interface Props extends FieldProps, TextFieldProps {
 	label: string
 }
 
-const Input: React.FC<Props> = ({ placeholder, field, label }) => {
-	return (
-		<TextField
-			variant="outlined"
-			label={label}
-			placeholder={placeholder}
-			{...field}
-		/>
-	)
+const Input: React.FC<Props> = ({ field, label }) => {
+	return <TextField variant="outlined" label={label} {...field} />
 }
 
 export default Input
