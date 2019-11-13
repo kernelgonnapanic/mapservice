@@ -1,9 +1,17 @@
-import { Form, Formik, Field } from 'formik'
-import React from 'react'
+import { Field, Form, Formik } from 'formik'
+import React, { useEffect } from 'react'
 import Input from './Input'
 import Select from './Select'
+import { useDispatch } from 'react-redux'
+import { getPlaces } from './redux/actions'
 
 const AddPlace: React.FC = () => {
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(getPlaces())
+	})
+
 	const initialValues = {
 		title: '',
 		street: '',
@@ -16,7 +24,7 @@ const AddPlace: React.FC = () => {
 		// long: '',
 	}
 
-	const onSubmit = (values: Object) => {
+	const onSubmit = (values: Record<string, any>) => {
 		console.log(values)
 	}
 
