@@ -4,7 +4,7 @@ import { getData, createPlace, getPlace } from './places.controllers'
 const router = Router()
 
 // /api/list
-router.get('/', getData)
+router.get('/places', getData)
 router.post('/place', createPlace)
 router.get('/place/:id', getPlace)
 

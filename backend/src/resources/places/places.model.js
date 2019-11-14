@@ -25,7 +25,7 @@ const placeSchema = new mongoose.Schema({
 	placeType: {
 		type: {
 			type: String,
-			required: true,
+			// required: true,
 		},
 		enum: ['pizzeria', 'kebab'],
 	},
