@@ -15,8 +15,6 @@ export const getPlaces = () => async dispatch => {
 export const sendPlace = data => async dispatch => {
 	const response = await api.post('/place', { ...data })
 
-	console.log(response)
-
 	const action = {
 		type: SEND_PLACES,
 		payload: response,

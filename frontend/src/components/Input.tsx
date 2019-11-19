@@ -7,8 +7,21 @@ interface Props extends FieldProps, TextFieldProps {
 	label: string
 }
 
-const Input: React.FC<Props> = ({ field, label }) => {
-	return <TextField variant="outlined" label={label} {...field} />
+const Input: React.FC<Props> = ({
+	field,
+	form: { touched, errors },
+	label,
+}) => {
+	const { name } = field
+
+	return (
+		<>
+			<TextField variant="outlined" label={label} {...field} />
+			{touched[name] && errors[name] && (
+				<div className="error">{errors[name]}</div>
+			)}
+		</>
+	)
 }
 
 export default Input
