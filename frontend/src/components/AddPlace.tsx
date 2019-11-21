@@ -13,6 +13,8 @@ const AddPlace: React.FC = () => {
 		dispatch(getPlaces())
 	})
 
+	const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
 	const validationSchema = Yup.object().shape({
 		title: Yup.string()
 			.min(2, 'Nazwa jest zbyt krótka!')
@@ -25,6 +27,15 @@ const AddPlace: React.FC = () => {
 		number: Yup.string()
 			.max(15, 'Zbyt długi numer')
 			.required('Wpisz numer'),
+		placeType: Yup.string().required('Wybierz Typ miejsca'),
+		lat: Yup.number().required('Podaj długość geograficzną'),
+		long: Yup.number().required('Podaj szerokość geograficzną'),
+		phoneNumber: Yup.number()
+			.typeError('To nie wygląda jak numer telefonu')
+			.positive('Mialeś na myśli +?')
+			.integer('Numer telefonu nie może zawierać kropki')
+			.min(8)
+			.required('Podaj numer telefonu'),
 	})
 
 	const initialValues = {
@@ -42,6 +53,7 @@ const AddPlace: React.FC = () => {
 	const onSubmit = (values: Record<string, any>) => {
 		alert('GOT IT BUD')
 		// dispatch(sendPlace(values))
+		console.log(values)
 	}
 
 	return (
@@ -50,14 +62,11 @@ const AddPlace: React.FC = () => {
 			onSubmit={onSubmit}
 			validationSchema={validationSchema}
 		>
-			{({ values, handleChange, errors, touched }) => (
+			{() => (
 				<Form>
 					<Field name="title" label="Nazwa" component={Input} />
-
 					<Field name="street" label="Ulica" component={Input} />
-
 					<Field name="number" label="Numer" component={Input} />
-
 					<Field name="lat" label="Lat" component={Input} />
 					<Field name="long" label="Lng" component={Input} />
 					<Field component={Select} name="placeType" label="test" />

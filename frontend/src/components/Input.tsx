@@ -5,6 +5,7 @@ import { TextFieldProps } from 'material-ui'
 
 interface Props extends FieldProps, TextFieldProps {
 	label: string
+	error: boolean
 }
 
 const Input: React.FC<Props> = ({
@@ -16,10 +17,13 @@ const Input: React.FC<Props> = ({
 
 	return (
 		<>
-			<TextField variant="outlined" label={label} {...field} />
-			{touched[name] && errors[name] && (
-				<div className="error">{errors[name]}</div>
-			)}
+			<TextField
+				variant="outlined"
+				label={label}
+				{...field}
+				error={touched[name] && errors[name] ? true : false}
+				helperText={touched[name] && errors[name] && errors[name]}
+			/>
 		</>
 	)
 }
