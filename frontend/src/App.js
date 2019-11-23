@@ -8,7 +8,6 @@ const App = () => {
 	return (
 		<Provider store={store}>
 			<Navigation />
-			{/* <AddPlace /> */}
 		</Provider>
 	)
 }

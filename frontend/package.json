@@ -10,6 +10,7 @@
 		"@types/node": "^12.11.2",
 		"@types/reach__router": "^1.2.6",
 		"@types/react-dom": "^16.9.2",
+		"@types/styled-components": "^4.4.0",
 		"axios": "^0.19.0",
 		"babel-loader": "^8.0.6",
 		"formik": "^2.0.4",
@@ -19,6 +20,7 @@
 		"react-scripts": "3.2.0",
 		"redux": "^4.0.4",
 		"redux-thunk": "^2.3.0",
+		"styled-components": "^4.4.1",
 		"typescript": "^3.6.4",
 		"yup": "^0.27.0"
 	},
