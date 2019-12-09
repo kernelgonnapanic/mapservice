@@ -3,7 +3,7 @@ import router from '../places.router'
 describe('places router', () => {
 	test('has crud routes', () => {
 		const routes = [
-			{ path: '/', method: 'get' },
+			{ path: '/places', method: 'get' },
 			{ path: '/place', method: 'post' },
 			{ path: '/place/:id', method: 'get' },
 		]

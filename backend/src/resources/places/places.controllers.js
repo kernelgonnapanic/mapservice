@@ -46,8 +46,25 @@ export const createPlace = async (req, res) => {
 }
 
 export const getPlace = async (req, res) => {
-	const id = req.params.id
-	const place = await Place.findById(id)
+	try {
+		const id = req.params.id
 
-	res.json(place)
+		const sendError = () => {
+			return res.status(404).end()
+		}
+
+		if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+			sendError()
+		}
+
+		const place = await Place.findById(id)
+
+		if (!place) {
+			sendError()
+		}
+
+		res.status(200).json(place)
+	} catch (err) {
+		console.log(err)
+	}
 }

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 
 const placeSchema = new mongoose.Schema({
+	id: mongoose.SchemaTypes.ObjectId,
 	title: {
 		type: String,
 		required: true,
