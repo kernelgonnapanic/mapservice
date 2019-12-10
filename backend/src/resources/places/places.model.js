@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 
+mongoose.set('useFindAndModify', false)
+
 const placeSchema = new mongoose.Schema({
 	id: mongoose.SchemaTypes.ObjectId,
 	title: {

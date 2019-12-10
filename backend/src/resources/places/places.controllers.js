@@ -3,7 +3,7 @@ import { Place } from './places.model'
 export const getData = async (req, res) => {
 	try {
 		const places = await Place.find()
-		res.json(places)
+		res.json({ data: places })
 	} catch (err) {
 		res.json({
 			message: err,
@@ -37,9 +37,9 @@ export const createPlace = async (req, res) => {
 	try {
 		const savedPlace = await place.save()
 
-		res.json(savedPlace)
+		res.status(200).json(savedPlace)
 	} catch (err) {
-		res.json({
+		res.status(404).json({
 			message: err,
 		})
 	}
@@ -63,7 +63,30 @@ export const getPlace = async (req, res) => {
 			sendError()
 		}
 
-		res.status(200).json(place)
+		res.status(200).json({ data: place })
+	} catch (err) {
+		console.log(err)
+	}
+}
+
+export const updatePlace = async (req, res) => {
+	try {
+		const id = req.params.id
+
+		console.log(id)
+		const updatedPlace = await Place.findOneAndUpdate(
+			{
+				_id: id,
+			},
+			{
+				title: 'Bob',
+			},
+			{
+				new: true,
+			},
+		)
+
+		res.status(200).json({ data: updatedPlace })
 	} catch (err) {
 		console.log(err)
 	}
