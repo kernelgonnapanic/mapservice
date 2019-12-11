@@ -73,13 +73,13 @@ export const updatePlace = async (req, res) => {
 	try {
 		const id = req.params.id
 
-		console.log(id)
+		console.log(req.body)
 		const updatedPlace = await Place.findOneAndUpdate(
 			{
 				_id: id,
 			},
 			{
-				title: 'Bob',
+				title: req.body.title,
 			},
 			{
 				new: true,
