@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Field, Form, Formik } from 'formik'
-import Input from '../Input'
+import Input from '../_layout/Input'
 import * as Yup from 'yup'
 
 const Login: React.FC = () => {

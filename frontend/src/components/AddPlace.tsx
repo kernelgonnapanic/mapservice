@@ -1,19 +1,14 @@
 import { Field, Form, Formik } from 'formik'
 import React, { useEffect } from 'react'
-import Input from './Input'
-import Select from './Select'
+import Input from './_layout/Input'
+import Select from './_layout/Select'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlaces, sendPlace } from './redux/actions'
 import * as Yup from 'yup'
+import { phoneRegExp } from '../assets/helpers'
 
 const AddPlace: React.FC = () => {
 	const dispatch = useDispatch()
-
-	useEffect(() => {
-		dispatch(getPlaces())
-	})
-
-	const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 	const validationSchema = Yup.object().shape({
 		title: Yup.string()
@@ -25,6 +20,7 @@ const AddPlace: React.FC = () => {
 			.max(50, 'Nazwa ulicy jest zbyt długa!')
 			.required('Wpisz ulicę'),
 		number: Yup.string()
+			.matches(phoneRegExp, 'not Match')
 			.max(15, 'Zbyt długi numer')
 			.required('Wpisz numer'),
 		placeType: Yup.string().required('Wybierz Typ miejsca'),

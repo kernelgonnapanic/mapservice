@@ -1,9 +1,9 @@
 import React from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
-import Navigation from './components/Navigation'
+import Navigation from './components/Navigation/Navigation'
 import AddPlace from './components/AddPlace'
-import { store } from './components/redux/reducers'
 import { Provider } from 'react-redux'
+import { store } from './components/redux/reducers'
 
 const theme = {}
 

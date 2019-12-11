@@ -1,11 +1,12 @@
 import React, { FunctionComponent } from 'react'
-import styled from 'styled-components'
-import { Router, Link, RouteComponentProps } from '@reach/router'
-import AddPlace from './AddPlace'
-import Main from './Main'
-import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core'
+import { NavBar, NavBarLink } from './Navigation.styles'
+import { Router, RouteComponentProps } from '@reach/router'
+import AddPlace from '../AddPlace'
+import Main from '../Main'
+import PlacesList from '../Places/PlacesList'
+import { AppBar, IconButton } from '@material-ui/core'
 import { Camera } from 'react-feather'
-import Login from './Authorization/Login'
+import Login from '../Authorization/Login'
 
 type Props = { component: React.FC } & RouteComponentProps
 
@@ -14,20 +15,6 @@ const Route: FunctionComponent<Props> = ({ component: Component, ...rest }) => (
 )
 
 const Navigation: FunctionComponent = () => {
-	const NavBar = styled(Toolbar)`
-		display: flex;
-		justify-content: space-between;
-	`
-
-	const NavBarLink = styled(Link)`
-		color: white;
-		text-decoration: none;
-
-		&:not(:last-child) {
-			margin-right: 10px;
-		}
-	`
-
 	return (
 		<>
 			<AppBar position="static">
@@ -41,9 +28,10 @@ const Navigation: FunctionComponent = () => {
 						<Camera />
 					</IconButton>
 					<div>
+						<NavBarLink to="login">Login</NavBarLink>
 						<NavBarLink to="/">Dodaj miejsce</NavBarLink>
 						<NavBarLink to="main">Main</NavBarLink>
-						<NavBarLink to="login">Login</NavBarLink>
+						<NavBarLink to="placeslist">Lista</NavBarLink>
 					</div>
 				</NavBar>
 			</AppBar>
@@ -52,6 +40,7 @@ const Navigation: FunctionComponent = () => {
 				<Route component={AddPlace} path="/" />
 				<Route component={Main} path="/main" />
 				<Route component={Login} path="/login" />
+				<Route component={PlacesList} path="/placeslist" />
 			</Router>
 		</>
 	)
