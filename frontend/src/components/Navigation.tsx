@@ -5,6 +5,7 @@ import AddPlace from './AddPlace'
 import Main from './Main'
 import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core'
 import { Camera } from 'react-feather'
+import Login from './Authorization/Login'
 
 type Props = { component: React.FC } & RouteComponentProps
 
@@ -42,6 +43,7 @@ const Navigation: FunctionComponent = () => {
 					<div>
 						<NavBarLink to="/">Dodaj miejsce</NavBarLink>
 						<NavBarLink to="main">Main</NavBarLink>
+						<NavBarLink to="login">Login</NavBarLink>
 					</div>
 				</NavBar>
 			</AppBar>
@@ -49,6 +51,7 @@ const Navigation: FunctionComponent = () => {
 			<Router>
 				<Route component={AddPlace} path="/" />
 				<Route component={Main} path="/main" />
+				<Route component={Login} path="/login" />
 			</Router>
 		</>
 	)

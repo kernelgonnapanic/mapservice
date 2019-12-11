@@ -12,12 +12,14 @@ const Input: React.FC<Props> = ({
 	field,
 	form: { touched, errors },
 	label,
+	type = 'text',
 }) => {
 	const { name } = field
 
 	return (
 		<>
 			<TextField
+				type={type}
 				variant="outlined"
 				label={label}
 				{...field}
