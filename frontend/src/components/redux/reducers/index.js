@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { places } from './places'
 
-const reducers = combineReducers({
+export const reducers = combineReducers({
 	places,
 })
 

@@ -8,7 +8,7 @@ export const getPlaces = () => async dispatch => {
 
 		const action = {
 			type: GET_PLACES,
-			payload: { ...response },
+			payload: response,
 		}
 
 		dispatch(action)
