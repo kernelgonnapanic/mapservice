@@ -7,16 +7,26 @@ const AddPlace: React.FC = () => {
 	const dispatch = useDispatch()
 
 	const places = useSelector(
-		(state: ReturnType<typeof reducers>) => state.places,
+		(state: ReturnType<typeof reducers>) => state.places.data,
 	)
-
-	console.log(places.data)
 
 	useEffect(() => {
 		dispatch(getPlaces())
 	}, [dispatch])
 
-	return <div>Lista</div>
+	interface PlaceValue {
+		title: string
+	}
+
+	return (
+		<div>
+			TEST
+			{places &&
+				places.map((place: PlaceValue) => {
+					return `<div>${place.title}</div>>`
+				})}
+		</div>
+	)
 }
 
 export default AddPlace

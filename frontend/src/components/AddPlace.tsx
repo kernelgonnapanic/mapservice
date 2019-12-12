@@ -20,7 +20,7 @@ const AddPlace: React.FC = () => {
 			.max(50, 'Nazwa ulicy jest zbyt długa!')
 			.required('Wpisz ulicę'),
 		number: Yup.string()
-			.matches(phoneRegExp, 'not Match')
+
 			.max(15, 'Zbyt długi numer')
 			.required('Wpisz numer'),
 		placeType: Yup.string().required('Wybierz Typ miejsca'),
@@ -47,9 +47,7 @@ const AddPlace: React.FC = () => {
 	}
 
 	const onSubmit = (values: Record<string, any>) => {
-		alert('GOT IT BUD')
-		// dispatch(sendPlace(values))
-		console.log(values)
+		dispatch(sendPlace(values))
 	}
 
 	return (
