@@ -1,11 +1,12 @@
 import { Field, Form, Formik } from 'formik'
-import React, { useEffect } from 'react'
+import React from 'react'
+import styled from 'styled-components'
+import { Grid, Container } from '@material-ui/core'
 import Input from './_layout/Input'
 import Select from './_layout/Select'
-import { useDispatch, useSelector } from 'react-redux'
-import { getPlaces, sendPlace } from './redux/actions'
+import { useDispatch } from 'react-redux'
+import { sendPlace } from './redux/actions'
 import * as Yup from 'yup'
-import { phoneRegExp } from '../assets/helpers'
 
 const AddPlace: React.FC = () => {
 	const dispatch = useDispatch()
@@ -50,29 +51,67 @@ const AddPlace: React.FC = () => {
 		dispatch(sendPlace(values))
 	}
 
+	const GridItem = styled(Grid)`
+		display: flex;
+		flex-direction: column;
+	`
+
 	return (
-		<Formik
-			initialValues={initialValues}
-			onSubmit={onSubmit}
-			validationSchema={validationSchema}
-		>
-			{() => (
-				<Form>
-					<Field name="title" label="Nazwa" component={Input} />
-					<Field name="street" label="Ulica" component={Input} />
-					<Field name="number" label="Numer" component={Input} />
-					<Field name="lat" label="Lat" component={Input} />
-					<Field name="long" label="Lng" component={Input} />
-					<Field component={Select} name="placeType" label="test" />
-					<Field
-						name="phoneNumber"
-						label="Numer Telefonu"
-						component={Input}
-					/>
-					<button type="submit">test</button>
-				</Form>
-			)}
-		</Formik>
+		<Container fixed>
+			<Formik
+				initialValues={initialValues}
+				onSubmit={onSubmit}
+				validationSchema={validationSchema}
+			>
+				{() => (
+					<Form>
+						<Grid container spacing={5}>
+							<GridItem item xs={6}>
+								<Field
+									name="title"
+									label="Nazwa"
+									component={Input}
+								/>
+								<Field
+									name="street"
+									label="Ulica"
+									component={Input}
+								/>
+
+								<Field
+									name="number"
+									label="Numer"
+									component={Input}
+								/>
+								<Field
+									name="lat"
+									label="Lat"
+									component={Input}
+								/>
+							</GridItem>
+							<GridItem item xs={6}>
+								<Field
+									name="long"
+									label="Lng"
+									component={Input}
+								/>
+								<Field
+									component={Select}
+									name="placeType"
+									label="test"
+								/>
+								<Field
+									name="phoneNumber"
+									label="Numer Telefonu"
+									component={Input}
+								/>
+							</GridItem>
+						</Grid>
+						<button type="submit">test</button>
+					</Form>
+				)}
+			</Formik>
+		</Container>
 	)
 }
 

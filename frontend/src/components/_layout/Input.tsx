@@ -25,6 +25,11 @@ const Input: React.FC<Props> = ({
 				{...field}
 				error={touched[name] && errors[name] ? true : false}
 				helperText={touched[name] && errors[name] && errors[name]}
+				InputProps={{
+					style: {
+						color: 'red',
+					},
+				}}
 			/>
 		</>
 	)
