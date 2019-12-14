@@ -4,6 +4,7 @@ import { Router, RouteComponentProps } from '@reach/router'
 import AddPlace from '../AddPlace'
 import Main from '../Main'
 import PlacesList from '../Places/PlacesList'
+import Places from '../Places/Places'
 import { AppBar, IconButton } from '@material-ui/core'
 import { Camera } from 'react-feather'
 import Login from '../Authorization/Login'
@@ -31,15 +32,15 @@ const Navigation: FunctionComponent = () => {
 						<NavBarLink to="login">Login</NavBarLink>
 						<NavBarLink to="/">Dodaj miejsce</NavBarLink>
 						<NavBarLink to="main">Main</NavBarLink>
-						<NavBarLink to="placeslist">Lista</NavBarLink>
+						<NavBarLink to="places">Lista</NavBarLink>
 					</div>
 				</NavBar>
 			</AppBar>
-
 			<Router>
 				<Route component={AddPlace} path="/" />
 				<Route component={Main} path="/main" />
 				<Route component={Login} path="/login" />
+				<Route component={Places} path="/places" />
 				<Route component={PlacesList} path="/placeslist" />
 			</Router>
 		</>

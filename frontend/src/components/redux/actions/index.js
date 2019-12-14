@@ -4,7 +4,7 @@ import { GET_PLACES, SEND_PLACES } from '../types'
 
 export const getPlaces = () => async dispatch => {
 	try {
-		const response = await api.get('http://localhost:5000/places')
+		const response = await api.get('/places')
 
 		const action = {
 			type: GET_PLACES,
