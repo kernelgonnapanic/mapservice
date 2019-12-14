@@ -1,15 +1,21 @@
-import React from 'react'
 import { Grid } from '@material-ui/core'
+import React, { useState } from 'react'
 import PlacesList from './PlacesList'
 
-interface Props {}
+const Places: React.FC = () => {
+	const [selectedListElementId, setSelectedListElementId] = useState<string>(
+		'',
+	)
 
-const Places: React.FC<Props> = () => {
+	console.log(selectedListElementId)
+
 	return (
 		<>
 			<Grid container>
 				<Grid item xs={6}>
-					<PlacesList />>
+					<PlacesList
+						setSelectedListElementId={setSelectedListElementId}
+					/>
 				</Grid>
 				<Grid item xs={6}>
 					TEST

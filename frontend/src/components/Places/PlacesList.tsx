@@ -1,10 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlaces } from '../redux/actions'
 import { reducers } from '../redux/reducers'
 import { ListElement } from './PlacesList.styles'
 
-const AddPlace: React.FC = () => {
+interface Props {
+	setSelectedListElementId?: (
+		value: string | ((prevVar: string) => string),
+	) => void
+}
+
+const AddPlace: React.FC<Props> = ({ setSelectedListElementId }) => {
+	interface PlaceValue {
+		title: string
+		_id: string
+	}
+
 	const dispatch = useDispatch()
 
 	const places = useSelector(
@@ -15,23 +26,18 @@ const AddPlace: React.FC = () => {
 		dispatch(getPlaces())
 	}, [dispatch])
 
-	interface PlaceValue {
-		title: string
-		_id: string
-	}
-
 	return (
 		<div>
 			{places
 				? places.map((place: PlaceValue) => {
+						const { title, _id } = place
+
 						return (
 							<ListElement
-								onClick={() => {
-									console.log('click')
-								}}
-								key={place._id}
+								onClick={() => setSelectedListElementId!(_id)}
+								key={_id}
 							>
-								{place.title}
+								{title}
 							</ListElement>
 						)
 				  })

@@ -1,13 +1,13 @@
-import React, { FunctionComponent } from 'react'
-import { NavBar, NavBarLink } from './Navigation.styles'
-import { Router, RouteComponentProps } from '@reach/router'
-import AddPlace from '../AddPlace'
-import Main from '../Main'
-import PlacesList from '../Places/PlacesList'
-import Places from '../Places/Places'
 import { AppBar, IconButton } from '@material-ui/core'
+import { RouteComponentProps, Router } from '@reach/router'
+import React, { FunctionComponent } from 'react'
 import { Camera } from 'react-feather'
+import AddPlace from '../AddPlace'
 import Login from '../Authorization/Login'
+import Main from '../Main'
+import Places from '../Places/Places'
+import PlacesList from '../Places/PlacesList'
+import { NavBar, NavBarLink } from './Navigation.styles'
 
 type Props = { component: React.FC } & RouteComponentProps
 
