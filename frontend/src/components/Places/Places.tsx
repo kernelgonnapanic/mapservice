@@ -1,13 +1,12 @@
 import { Grid } from '@material-ui/core'
 import React, { useState } from 'react'
 import PlacesList from './PlacesList'
+import PlaceSingle from './PlaceSingle'
 
 const Places: React.FC = () => {
 	const [selectedListElementId, setSelectedListElementId] = useState<string>(
 		'',
 	)
-
-	console.log(selectedListElementId)
 
 	return (
 		<>
@@ -18,7 +17,7 @@ const Places: React.FC = () => {
 					/>
 				</Grid>
 				<Grid item xs={6}>
-					TEST
+					<PlaceSingle />
 				</Grid>
 			</Grid>
 		</>

@@ -1,6 +1,5 @@
 import { api } from '../../../api'
-import axios from 'axios'
-import { GET_PLACES, SEND_PLACES } from '../types'
+import { GET_PLACES, SEND_PLACES, GET_SINGLE_PLACE } from '../types'
 
 export const getPlaces = () => async dispatch => {
 	try {
@@ -13,6 +12,22 @@ export const getPlaces = () => async dispatch => {
 
 		dispatch(action)
 	} catch (err) {
+		console.log(err)
+	}
+}
+
+export const getSinglePlace = id => async dispatch => {
+	try {
+		const response = await api.get(`/place/${id}`)
+
+		const action = {
+			type: GET_SINGLE_PLACE,
+			payload: response,
+		}
+
+		dispatch(action)
+	} catch (err) {
+		alert('FFS')
 		console.log(err)
 	}
 }
