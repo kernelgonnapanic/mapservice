@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core'
 import React, { useState } from 'react'
-import PlacesList from './PlacesList'
-import PlaceSingle from './PlaceSingle'
+import PlacesList from './list/PlacesList'
+import PlaceSingle from './single/PlaceSingle'
 
 const Places: React.FC = () => {
 	const [selectedListElementId, setSelectedListElementId] = useState<string>(

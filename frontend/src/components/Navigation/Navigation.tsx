@@ -2,11 +2,11 @@ import { AppBar, IconButton } from '@material-ui/core'
 import { RouteComponentProps, Router } from '@reach/router'
 import React, { FunctionComponent } from 'react'
 import { Camera } from 'react-feather'
-import AddPlace from '../AddPlace'
+import PlacesForm from '../Places/form/PlacesForm'
 import Login from '../Authorization/Login'
 import Main from '../Main'
 import Places from '../Places/Places'
-import PlacesList from '../Places/PlacesList'
+import PlacesList from '../Places/list/PlacesList'
 import { NavBar, NavBarLink } from './Navigation.styles'
 
 type Props = { component: React.FC } & RouteComponentProps
@@ -37,7 +37,7 @@ const Navigation: FunctionComponent = () => {
 				</NavBar>
 			</AppBar>
 			<Router>
-				<Route component={AddPlace} path="/" />
+				<Route component={PlacesForm} path="/" />
 				<Route component={Main} path="/main" />
 				<Route component={Login} path="/login" />
 				<Route component={Places} path="/places" />

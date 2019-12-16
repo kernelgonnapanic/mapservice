@@ -1,7 +1,7 @@
 import React from 'react'
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
+import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import Navigation from './components/Navigation/Navigation'
-import AddPlace from './components/AddPlace'
+
 import { Provider } from 'react-redux'
 import { store } from './components/redux/reducers'
 
@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const App = () => {
+const App: React.FC = () => {
 	return (
 		<Provider store={store}>
 			<GlobalStyle />

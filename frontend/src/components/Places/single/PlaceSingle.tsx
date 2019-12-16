@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { getSinglePlace } from '../redux/actions'
+import { getSinglePlace } from '../../redux/actions'
 import { useDispatch } from 'react-redux'
 
 interface Props {}

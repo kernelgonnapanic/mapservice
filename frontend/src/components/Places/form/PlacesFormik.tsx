@@ -2,10 +2,10 @@ import { Field, Form, Formik } from 'formik'
 import React from 'react'
 import styled from 'styled-components'
 import { Grid, Container } from '@material-ui/core'
-import Input from './_layout/Input'
-import Select from './_layout/Select'
+import Input from '../../_layout/Input'
+import Select from '../../_layout/Select'
 import { useDispatch } from 'react-redux'
-import { sendPlace } from './redux/actions'
+import { sendPlace } from '../../redux/actions'
 import * as Yup from 'yup'
 
 const AddPlace: React.FC = () => {

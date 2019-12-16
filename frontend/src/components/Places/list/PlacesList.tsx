@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPlaces } from '../redux/actions'
-import { reducers } from '../redux/reducers'
+import { getPlaces } from '../../redux/actions'
+import { reducers } from '../../redux/reducers'
 import { ListElement } from './PlacesList.styles'
 
 interface Props {
