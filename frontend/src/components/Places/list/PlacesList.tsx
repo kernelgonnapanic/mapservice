@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlaces } from '../../redux/actions'
 import { reducers } from '../../redux/reducers'
-import { ListElement } from './PlacesList.styles'
+import * as S from './PlacesList.styles'
 
 interface Props {
 	setSelectedListElementId?: (
@@ -33,12 +33,12 @@ const AddPlace: React.FC<Props> = ({ setSelectedListElementId }) => {
 						const { title, _id } = place
 
 						return (
-							<ListElement
+							<S.ListElement
 								onClick={() => setSelectedListElementId!(_id)}
 								key={_id}
 							>
 								{title}
-							</ListElement>
+							</S.ListElement>
 						)
 				  })
 				: 'Loading...'}

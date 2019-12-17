@@ -3,7 +3,6 @@ import React from 'react'
 import { FieldProps } from 'formik'
 
 import {
-	MenuItem,
 	Select,
 	FormControl,
 	InputLabel,
