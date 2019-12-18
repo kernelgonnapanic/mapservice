@@ -12,7 +12,7 @@ type State = {
 }
 
 class PlacesMap extends Component<{}, State> {
-	state = {
+	public state = {
 		center: {
 			lat: 51.505,
 			lng: -0.09,
