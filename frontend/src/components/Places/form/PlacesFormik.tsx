@@ -8,7 +8,16 @@ import { useDispatch } from 'react-redux'
 import { sendPlace } from '../../redux/actions'
 import * as Yup from 'yup'
 
-const AddPlace: React.FC = () => {
+interface Props {
+	selectedLatLng:
+		| {
+				lat: number
+				lng: number
+		  }
+		| {}
+}
+
+const AddPlace: React.FC<Props> = ({ selectedLatLng }) => {
 	const dispatch = useDispatch()
 
 	const validationSchema = Yup.object().shape({
@@ -56,6 +65,8 @@ const AddPlace: React.FC = () => {
 		flex-direction: column;
 	`
 
+	console.log(selectedLatLng)
+
 	return (
 		<Container fixed>
 			<Formik
@@ -79,6 +90,7 @@ const AddPlace: React.FC = () => {
 								/>
 
 								<Field
+									style={{ paddingTop: '25px' }}
 									name="number"
 									label="Numer"
 									component={Input}
@@ -103,6 +115,7 @@ const AddPlace: React.FC = () => {
 								<Field
 									name="phoneNumber"
 									label="Numer Telefonu"
+									marginTop={25}
 									component={Input}
 								/>
 							</GridItem>

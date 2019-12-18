@@ -1,21 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PlacesFormik from './PlacesFormik'
-import { Grid } from '@material-ui/core'
 import PlacesMap from './PlacesMap'
+import * as S from './PlacesForm.styles'
 
 interface Props {}
 
 const PlacesForm: React.FC<Props> = () => {
+	const [selectedLatLng, setSelectedLatLng] = useState<{}>({})
+
 	return (
 		<>
-			<Grid container>
-				<Grid item xs={8}>
-					<PlacesFormik />
-				</Grid>
-				<Grid item xs={4}>
-					<PlacesMap />
-				</Grid>
-			</Grid>
+			<S.Container>
+				<div>
+					<PlacesFormik selectedLatLng={selectedLatLng} />
+				</div>
+				<S.MapWrapper>
+					<PlacesMap setSelectedLatLng={setSelectedLatLng} />
+				</S.MapWrapper>
+			</S.Container>
 		</>
 	)
 }

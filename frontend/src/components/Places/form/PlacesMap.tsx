@@ -4,6 +4,12 @@ import * as S from './PlacesMap.styles'
 
 type Position = { lat: number; lng: number }
 
+interface Props {
+	setSelectedLatLng?: (
+		value: Position | ((prevVar: Position) => Position),
+	) => void
+}
+
 type State = {
 	center: Position
 	marker: Position
@@ -11,7 +17,7 @@ type State = {
 	draggable: boolean
 }
 
-class PlacesMap extends Component<{}, State> {
+class PlacesMap extends Component<Props, State> {
 	public state = {
 		center: {
 			lat: 51.505,
@@ -39,7 +45,12 @@ class PlacesMap extends Component<{}, State> {
 				marker: marker.leafletElement.getLatLng(),
 			})
 		}
+
+		if (this.props.setSelectedLatLng) {
+			this.props.setSelectedLatLng(this.state.marker)
+		}
 	}
+
 	public render(): JSX.Element {
 		const position: [number, number] = [
 			this.state.center.lat,
@@ -66,13 +77,13 @@ class PlacesMap extends Component<{}, State> {
 					position={markerPosition}
 					ref={this.refmarker}
 				>
-					{/* <Popup minWidth={90}>
+					<Popup minWidth={90}>
 						<span onClick={this.toggleDraggable}>
 							{this.state.draggable
 								? 'DRAG MARKER'
 								: 'MARKER FIXED'}
 						</span>
-					</Popup> */}
+					</Popup>
 				</Marker>
 			</S.MapContainer>
 		)

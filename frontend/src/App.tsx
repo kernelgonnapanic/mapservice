@@ -4,7 +4,11 @@ import Navigation from './components/Navigation/Navigation'
 import { Provider } from 'react-redux'
 import { store } from './components/redux/reducers'
 
-const theme = {}
+const theme = {
+	colors: {
+		white: '#FFFFFF',
+	},
+}
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
