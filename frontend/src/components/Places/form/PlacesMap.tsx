@@ -5,9 +5,7 @@ import * as S from './PlacesMap.styles'
 type Position = { lat: number; lng: number }
 
 interface Props {
-	setSelectedLatLng?: (
-		value: Position | ((prevVar: Position) => Position),
-	) => void
+	setFieldValue?: (field: string, value: any) => void
 }
 
 type State = {
@@ -46,8 +44,13 @@ class PlacesMap extends Component<Props, State> {
 			})
 		}
 
-		if (this.props.setSelectedLatLng) {
-			this.props.setSelectedLatLng(this.state.marker)
+		const { setFieldValue } = this.props
+
+		if (setFieldValue) {
+			const { marker } = this.state
+
+			setFieldValue('lat', marker.lat)
+			setFieldValue('long', marker.lng)
 		}
 	}
 
@@ -62,11 +65,7 @@ class PlacesMap extends Component<Props, State> {
 		]
 
 		return (
-			<S.MapContainer
-				center={position}
-				zoom={this.state.zoom}
-				style={{ height: '100%' }}
-			>
+			<S.MapContainer center={position} zoom={this.state.zoom}>
 				<TileLayer
 					attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

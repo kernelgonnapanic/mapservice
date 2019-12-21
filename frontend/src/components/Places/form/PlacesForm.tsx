@@ -3,20 +3,16 @@ import PlacesFormik from './PlacesFormik'
 import PlacesMap from './PlacesMap'
 import * as S from './PlacesForm.styles'
 
-interface Props {}
+interface Props { }
 
 const PlacesForm: React.FC<Props> = () => {
-	const [selectedLatLng, setSelectedLatLng] = useState<{}>({})
-
 	return (
 		<>
 			<S.Container>
-				<div>
-					<PlacesFormik selectedLatLng={selectedLatLng} />
-				</div>
-				<S.MapWrapper>
-					<PlacesMap setSelectedLatLng={setSelectedLatLng} />
-				</S.MapWrapper>
+				<S.FormikWrapper>
+					<PlacesFormik />
+				</S.FormikWrapper>
+				<S.MapWrapper></S.MapWrapper>
 			</S.Container>
 		</>
 	)

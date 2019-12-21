@@ -1,23 +1,16 @@
 import { Field, Form, Formik } from 'formik'
-import React from 'react'
-import styled from 'styled-components'
-import { Grid, Container } from '@material-ui/core'
+import React, { useEffect } from 'react'
+import PlacesMap from './PlacesMap'
+import { useDispatch } from 'react-redux'
+import * as S from './PlacesFormik.styles'
+import * as Yup from 'yup'
+import { sendPlace } from '../../redux/actions'
 import Input from '../../_layout/Input'
 import Select from '../../_layout/Select'
-import { useDispatch } from 'react-redux'
-import { sendPlace } from '../../redux/actions'
-import * as Yup from 'yup'
 
-interface Props {
-	selectedLatLng:
-		| {
-				lat: number
-				lng: number
-		  }
-		| {}
-}
+interface Props { }
 
-const AddPlace: React.FC<Props> = ({ selectedLatLng }) => {
+const AddPlace: React.FC<Props> = () => {
 	const dispatch = useDispatch()
 
 	const validationSchema = Yup.object().shape({
@@ -52,32 +45,25 @@ const AddPlace: React.FC<Props> = ({ selectedLatLng }) => {
 		placeType: '', //SELECT FETCH FROM API
 		phoneNumber: '',
 		// description: '', //TEXTAREA
-		lat: '', //PICKED FROM MAP
+		lat: '',
 		long: '',
 	}
 
-	const onSubmit = (values: Record<string, any>) => {
+	const onSubmit = (values: Record<string, any>): void => {
 		dispatch(sendPlace(values))
 	}
 
-	const GridItem = styled(Grid)`
-		display: flex;
-		flex-direction: column;
-	`
-
-	console.log(selectedLatLng)
-
 	return (
-		<Container fixed>
-			<Formik
-				initialValues={initialValues}
-				onSubmit={onSubmit}
-				validationSchema={validationSchema}
-			>
-				{() => (
-					<Form>
-						<Grid container spacing={5}>
-							<GridItem item xs={6}>
+		<Formik
+			initialValues={initialValues}
+			onSubmit={onSubmit}
+			validationSchema={validationSchema}
+		>
+			{({ setFieldValue }) => {
+				return (
+					<S.StyledForm>
+						<S.GridContainer container spacing={5}>
+							<S.GridItem item xs={6}>
 								<Field
 									name="title"
 									label="Nazwa"
@@ -90,41 +76,41 @@ const AddPlace: React.FC<Props> = ({ selectedLatLng }) => {
 								/>
 
 								<Field
-									style={{ paddingTop: '25px' }}
 									name="number"
 									label="Numer"
+									value="rofl"
 									component={Input}
 								/>
 								<Field
-									name="lat"
-									label="Lat"
+									name="phoneNumber"
+									label="Numer Telefonu"
 									component={Input}
 								/>
-							</GridItem>
-							<GridItem item xs={6}>
-								<Field
-									name="long"
-									label="Lng"
-									component={Input}
-								/>
+							</S.GridItem>
+							<S.GridItem item xs={6}>
 								<Field
 									component={Select}
 									name="placeType"
 									label="test"
 								/>
 								<Field
-									name="phoneNumber"
-									label="Numer Telefonu"
-									marginTop={25}
+									name="lat"
+									label="Lat"
 									component={Input}
 								/>
-							</GridItem>
-						</Grid>
+								<Field
+									name="long"
+									label="Lng"
+									component={Input}
+								/>
+							</S.GridItem>
+						</S.GridContainer>
 						<button type="submit">test</button>
-					</Form>
-				)}
-			</Formik>
-		</Container>
+						<PlacesMap setFieldValue={setFieldValue} />
+					</S.StyledForm>
+				)
+			}}
+		</Formik>
 	)
 }
 

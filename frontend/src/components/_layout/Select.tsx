@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core'
 
 /*eslint-disable*/
-interface Props extends FieldProps {}
+interface Props extends FieldProps { }
 
 const customSelect: React.FC<Props> = ({
 	field,
@@ -21,6 +21,7 @@ const customSelect: React.FC<Props> = ({
 	return (
 		<>
 			<FormControl
+				margin="none"
 				variant="outlined"
 				error={touched[name] && errors[name] ? true : false}
 			>
@@ -30,9 +31,11 @@ const customSelect: React.FC<Props> = ({
 					<option value="restaurant">Restauracja</option>
 					<option value="cinema">Kino</option>
 				</Select>
-				<FormHelperText>
-					{touched[name] && errors[name] && errors[name]}
-				</FormHelperText>
+				{touched[name] &&
+					<FormHelperText>
+						{errors[name]}
+					</FormHelperText>
+				}
 			</FormControl>
 		</>
 	)
