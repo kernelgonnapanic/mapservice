@@ -1,18 +1,23 @@
+import { Form } from 'formik'
 import styled from 'styled-components'
 
+export const Item = styled.div`
+	display: flex;
+	flex-direction: column;
+`
+
 export const Container = styled.div`
+	height: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	margin: 25px;
-	height: 100%;
-	align-items: center;
 `
 
-export const MapWrapper = styled.div`
-	height: 100%;
+export const FieldsWrapper = styled.div`
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 `
 
-export const FormikWrapper = styled.div`
-	display: flex;
-	align-items: center;
+export const StyledForm = styled(Form)`
+	width: 100%;
+	padding: 0 25px;
 `
