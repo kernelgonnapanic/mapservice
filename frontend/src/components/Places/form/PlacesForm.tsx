@@ -5,12 +5,9 @@ import { useDispatch } from 'react-redux'
 import * as S from './PlacesForm.styles'
 import * as Yup from 'yup'
 import { sendPlace } from '../../redux/actions'
-import Input from '../../_layout/Input'
-import Select from '../../_layout/Select'
+import { Input, Select, Button } from '../../_layout'
 
-interface Props { }
-
-const AddPlace: React.FC<Props> = () => {
+const AddPlace: React.FC = () => {
 	const dispatch = useDispatch()
 
 	const validationSchema = Yup.object().shape({
@@ -50,8 +47,7 @@ const AddPlace: React.FC<Props> = () => {
 	}
 
 	const onSubmit = (values: Record<string, any>): void => {
-		// dispatch(sendPlace(values))
-		console.log(values)
+		dispatch(sendPlace(values))
 	}
 
 	return (
@@ -106,7 +102,7 @@ const AddPlace: React.FC<Props> = () => {
 										component={Input}
 									/>
 								</S.Item>
-								<button type="submit">test</button>
+								<Button />
 							</S.FieldsWrapper>
 							<PlacesMap setFieldValue={setFieldValue} />
 						</S.Container>

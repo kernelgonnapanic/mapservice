@@ -15,9 +15,10 @@ export const Container = styled.div`
 export const FieldsWrapper = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+	padding-right: 50px;
 `
 
 export const StyledForm = styled(Form)`
 	width: 100%;
-	padding: 0 25px;
+	padding: 100px;
 `

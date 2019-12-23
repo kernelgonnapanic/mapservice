@@ -18,12 +18,12 @@ type State = {
 class PlacesMap extends Component<Props, State> {
 	public state = {
 		center: {
-			lat: 51.505,
-			lng: -0.09,
+			lat: 52.163228,
+			lng: 22.269012,
 		},
 		marker: {
-			lat: 51.505,
-			lng: -0.09,
+			lat: 52.163228,
+			lng: 22.269012,
 		},
 		zoom: 13,
 		draggable: true,
@@ -31,11 +31,11 @@ class PlacesMap extends Component<Props, State> {
 
 	refmarker = createRef<Marker>()
 
-	toggleDraggable = () => {
+	toggleDraggable = (): void => {
 		this.setState({ draggable: !this.state.draggable })
 	}
 
-	updatePosition = () => {
+	updatePosition = (): void => {
 		const marker = this.refmarker.current
 
 		if (marker) {
