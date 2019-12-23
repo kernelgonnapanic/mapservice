@@ -12,7 +12,6 @@ export const getData = async (req, res) => {
 }
 
 export const middleWare = (req, res, next) => {
-	console.log('I AM MIDDLEWARE')
 	next()
 }
 
@@ -73,7 +72,6 @@ export const updatePlace = async (req, res) => {
 	try {
 		const id = req.params.id
 
-		console.log(req.body)
 		const updatedPlace = await Place.findOneAndUpdate(
 			{
 				_id: id,
