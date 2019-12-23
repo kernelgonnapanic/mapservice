@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import * as S from './PlacesForm.styles'
 import * as Yup from 'yup'
 import { sendPlace } from '../../redux/actions'
-import { Input, Select, Button } from '../../_layout'
+import { Input, Select, Button, FileUploadInput } from '../../_layout'
 
 const AddPlace: React.FC = () => {
 	const dispatch = useDispatch()
@@ -44,10 +44,12 @@ const AddPlace: React.FC = () => {
 		// description: '', //TEXTAREA
 		lat: '',
 		long: '',
+		file: ''
 	}
 
 	const onSubmit = (values: Record<string, any>): void => {
-		dispatch(sendPlace(values))
+		// dispatch(sendPlace(values))
+		console.log(values);
 	}
 
 	return (
@@ -102,6 +104,7 @@ const AddPlace: React.FC = () => {
 										component={Input}
 									/>
 								</S.Item>
+								<FileUploadInput setFieldValue={setFieldValue} />
 								<Button />
 							</S.FieldsWrapper>
 							<PlacesMap setFieldValue={setFieldValue} />
