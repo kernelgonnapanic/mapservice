@@ -12,7 +12,8 @@ export const getData = async (req, res) => {
 }
 
 export const createPlace = async (req, res) => {
-	console.log(req.file)
+	const fullImageUrl =
+		req.protocol + '://' + req.get('host') + '/' + req.file.path
 
 	const place = new Place({
 		title: req.body.title,
@@ -29,7 +30,7 @@ export const createPlace = async (req, res) => {
 		type: req.body.address,
 		phoneNumber: req.body.phoneNumber,
 		description: req.body.description,
-		image: req.file.path,
+		placeImage: fullImageUrl,
 	})
 
 	try {

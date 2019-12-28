@@ -30,7 +30,7 @@ const placeSchema = new mongoose.Schema({
 		},
 		enum: ['pizzeria', 'kebab'],
 	},
-	image: String,
+	placeImage: String,
 	phoneNumber: Number,
 	description: String,
 	coordinates: [
