@@ -38,18 +38,16 @@ const AddPlace: React.FC = () => {
 		title: '',
 		street: '',
 		number: '',
-		//IMAGE UPLOAD TO DO
 		placeType: '', //SELECT FETCH FROM API
 		phoneNumber: '',
 		// description: '', //TEXTAREA
 		lat: '',
 		long: '',
-		file: ''
+		placeImage: ''
 	}
 
 	const onSubmit = (values: Record<string, any>): void => {
-		// dispatch(sendPlace(values))
-		console.log(values);
+		dispatch(sendPlace(values))
 	}
 
 	return (

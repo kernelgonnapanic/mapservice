@@ -7,3 +7,8 @@ export const api = axios.create({
 		Authorization: `Bearer ${localStorage.getItem('_token')}`,
 	},
 })
+
+export const apiFormData = axios.create({
+	baseURL: process.env.REACT_APP_API_HOST,
+	headers: { 'Content-Type': 'multipart/form-data' },
+})

@@ -14,6 +14,7 @@ const AddPlace: React.FC<Props> = ({ setSelectedListElementId }) => {
 	interface PlaceValue {
 		title: string
 		_id: string
+		placeImage: string
 	}
 
 	const dispatch = useDispatch()
@@ -30,17 +31,21 @@ const AddPlace: React.FC<Props> = ({ setSelectedListElementId }) => {
 		<div>
 			{places
 				? places.map((place: PlaceValue) => {
-						const { title, _id } = place
+					const { title, _id, placeImage } = place
 
-						return (
-							<S.ListElement
-								onClick={() => setSelectedListElementId!(_id)}
-								key={_id}
-							>
-								{title}
-							</S.ListElement>
-						)
-				  })
+
+					console.log(place);
+
+					return (
+						<S.ListElement
+							onClick={() => setSelectedListElementId!(_id)}
+							key={_id}
+						>
+							{title}
+							{placeImage}
+						</S.ListElement>
+					)
+				})
 				: 'Loading...'}
 		</div>
 	)

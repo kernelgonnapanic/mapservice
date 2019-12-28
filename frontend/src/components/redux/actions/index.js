@@ -1,5 +1,7 @@
-import { api } from '../../../api'
+import { api, apiFormData } from '../../../api'
+import axios from 'axios'
 import { GET_PLACES, SEND_PLACES, GET_SINGLE_PLACE } from '../types'
+import { jsonToFormData } from '../../../assets/helpers'
 
 export const getPlaces = () => async dispatch => {
 	try {
@@ -27,14 +29,15 @@ export const getSinglePlace = id => async dispatch => {
 
 		dispatch(action)
 	} catch (err) {
-		alert('FFS')
 		console.log(err)
 	}
 }
 
 export const sendPlace = data => async dispatch => {
 	try {
-		const response = await api.post('/place', { ...data })
+		const bodyFormData = jsonToFormData(data)
+
+		const response = await apiFormData.post('/place', bodyFormData)
 
 		const action = {
 			type: SEND_PLACES,
