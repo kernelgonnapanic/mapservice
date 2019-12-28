@@ -13,7 +13,7 @@ const app = express()
 app.disable('x-powered-by')
 app.use(cors())
 app.use(express.json())
-
+app.use('/uploads', express.static('uploads'))
 app.use('/', placesRouter)
 
 export const start = async () => {

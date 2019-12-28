@@ -1,28 +1,4 @@
 import { Place } from './places.model'
-import multer from 'multer'
-
-const storage = multer.diskStorage({
-	destination: function(req, file, cb) {
-		cb(null, 'uploads/')
-	},
-	filename: function(req, file, cb) {
-		cb(null, new Date.toISOString() + '-' + file.originalname)
-	},
-})
-
-const upload = multer({
-	storage: storage,
-	filterFiles: (req, file, cb) => {
-		var ext = path.extname(file.originalname)
-		if (ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg') {
-			return callback(new Error('Only images are allowed'))
-		}
-		callback(null, true)
-	},
-	limits: {
-		fileSize: 1024 * 1024 * 5,
-	},
-})
 
 export const getData = async (req, res) => {
 	try {
@@ -36,6 +12,8 @@ export const getData = async (req, res) => {
 }
 
 export const createPlace = async (req, res) => {
+	console.log(req.file)
+
 	const place = new Place({
 		title: req.body.title,
 		address: {
@@ -51,6 +29,7 @@ export const createPlace = async (req, res) => {
 		type: req.body.address,
 		phoneNumber: req.body.phoneNumber,
 		description: req.body.description,
+		// image: req.file.path,
 	})
 
 	try {

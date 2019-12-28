@@ -4,7 +4,6 @@ import {
 	createPlace,
 	getPlace,
 	updatePlace,
-	// uploadFile,
 } from './places.controllers'
 import multer from 'multer'
 
@@ -13,16 +12,21 @@ const storage = multer.diskStorage({
 		cb(null, './uploads/')
 	},
 	filename: function(req, file, cb) {
-		cb(null, Date.now() + '-' + file.originalname)
+		const filename = Date.now() + '-' + file.originalname
+
+		cb(null, filename)
 	},
 })
 
 const fileFilter = (req, file, cb) => {
-	if (
+	console.log(file)
+
+	const isImage =
 		file.mimetype === 'image/jpeg' ||
 		file.mimetype === 'image/png' ||
 		file.mimetype === 'image/jpg'
-	) {
+
+	if (isImage) {
 		cb(null, true)
 	} else {
 		cb(new Error('File should have jpeg/png/jpg format!'), false)
@@ -39,7 +43,6 @@ const upload = multer({
 
 const router = Router()
 
-// /api/list
 router.get('/places', getData)
 router.post('/place', upload.single('placeImage'), createPlace)
 router.get('/place/:id', getPlace)
