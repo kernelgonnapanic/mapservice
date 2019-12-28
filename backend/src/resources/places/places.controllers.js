@@ -29,7 +29,7 @@ export const createPlace = async (req, res) => {
 		type: req.body.address,
 		phoneNumber: req.body.phoneNumber,
 		description: req.body.description,
-		// image: req.file.path,
+		image: req.file.path,
 	})
 
 	try {
