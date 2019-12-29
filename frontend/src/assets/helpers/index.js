@@ -28,3 +28,13 @@ export function jsonToFormData(data) {
 
 	return formData
 }
+
+export function trimString(string, n) {
+	if (string.length > n) {
+		const splitedFileNameAndDot = string.split(/\.(?=[^\.]+$)/)
+		const shortFileTitle = splitedFileNameAndDot[0].substr(0, n)
+		const fileExtension = splitedFileNameAndDot[1]
+
+		return `${shortFileTitle}.${fileExtension}`
+	}
+}

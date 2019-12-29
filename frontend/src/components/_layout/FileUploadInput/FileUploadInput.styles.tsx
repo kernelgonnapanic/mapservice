@@ -3,6 +3,8 @@ import styled from 'styled-components'
 export const Label = styled.label`
     position: relative;
     display: flex;
+    height: 250px;
+    width: 250px;
     justify-content: center;
     align-items: center;
     border: 1.5px dashed rgb(209, 196, 233);
@@ -16,8 +18,16 @@ export const Input = styled.input`
 `
 
 export const Image = styled.img`
-    width: 250px;
-    height: 250px;
+    position: absolute;
+    width: 100%;
+    padding: 25px;
+    height: 100%;
     object-fit: cover;
 `;
+
+export const FileTitle = styled.p`
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+`
 
