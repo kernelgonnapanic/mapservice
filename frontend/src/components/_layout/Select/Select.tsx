@@ -1,5 +1,5 @@
 import React from 'react'
-
+import styled from 'styled-components'
 import { FieldProps } from 'formik'
 
 import {
@@ -18,6 +18,11 @@ const customSelect: React.FC<Props> = ({
 }) => {
 	const { name } = field
 
+
+	const StyledSelect = styled(Select)`
+		width: 75%;
+	`
+
 	return (
 		<>
 			<FormControl
@@ -26,11 +31,11 @@ const customSelect: React.FC<Props> = ({
 				error={touched[name] && errors[name] ? true : false}
 			>
 				<InputLabel htmlFor="age-native-simple">Typ</InputLabel>
-				<Select native {...field}>
+				<StyledSelect native {...field}>
 					<option value="" />
 					<option value="restaurant">Restauracja</option>
 					<option value="cinema">Kino</option>
-				</Select>
+				</StyledSelect>
 				{touched[name] &&
 					<FormHelperText>
 						{errors[name]}

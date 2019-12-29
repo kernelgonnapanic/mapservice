@@ -1,7 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import { FieldProps } from 'formik'
-import { TextField } from '@material-ui/core'
+import * as S from './Input.styles'
 import { TextFieldProps } from 'material-ui'
 
 interface Props extends FieldProps, TextFieldProps {
@@ -21,9 +20,10 @@ const Input: React.FC<Props> = ({
 }) => {
 	const { name } = field
 
+
 	return (
 		<>
-			<TextField
+			<S.Input
 				type={type}
 				variant="outlined"
 				label={label}

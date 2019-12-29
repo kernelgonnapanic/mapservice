@@ -3,12 +3,19 @@ import React from 'react'
 import PlacesMap from './PlacesMap'
 import { useDispatch } from 'react-redux'
 import * as S from './PlacesForm.styles'
+import { useStyles } from './PlacesForm.styles'
 import * as Yup from 'yup'
 import { sendPlace } from '../../redux/actions'
 import { Input, Select, Button, FileUploadInput } from '../../_layout'
 
+
+
+
+
+
 const AddPlace: React.FC = () => {
 	const dispatch = useDispatch()
+	const classes = useStyles();
 
 	const validationSchema = Yup.object().shape({
 		title: Yup.string()
@@ -58,10 +65,10 @@ const AddPlace: React.FC = () => {
 		>
 			{({ setFieldValue }) => (
 				<>
-					<S.StyledForm>
+					<S.StyledForm className={classes.root}>
 						<S.Container>
 							<S.FieldsWrapper>
-								<S.Item>
+								<S.Item >
 									<Field
 										name="title"
 										label="Nazwa"

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, Form, Formik } from 'formik'
-import Input from '../_layout/Input'
+import Input from '../_layout/Input/Input'
 import * as Yup from 'yup'
 
 const Login: React.FC = () => {
