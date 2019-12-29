@@ -20,14 +20,18 @@ const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
         }
     };
 
+
     return (
         <>
-            <input
-                id="file" name="file"
-                type="file"
-                accept="image/*"
-                onChange={onChangeHandler}
-                className="form-control" />
+            <S.Label>Dodaj obrazek...
+                <S.Input
+                    id="file" name="file"
+                    type="file"
+                    accept="image/x-png,image/gif,image/jpeg"
+                    onChange={onChangeHandler}
+                    className="form-control" />
+
+            </S.Label>
             {filePreviewUrl && <S.Image src={filePreviewUrl} />}
         </>
     )
