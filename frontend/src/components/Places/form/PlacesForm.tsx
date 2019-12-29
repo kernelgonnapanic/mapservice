@@ -1,5 +1,5 @@
-import { Field, Form, Formik } from 'formik'
-import React, { useEffect } from 'react'
+import { Field, Formik } from 'formik'
+import React from 'react'
 import PlacesMap from './PlacesMap'
 import { useDispatch } from 'react-redux'
 import * as S from './PlacesForm.styles'
@@ -40,7 +40,7 @@ const AddPlace: React.FC = () => {
 		number: '',
 		placeType: '', //SELECT FETCH FROM API
 		phoneNumber: '',
-		// description: '', //TEXTAREA
+		description: '',
 		lat: '',
 		long: '',
 		placeImage: ''
@@ -101,6 +101,13 @@ const AddPlace: React.FC = () => {
 										label="Lng"
 										component={Input}
 									/>
+									<Field
+										name="description"
+										label="Opis"
+										multiline={true}
+										rows={4}
+										component={Input}
+									/>
 								</S.Item>
 								<FileUploadInput setFieldValue={setFieldValue} />
 								<Button />
@@ -109,8 +116,9 @@ const AddPlace: React.FC = () => {
 						</S.Container>
 					</S.StyledForm>
 				</>
-			)}
-		</Formik>
+			)
+			}
+		</Formik >
 	)
 }
 

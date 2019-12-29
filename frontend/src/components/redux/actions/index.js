@@ -46,6 +46,10 @@ export const sendPlace = data => async dispatch => {
 
 		dispatch(action)
 	} catch (err) {
-		console.log(err)
+		if (err.response.status === 500) {
+			console.log('There is problem with server')
+		} else {
+			console.log(err)
+		}
 	}
 }

@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import * as S from './FileUploadInput.styles'
-import { trimString } from '../../../assets/helpers'
 
 interface Props {
     setFieldValue: (field: string, value: any | undefined) => void
 }
-
 
 const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
     const [uploadedFile, setUploadedFile] = useState();
@@ -19,8 +17,10 @@ const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
         }
     };
 
-
-    console.log(trimString("KNOPERS2555.jpg", 5));
+    const deleteInputData = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+        e.preventDefault();
+        setUploadedFile('');
+    }
 
     return (
         <>
@@ -30,12 +30,14 @@ const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
                     type="file"
                     accept="image/x-png,image/gif,image/jpeg"
                     onChange={onChangeHandler}
-                    className="form-control" />
+                    className="form-control"
+                />
+
                 {uploadedFile &&
                     <>
                         <S.Image src={URL.createObjectURL(uploadedFile)} />
                         <S.FileTitle>{uploadedFile.name}</S.FileTitle>
-                        <div>DELETE</div>
+                        <S.Button onClick={deleteInputData}>DELETE</S.Button>
                     </>
                 }
             </S.Label>

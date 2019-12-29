@@ -4,17 +4,17 @@ export const Label = styled.label`
     position: relative;
     display: flex;
     height: 250px;
-    width: 250px;
+    width: 100%;
     justify-content: center;
     align-items: center;
     border: 1.5px dashed rgb(209, 196, 233);
 `;
 
 export const Input = styled.input`
+    position: absolute;
     opacity: 0;
     width: 100%;
     height: 100%;
-    position: absolute;
 `
 
 export const Image = styled.img`
@@ -29,5 +29,14 @@ export const FileTitle = styled.p`
     position: absolute;
     bottom: 0;
     margin: 0;
+`
+
+export const Button = styled.button`
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: none;
+    border: none;
+   
 `
 
