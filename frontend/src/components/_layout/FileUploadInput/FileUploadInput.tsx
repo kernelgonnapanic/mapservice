@@ -22,12 +22,7 @@ const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
     const deleteInputData = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
         e.preventDefault();
 
-        console.log(fileInputRef.current.value = "");
-
-
-
-
-
+        fileInputRef.current.value = ""
         setUploadedFile('');
     }
 

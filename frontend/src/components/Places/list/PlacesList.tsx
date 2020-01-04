@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlaces } from '../../redux/actions'
 import { reducers } from '../../redux/reducers'
-import * as S from './PlacesList.styles'
+import PlacesListElement from './PlacesListElement'
+
 
 interface Props {
 	setSelectedListElementId?: (
@@ -10,7 +11,7 @@ interface Props {
 	) => void
 }
 
-const AddPlace: React.FC<Props> = ({ setSelectedListElementId }) => {
+const PlacesList: React.FC<Props> = ({ setSelectedListElementId }) => {
 	interface PlaceValue {
 		title: string
 		_id: string
@@ -27,6 +28,12 @@ const AddPlace: React.FC<Props> = ({ setSelectedListElementId }) => {
 		dispatch(getPlaces())
 	}, [dispatch])
 
+
+	const handleClick = useCallback((id) => {
+		setSelectedListElementId!(id);
+	}, [])
+
+
 	return (
 		<div>
 			{places
@@ -34,16 +41,9 @@ const AddPlace: React.FC<Props> = ({ setSelectedListElementId }) => {
 					const { title, _id, placeImage } = place
 
 
-					console.log(place);
 
 					return (
-						<S.ListElement
-							onClick={() => setSelectedListElementId!(_id)}
-							key={_id}
-						>
-							{title}
-							{placeImage}
-						</S.ListElement>
+						<PlacesListElement handleClick={handleClick} key={_id} _id={_id} title={title} placeImage={placeImage} />
 					)
 				})
 				: 'Loading...'}
@@ -51,4 +51,4 @@ const AddPlace: React.FC<Props> = ({ setSelectedListElementId }) => {
 	)
 }
 
-export default AddPlace
+export default PlacesList

@@ -8,6 +8,9 @@ const Places: React.FC = () => {
 		'',
 	)
 
+
+	console.log(selectedListElementId);
+
 	return (
 		<>
 			<Grid container>
