@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import * as S from './FileUploadInput.styles'
 
 interface Props {
@@ -7,6 +7,7 @@ interface Props {
 
 const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
     const [uploadedFile, setUploadedFile] = useState();
+    const fileInputRef = useRef<HTMLInputElement>(null!);
 
     const onChangeHandler = (e: React.FormEvent<HTMLInputElement>): void => {
         if (e.currentTarget.files) {
@@ -14,11 +15,19 @@ const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
 
             setUploadedFile(file);
             setFieldValue('placeImage', file);
+
         }
     };
 
     const deleteInputData = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
         e.preventDefault();
+
+        console.log(fileInputRef.current.value = "");
+
+
+
+
+
         setUploadedFile('');
     }
 
@@ -31,6 +40,7 @@ const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
                     accept="image/x-png,image/gif,image/jpeg"
                     onChange={onChangeHandler}
                     className="form-control"
+                    ref={fileInputRef}
                 />
 
                 {uploadedFile &&

@@ -9,10 +9,6 @@ import { sendPlace } from '../../redux/actions'
 import { Input, Select, Button, FileUploadInput } from '../../_layout'
 
 
-
-
-
-
 const AddPlace: React.FC = () => {
 	const dispatch = useDispatch()
 	const classes = useStyles();
