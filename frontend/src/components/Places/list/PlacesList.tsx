@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPlaces } from '../../redux/actions'
 import { reducers } from '../../redux/reducers'
 import PlacesListElement from './PlacesListElement'
-
+import { Link } from '@reach/router'
 
 interface Props {
 	setSelectedListElementId?: (
@@ -36,14 +36,18 @@ const PlacesList: React.FC<Props> = ({ setSelectedListElementId }) => {
 
 	return (
 		<div>
+			LISTA
 			{places
 				? places.map((place: PlaceValue) => {
 					const { title, _id, placeImage } = place
 
-
-
 					return (
-						<PlacesListElement handleClick={handleClick} key={_id} _id={_id} title={title} placeImage={placeImage} />
+						<>
+							<Link to="single">
+								<PlacesListElement handleClick={handleClick} key={_id} _id={_id} title={title} placeImage={placeImage} />
+							</Link>
+						</>
+
 					)
 				})
 				: 'Loading...'}

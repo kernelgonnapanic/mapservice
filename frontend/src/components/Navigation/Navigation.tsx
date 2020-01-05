@@ -7,11 +7,17 @@ import Login from '../Authorization/Login'
 import Main from '../Main'
 import Places from '../Places/Places'
 import PlacesList from '../Places/list/PlacesList'
+import PlaceSingle from '../Places/single/PlaceSingle'
 import { NavBar, NavBarLink } from './Navigation.styles'
 
-type Props = { component: React.FC } & RouteComponentProps
+type Props = {
+	component: React.FC,
+	setSelectedListElementId?: (
+		value: string | ((prevVar: string) => string),
+	) => void
+} & RouteComponentProps
 
-const Route: FunctionComponent<Props> = ({ component: Component, ...rest }) => (
+export const Route: FunctionComponent<Props> = ({ component: Component, ...rest }) => (
 	<Component {...rest} />
 )
 
@@ -22,7 +28,6 @@ const Navigation: FunctionComponent = () => {
 				<NavBar>
 					<IconButton
 						edge="start"
-						// className={classes.menuButton}
 						color="inherit"
 						aria-label="menu"
 					>
@@ -40,8 +45,11 @@ const Navigation: FunctionComponent = () => {
 				<Route component={PlacesForm} path="/" />
 				<Route component={Main} path="/main" />
 				<Route component={Login} path="/login" />
-				<Route component={Places} path="/places" />
-				<Route component={PlacesList} path="/placeslist" />
+				<Route component={Places} path="/places">
+					<Route component={PlacesList} path="list">
+						<Route component={PlaceSingle} />
+					</Route>
+				</Route>
 			</Router>
 		</>
 	)
