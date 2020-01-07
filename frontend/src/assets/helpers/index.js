@@ -30,11 +30,17 @@ export function jsonToFormData(data) {
 }
 
 export function truncString(string, n) {
+	console.log(string.length)
+	console.log(n)
+
 	if (string.length > n) {
+		console.log('YEP')
 		const splitedFileNameAndDot = string.split(/\.(?=[^\.]+$)/)
 		const shortFileTitle = splitedFileNameAndDot[0].substr(0, n)
 		const fileExtension = splitedFileNameAndDot[1]
 
-		return `${shortFileTitle}.${fileExtension}`
+		return `${shortFileTitle}(...).${fileExtension}`
 	}
+
+	return string
 }

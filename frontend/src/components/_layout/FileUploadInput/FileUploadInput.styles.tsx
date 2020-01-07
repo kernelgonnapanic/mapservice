@@ -21,19 +21,20 @@ export const Image = styled.img`
     position: absolute;
     width: 100%;
     padding: 25px;
+    padding: 25px 25px 50px 25px;
     height: 100%;
     object-fit: cover;
 `;
 
 export const FileTitle = styled.p`
     position: absolute;
-    bottom: 0;
+    bottom: 25px;
     margin: 0;
 `
 
 export const Button = styled.button`
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     right: 0;
     background: none;
     border: none;
