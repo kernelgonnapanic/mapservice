@@ -68,9 +68,7 @@ const AddPlace: React.FC = () => {
 	}
 
 	useEffect(() => {
-
 		if (content.places.notification) {
-
 			const { notification } = content.places
 
 			setSnackbarOpened(true)

@@ -20,8 +20,11 @@ const PlacesList: React.FC<Props> = ({ setSelectedListElementId }) => {
 
 	const dispatch = useDispatch()
 
+
+
+
 	const places = useSelector(
-		(state: ReturnType<typeof reducers>) => state.places.list?.data.data,
+		(state: any) => state.places.list?.data.data,
 	)
 
 	useEffect(() => {

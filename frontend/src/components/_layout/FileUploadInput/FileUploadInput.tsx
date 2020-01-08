@@ -12,7 +12,11 @@ const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
     const fileInputRef = useRef<HTMLInputElement>(null!);
 
     const onChangeHandler = (e: React.FormEvent<HTMLInputElement>): void => {
-        if (e.currentTarget.files) {
+
+
+
+
+        if (e.currentTarget.files && e.currentTarget.files.length) {
             const file = e.currentTarget.files[0];
 
             setUploadedFile(file);

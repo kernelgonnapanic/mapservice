@@ -2,16 +2,13 @@ import Snackbar from '@material-ui/core/Snackbar';
 import React, { SyntheticEvent } from 'react';
 import SnackbarContentWrapper from './SnackbarContentWrapper';
 
-export interface CustomizedSnackbarProps {
+interface CustomizedSnackbarProps {
     isSnackbarOpened: boolean
-    notification: {
-        sentStatus: boolean
-        message: string
-    }
+    notification: any
     setSnackbarOpened: (value: boolean) => void
 }
 
-const CustomizedSnackbars: React.FC<CustomizedSnackbarProps> = ({ isSnackbarOpened, setSnackbarOpened, notification }) => {
+const CustomizedSnackbar: React.FC<CustomizedSnackbarProps> = ({ isSnackbarOpened, setSnackbarOpened, notification }) => {
     const handleClose = (event?: SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
             return;
@@ -43,4 +40,4 @@ const CustomizedSnackbars: React.FC<CustomizedSnackbarProps> = ({ isSnackbarOpen
     );
 }
 
-export default CustomizedSnackbars;
+export default CustomizedSnackbar;
