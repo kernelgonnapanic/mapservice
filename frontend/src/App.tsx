@@ -8,7 +8,7 @@ const theme = {
 	colors: {
 		white: '#FFFFFF',
 	},
-	boxshadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+	boxshadow: '0 3px 0 hsl(220, 7%, 83%) ',
 	borderRadius: {
 		small: 5
 	}

@@ -1,17 +1,39 @@
 import React, { useEffect } from 'react'
 import { getSinglePlace } from '../../redux/actions'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-interface Props {}
+interface Props {
+	placeId?: string
+}
 
-const PlaceSingle: React.FC<Props> = () => {
+const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 	const dispatch = useDispatch()
+	const placeData = useSelector(
+		(state: any) => state.places.place?.data.data
+	)
+
+
+
+
 
 	useEffect(() => {
-		dispatch(getSinglePlace('5dcdd0795ce6a63268748f8d'))
+		dispatch(getSinglePlace(placeId))
 	}, [dispatch])
 
-	return <div>TESTxd</div>
+
+	if (placeData) {
+
+	}
+
+
+
+	return (
+
+		<div>{placeData && placeData.title}</div>
+	)
+
+
+
 }
 
 export default PlaceSingle

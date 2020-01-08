@@ -36,14 +36,14 @@ const PlacesList: React.FC<Props> = ({ setSelectedListElementId }) => {
 
 	return (
 		<S.ListWrapper>
-			LISTA
+
 			{places
 				? places.map((place: PlaceValue) => {
 					const { title, _id, placeImage } = place
 
 					return (
 						<>
-							<Link to="single">
+							<Link to={_id} >
 								<PlacesListElement handleClick={handleClick} key={_id} _id={_id} title={title} placeImage={placeImage} />
 							</Link>
 						</>

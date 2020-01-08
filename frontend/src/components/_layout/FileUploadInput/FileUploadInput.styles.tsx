@@ -4,7 +4,7 @@ export const Label = styled.label`
     position: relative;
     display: flex;
     height: 250px;
-    width: 100%;
+    width: 75%;
     justify-content: center;
     align-items: center;
     border: 1.5px dashed rgb(209, 196, 233);

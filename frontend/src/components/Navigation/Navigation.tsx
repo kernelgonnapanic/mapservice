@@ -37,7 +37,7 @@ const Navigation: FunctionComponent = () => {
 						<NavBarLink to="login">Login</NavBarLink>
 						<NavBarLink to="/">Dodaj miejsce</NavBarLink>
 						<NavBarLink to="main">Main</NavBarLink>
-						<NavBarLink to="places">Lista</NavBarLink>
+						<NavBarLink to="/places/list">Lista</NavBarLink>
 					</div>
 				</NavBar>
 			</AppBar>
@@ -46,9 +46,8 @@ const Navigation: FunctionComponent = () => {
 				<Route component={Main} path="/main" />
 				<Route component={Login} path="/login" />
 				<Route component={Places} path="/places">
-					<Route component={PlacesList} path="list">
-						<Route component={PlaceSingle} />
-					</Route>
+					<Route component={PlacesList} path="/list" />
+					<Route component={PlaceSingle} path="/single" />
 				</Route>
 			</Router>
 		</>

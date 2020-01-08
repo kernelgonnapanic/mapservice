@@ -13,25 +13,18 @@ const Places: FunctionComponent = () => {
 		'',
 	)
 
-
-
 	return (
 		<>
 			<Grid container>
 				<Grid item xs={6}>
-					<Link to="list">TO</Link>
-					<Link to="single">Place</Link>
 					<div>
 						<Router>
 							<Route component={PlacesList} setSelectedListElementId={setSelectedListElementId} path="list" />
-							<Route component={PlaceSingle} path="/single" />
+							<Route component={PlaceSingle} path="/list/:placeId" />
 						</Router>
 					</div>
+				</Grid>
 
-				</Grid>
-				<Grid item xs={6}>
-					<PlaceSingle />
-				</Grid>
 			</Grid>
 		</>
 	)
