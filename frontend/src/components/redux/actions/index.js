@@ -59,8 +59,25 @@ export const sendPlace = data => async dispatch => {
 		}
 
 		dispatch(action)
-		dispatch(setNotification({ sentStatus: true, message: 'SUCCESS' }))
+		dispatch(
+			setNotification({
+				sentStatus: true,
+				message: 'Pomyślnie dodano nowe miejsce',
+			}),
+		)
 	} catch (err) {
-		dispatch(setNotification({ sentStatus: false, message: err.message }))
+		let message = ''
+
+		if (!err.response) {
+			message += 'Błąd krytyczny'
+		} else if (err.response.status === 500) {
+			message += 'Przepraszamy, problem z serwerem.'
+		} else if (err.response.data.message.code === 11000) {
+			message += 'Taka placówka już istnieje'
+		} else {
+			message = err.message
+		}
+
+		dispatch(setNotification({ sentStatus: false, message: message }))
 	}
 }

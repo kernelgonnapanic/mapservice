@@ -12,8 +12,9 @@ export const getData = async (req, res) => {
 }
 
 export const createPlace = async (req, res) => {
-	const fullImageUrl =
-		req.protocol + '://' + req.get('host') + '/' + req.file.path
+	const fullImageUrl = req.file
+		? req.protocol + '://' + req.get('host') + '/' + req.file.path
+		: ''
 
 	const place = new Place({
 		title: req.body.title,
@@ -38,7 +39,7 @@ export const createPlace = async (req, res) => {
 
 		res.status(200).json(savedPlace)
 	} catch (err) {
-		res.status(404).json({
+		res.status(404).send({
 			message: err,
 		})
 	}

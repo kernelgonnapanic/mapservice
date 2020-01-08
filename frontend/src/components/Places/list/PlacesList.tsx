@@ -1,9 +1,9 @@
-import React, { useEffect, useCallback } from 'react'
+import { Link } from '@reach/router'
+import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlaces } from '../../redux/actions'
-import { reducers } from '../../redux/reducers'
 import PlacesListElement from './PlacesListElement'
-import { Link } from '@reach/router'
+import * as S from './PlacesList.styles'
 
 interface Props {
 	setSelectedListElementId?: (
@@ -20,9 +20,6 @@ const PlacesList: React.FC<Props> = ({ setSelectedListElementId }) => {
 
 	const dispatch = useDispatch()
 
-
-
-
 	const places = useSelector(
 		(state: any) => state.places.list?.data.data,
 	)
@@ -38,7 +35,7 @@ const PlacesList: React.FC<Props> = ({ setSelectedListElementId }) => {
 
 
 	return (
-		<div>
+		<S.ListWrapper>
 			LISTA
 			{places
 				? places.map((place: PlaceValue) => {
@@ -54,7 +51,7 @@ const PlacesList: React.FC<Props> = ({ setSelectedListElementId }) => {
 					)
 				})
 				: 'Loading...'}
-		</div>
+		</S.ListWrapper>
 	)
 }
 

@@ -4,7 +4,7 @@ const placeSchema = new mongoose.Schema({
 	id: mongoose.SchemaTypes.ObjectId,
 	title: {
 		type: String,
-		// required: true,
+		required: true,
 		trim: true,
 		maxlength: 30,
 	},
@@ -15,7 +15,7 @@ const placeSchema = new mongoose.Schema({
 	address: {
 		street: {
 			type: String,
-			// required: true,
+			required: true,
 		},
 		city: {
 			type: String,
@@ -37,11 +37,11 @@ const placeSchema = new mongoose.Schema({
 		{
 			lat: {
 				type: Number,
-				// required: true,
+				required: true,
 			},
 			long: {
 				type: Number,
-				// required: true,
+				required: true,
 			},
 		},
 	],

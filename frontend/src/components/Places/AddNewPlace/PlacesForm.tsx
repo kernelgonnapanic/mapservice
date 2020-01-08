@@ -75,7 +75,7 @@ const AddPlace: React.FC = () => {
 			setNotification(notification);
 		}
 
-	}, [content])
+	}, [content.places.notification])
 
 	return (
 		<Formik

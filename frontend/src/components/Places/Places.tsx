@@ -4,7 +4,7 @@ import PlacesList from './list/PlacesList'
 import PlaceSingle from './single/PlaceSingle'
 import { Link, Router, RouteComponentProps } from '@reach/router'
 import { Route } from '../Navigation/Navigation'
-
+import styled from 'styled-components'
 
 
 
@@ -12,6 +12,8 @@ const Places: FunctionComponent = () => {
 	const [selectedListElementId, setSelectedListElementId] = useState<string>(
 		'',
 	)
+
+
 
 	return (
 		<>
@@ -22,8 +24,6 @@ const Places: FunctionComponent = () => {
 					<div>
 						<Router>
 							<Route component={PlacesList} setSelectedListElementId={setSelectedListElementId} path="list" />
-
-
 							<Route component={PlaceSingle} path="/single" />
 						</Router>
 					</div>

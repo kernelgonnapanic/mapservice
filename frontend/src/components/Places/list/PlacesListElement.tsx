@@ -7,7 +7,7 @@ interface Props {
     //     value: string | ((prevVar: string) => string),
     // ) => void
     handleClick: (e: any) => void
-    placeImage: String
+    placeImage: string
     title: String
     _id: string
 }
@@ -24,8 +24,12 @@ const PlacesListElement: React.FC<Props> = memo(({ title, placeImage, handleClic
         <S.ListElement
             onClick={() => handleClick(_id)}
         >
-            {title}
-            {placeImage}
+            <S.Image src={placeImage} />
+            <span>
+                {title}
+            </span>
+
+
         </S.ListElement>
     )
 })
