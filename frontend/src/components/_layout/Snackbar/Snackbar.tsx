@@ -1,56 +1,17 @@
-import React, { SyntheticEvent } from 'react';
-import clsx from 'clsx';
-import Button from '@material-ui/core/Button';
-import { useStyles1, useStyles2 } from './Snackbar.styles'
-import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
-import { makeStyles, Theme } from '@material-ui/core/styles';
-
-const variantIcon = {
-    success: 'CheckCircleIcon',
-    error: 'ErrorIcon',
-};
-
-export interface Props {
-    className?: string;
-    message?: string;
-    onClose?: () => void;
-    variant: keyof typeof variantIcon;
-}
-
-function MySnackbarContentWrapper(props: Props) {
-    const classes = useStyles1();
-    const { className, message, onClose, variant, ...other } = props;
-    const Icon = variantIcon[variant];
-
-    return (
-        <SnackbarContent
-            className={clsx(classes[variant], className)}
-            aria-describedby="client-snackbar"
-            message={
-                <span id="client-snackbar" className={classes.message}>
-                    {message}
-                </span>
-            }
-            action={[
-                <IconButton key="close" aria-label="close" color="inherit" onClick={onClose}>
-                    CLOSE
-                </IconButton>,
-            ]}
-            {...other}
-        />
-    );
-}
+import React, { SyntheticEvent } from 'react';
+import SnackbarContentWrapper from './SnackbarContentWrapper';
 
 export interface CustomizedSnackbarProps {
     isSnackbarOpened: boolean
-    isFileSent: boolean
+    notification: {
+        sentStatus: boolean
+        message: string
+    }
     setSnackbarOpened: (value: boolean) => void
-    message: string
 }
 
-const CustomizedSnackbars: React.FC<CustomizedSnackbarProps> = ({ isSnackbarOpened, setSnackbarOpened, isFileSent, message }) => {
+const CustomizedSnackbars: React.FC<CustomizedSnackbarProps> = ({ isSnackbarOpened, setSnackbarOpened, notification }) => {
     const handleClose = (event?: SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
             return;
@@ -58,6 +19,8 @@ const CustomizedSnackbars: React.FC<CustomizedSnackbarProps> = ({ isSnackbarOpen
 
         setSnackbarOpened(false);
     };
+
+    const { sentStatus, message } = notification
 
     return (
         <div>
@@ -70,9 +33,9 @@ const CustomizedSnackbars: React.FC<CustomizedSnackbarProps> = ({ isSnackbarOpen
                 autoHideDuration={6000}
                 onClose={handleClose}
             >
-                <MySnackbarContentWrapper
+                <SnackbarContentWrapper
                     onClose={handleClose}
-                    variant={isFileSent ? "success" : "error"}
+                    variant={sentStatus ? "success" : "error"}
                     message={message}
                 />
             </Snackbar>

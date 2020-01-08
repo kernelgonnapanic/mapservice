@@ -24,7 +24,7 @@ const AddPlace: React.FC = () => {
 	)
 
 	const [isSnackbarOpened, setSnackbarOpened] = useState(false);
-	const [isFileSent, setFileSent] = useState(false);
+	const [notification, setNotification] = useState(false);
 
 	const validationSchema = Yup.object().shape({
 		title: Yup.string()
@@ -71,11 +71,10 @@ const AddPlace: React.FC = () => {
 
 		if (content.places.notification) {
 
-			const { sentStatus } = content.places.notification
-
+			const { notification } = content.places
 
 			setSnackbarOpened(true)
-			setFileSent(sentStatus);
+			setNotification(notification);
 		}
 
 	}, [content])
@@ -148,7 +147,7 @@ const AddPlace: React.FC = () => {
 					<Snackbar
 						isSnackbarOpened={isSnackbarOpened}
 						setSnackbarOpened={setSnackbarOpened}
-						isFileSent={isFileSent}
+						notification={notification}
 					/>
 				</>
 			)
