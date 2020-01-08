@@ -1,17 +1,30 @@
 import { Field, Formik } from 'formik'
-import React from 'react'
-import PlacesMap from './PlacesMap'
-import { useDispatch } from 'react-redux'
-import * as S from './PlacesForm.styles'
-import { useStyles } from './PlacesForm.styles'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { reducers } from '../../redux/reducers'
 import * as Yup from 'yup'
 import { sendPlace } from '../../redux/actions'
-import { Input, Select, Button, FileUploadInput } from '../../_layout'
+import { Button, FileUploadInput, Input, Select, Snackbar } from '../../_layout'
+import * as S from './PlacesForm.styles'
+import { useStyles } from './PlacesForm.styles'
+import PlacesMap from './PlacesMap'
 
 
 const AddPlace: React.FC = () => {
 	const dispatch = useDispatch()
 	const classes = useStyles();
+
+	interface selectorTypes {
+		places: any
+		notification: any
+	}
+
+	const content = useSelector(
+		(state: selectorTypes) => state,
+	)
+
+	const [isSnackbarOpened, setSnackbarOpened] = useState(false);
+	const [isFileSent, setFileSent] = useState(false);
 
 	const validationSchema = Yup.object().shape({
 		title: Yup.string()
@@ -49,9 +62,23 @@ const AddPlace: React.FC = () => {
 		placeImage: ''
 	}
 
+
 	const onSubmit = (values: Record<string, any>): void => {
 		dispatch(sendPlace(values))
 	}
+
+	useEffect(() => {
+
+		if (content.places.notification) {
+
+			const { sentStatus } = content.places.notification
+
+
+			setSnackbarOpened(true)
+			setFileSent(sentStatus);
+		}
+
+	}, [content])
 
 	return (
 		<Formik
@@ -118,6 +145,11 @@ const AddPlace: React.FC = () => {
 							<PlacesMap setFieldValue={setFieldValue} />
 						</S.Container>
 					</S.StyledForm>
+					<Snackbar
+						isSnackbarOpened={isSnackbarOpened}
+						setSnackbarOpened={setSnackbarOpened}
+						isFileSent={isFileSent}
+					/>
 				</>
 			)
 			}

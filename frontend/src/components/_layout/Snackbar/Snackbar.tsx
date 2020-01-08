@@ -9,9 +9,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 
 const variantIcon = {
     success: 'CheckCircleIcon',
-    warning: 'WarningIcon',
     error: 'ErrorIcon',
-    info: 'InfoIcon',
 };
 
 export interface Props {
@@ -45,42 +43,37 @@ function MySnackbarContentWrapper(props: Props) {
     );
 }
 
+export interface CustomizedSnackbarProps {
+    isSnackbarOpened: boolean
+    isFileSent: boolean
+    setSnackbarOpened: (value: boolean) => void
+    message: string
+}
 
-
-function CustomizedSnackbars() {
-    const classes = useStyles2();
-    const [open, setOpen] = React.useState(false);
-
-    const handleClick = () => {
-        setOpen(true);
-    };
-
+const CustomizedSnackbars: React.FC<CustomizedSnackbarProps> = ({ isSnackbarOpened, setSnackbarOpened, isFileSent, message }) => {
     const handleClose = (event?: SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
             return;
         }
 
-        setOpen(false);
+        setSnackbarOpened(false);
     };
 
     return (
         <div>
-            <Button variant="outlined" className={classes.margin} onClick={handleClick}>
-                Open success snackbar
-            </Button>
             <Snackbar
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'left',
                 }}
-                open={open}
+                open={isSnackbarOpened}
                 autoHideDuration={6000}
                 onClose={handleClose}
             >
                 <MySnackbarContentWrapper
                     onClose={handleClose}
-                    variant="error"
-                    message="This is an error message!"
+                    variant={isFileSent ? "success" : "error"}
+                    message={message}
                 />
             </Snackbar>
         </div>

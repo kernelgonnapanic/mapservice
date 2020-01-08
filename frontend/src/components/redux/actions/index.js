@@ -1,6 +1,11 @@
 import { api, apiFormData } from '../../../api'
 import axios from 'axios'
-import { GET_PLACES, SEND_PLACES, GET_SINGLE_PLACE } from '../types'
+import {
+	GET_PLACES,
+	SEND_PLACES,
+	GET_SINGLE_PLACE,
+	SET_NOTIFICATION,
+} from '../types'
 import { jsonToFormData } from '../../../assets/helpers'
 
 export const getPlaces = () => async dispatch => {
@@ -33,6 +38,15 @@ export const getSinglePlace = id => async dispatch => {
 	}
 }
 
+export const setNotification = message => async dispatch => {
+	const action = {
+		type: SET_NOTIFICATION,
+		payload: message,
+	}
+
+	dispatch(action)
+}
+
 export const sendPlace = data => async dispatch => {
 	try {
 		const bodyFormData = jsonToFormData(data)
@@ -45,11 +59,8 @@ export const sendPlace = data => async dispatch => {
 		}
 
 		dispatch(action)
+		dispatch(setNotification({ sentStatus: true, message: 'SUCCESS' }))
 	} catch (err) {
-		if (err.response.status === 500) {
-			console.log('There is problem with server')
-		} else {
-			console.log(err)
-		}
+		dispatch(setNotification({ sentStatus: false, message: err.message }))
 	}
 }

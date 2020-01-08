@@ -5,7 +5,9 @@ export const places = (state = [], action) => {
 		case 'GET_SINGLE_PLACE':
 			return { ...state, place: { ...action.payload } }
 		case 'SEND_PLACES':
-			return { state, payload: action.payload }
+			return { ...state, payload: action.payload }
+		case 'SET_NOTIFICATION':
+			return { ...state, notification: action.payload }
 		default:
 			return state
 	}

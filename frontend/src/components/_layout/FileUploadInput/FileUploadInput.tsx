@@ -1,8 +1,7 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef, useState } from 'react';
 import { Trash } from 'react-feather';
-import { truncString } from '../../../assets/helpers'
-import * as S from './FileUploadInput.styles'
-import Snackbar from '../../_layout/Snackbar/Snackbar';
+import { truncString } from '../../../assets/helpers';
+import * as S from './FileUploadInput.styles';
 
 interface Props {
     setFieldValue: (field: string, value: any | undefined) => void
@@ -29,9 +28,6 @@ const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
         setUploadedFile('');
     }
 
-    console.log(uploadedFile);
-
-
     return (
         <>
             <S.Label>Dodaj obrazek...
@@ -53,7 +49,6 @@ const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
                         <S.Button onClick={deleteInputData}><Trash size={15} />Usuń</S.Button>
                     </>
                 }
-                <Snackbar />
             </S.Label>
 
         </>

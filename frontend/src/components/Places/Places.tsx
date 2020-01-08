@@ -13,8 +13,6 @@ const Places: FunctionComponent = () => {
 		'',
 	)
 
-	console.log(selectedListElementId);
-
 	return (
 		<>
 			<Grid container>
