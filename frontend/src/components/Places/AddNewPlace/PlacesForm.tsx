@@ -2,7 +2,7 @@ import { Field, Formik } from 'formik'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
-import { sendPlace, getPlaceTypeOptions } from '../../redux/actions'
+import { sendPlace, getPlaceTypeOptions, setNotification as ReduxSetNotification } from '../../redux/actions'
 import { Button, FileUploadInput, Input, Select, Snackbar } from '../../_layout'
 import * as S from './PlacesForm.styles'
 import { useStyles } from './PlacesForm.styles'
@@ -12,6 +12,8 @@ import PlacesMap from './PlacesMap'
 const AddPlace: React.FC = () => {
 	const dispatch = useDispatch()
 	const classes = useStyles();
+	const [isSnackbarOpened, setSnackbarOpened] = useState(false);
+	const [isNotification, setNotification] = useState(false);
 
 	interface selectorTypes {
 		places: any
@@ -22,8 +24,37 @@ const AddPlace: React.FC = () => {
 		(state: selectorTypes) => state,
 	)
 
-	const [isSnackbarOpened, setSnackbarOpened] = useState(false);
-	const [notification, setNotification] = useState(false);
+	const { placeTypeOptions, notification } = content.places;
+
+	const initialValues = {
+		title: '',
+		street: '',
+		number: '',
+		placeType: '',
+		phoneNumber: '',
+		description: '',
+		lat: '',
+		long: '',
+		placeImage: ''
+	}
+
+
+
+	useEffect(() => {
+		dispatch(getPlaceTypeOptions());
+	}, [])
+
+	useEffect(() => {
+		if (notification) {
+			setNotification(notification);
+		}
+	}, [notification])
+
+	const onSubmit = (values: Record<string, any>): void => {
+		dispatch(sendPlace(values))
+		setSnackbarOpened(false)
+		setSnackbarOpened(true)
+	}
 
 	const validationSchema = Yup.object().shape({
 		title: Yup.string()
@@ -41,6 +72,10 @@ const AddPlace: React.FC = () => {
 		placeType: Yup.string().required('Wybierz Typ miejsca'),
 		lat: Yup.number().required('Podaj długość geograficzną'),
 		long: Yup.number().required('Podaj szerokość geograficzną'),
+		city: Yup.string()
+			.min(2, 'Nazwa jest zbyt krótka!')
+			.max(50, 'Nazwa jest zbyt długa!')
+			.required('Wpisz nazwę'),
 		phoneNumber: Yup.number()
 			.typeError('To nie wygląda jak numer telefonu')
 			.positive('Mialeś na myśli +?')
@@ -49,45 +84,6 @@ const AddPlace: React.FC = () => {
 			.required('Podaj numer telefonu'),
 	})
 
-	const initialValues = {
-		title: '',
-		street: '',
-		number: '',
-		placeType: '', //SELECT FETCH FROM API
-		phoneNumber: '',
-		description: '',
-		lat: '',
-		long: '',
-		placeImage: ''
-	}
-
-
-	const onSubmit = (values: Record<string, any>): void => {
-		dispatch(sendPlace(values))
-	}
-
-	if (content) {
-		console.log()
-	}
-
-
-
-	useEffect(() => {
-		dispatch(getPlaceTypeOptions());
-	}, [])
-
-	useEffect(() => {
-		if (content.places.notification) {
-			const { notification } = content.places
-
-			setSnackbarOpened(true)
-			setNotification(notification);
-		}
-
-	}, [content.places.notification])
-
-
-	const { placeTypeOptions } = content.places;
 
 	return (
 		<Formik
@@ -163,7 +159,7 @@ const AddPlace: React.FC = () => {
 					<Snackbar
 						isSnackbarOpened={isSnackbarOpened}
 						setSnackbarOpened={setSnackbarOpened}
-						notification={notification}
+						notification={isNotification}
 					/>
 				</>
 			)

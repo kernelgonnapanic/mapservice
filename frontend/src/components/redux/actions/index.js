@@ -59,13 +59,13 @@ export const sendPlace = data => async dispatch => {
 			payload: response,
 		}
 
-		dispatch(action)
 		dispatch(
 			setNotification({
 				sentStatus: true,
 				message: 'Pomyślnie dodano nowe miejsce',
 			}),
 		)
+		dispatch(action)
 	} catch (err) {
 		let message = ''
 
