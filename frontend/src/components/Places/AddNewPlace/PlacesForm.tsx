@@ -1,9 +1,8 @@
 import { Field, Formik } from 'formik'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { reducers } from '../../redux/reducers'
 import * as Yup from 'yup'
-import { sendPlace } from '../../redux/actions'
+import { sendPlace, getPlaceTypeOptions } from '../../redux/actions'
 import { Button, FileUploadInput, Input, Select, Snackbar } from '../../_layout'
 import * as S from './PlacesForm.styles'
 import { useStyles } from './PlacesForm.styles'
@@ -67,6 +66,16 @@ const AddPlace: React.FC = () => {
 		dispatch(sendPlace(values))
 	}
 
+	if (content) {
+		console.log()
+	}
+
+
+
+	useEffect(() => {
+		dispatch(getPlaceTypeOptions());
+	}, [])
+
 	useEffect(() => {
 		if (content.places.notification) {
 			const { notification } = content.places
@@ -76,6 +85,9 @@ const AddPlace: React.FC = () => {
 		}
 
 	}, [content.places.notification])
+
+
+	const { placeTypeOptions } = content.places;
 
 	return (
 		<Formik
@@ -117,6 +129,7 @@ const AddPlace: React.FC = () => {
 										component={Select}
 										name="placeType"
 										label="test"
+										options={placeTypeOptions && placeTypeOptions.data.data}
 									/>
 									<Field
 										name="city"

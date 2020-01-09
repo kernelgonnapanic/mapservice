@@ -10,11 +10,14 @@ import {
 } from '@material-ui/core'
 
 /*eslint-disable*/
-interface Props extends FieldProps { }
+interface Props extends FieldProps {
+	options: string[]
+}
 
 const customSelect: React.FC<Props> = ({
 	field,
 	form: { touched, errors },
+	options
 }) => {
 	const { name } = field
 
@@ -32,9 +35,10 @@ const customSelect: React.FC<Props> = ({
 			>
 				<InputLabel htmlFor="age-native-simple">Typ</InputLabel>
 				<StyledSelect native {...field}>
-					<option value="" />
-					<option value="restaurant">Restauracja</option>
-					<option value="cinema">Kino</option>
+					<option value=""></option>
+					{
+						options && options.map((optionName: string) => <option value={optionName}>{optionName}</option>)
+					}
 				</StyledSelect>
 				{touched[name] &&
 					<FormHelperText>

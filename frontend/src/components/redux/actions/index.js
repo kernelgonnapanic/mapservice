@@ -5,6 +5,7 @@ import {
 	SEND_PLACES,
 	GET_SINGLE_PLACE,
 	SET_NOTIFICATION,
+	GET_PLACETYPE_OPTIONS,
 } from '../types'
 import { jsonToFormData } from '../../../assets/helpers'
 
@@ -79,5 +80,20 @@ export const sendPlace = data => async dispatch => {
 		}
 
 		dispatch(setNotification({ sentStatus: false, message: message }))
+	}
+}
+
+export const getPlaceTypeOptions = data => async dispatch => {
+	try {
+		const response = await api.get('./placetypeoptions')
+
+		const action = {
+			type: GET_PLACETYPE_OPTIONS,
+			payload: response,
+		}
+
+		dispatch(action)
+	} catch (err) {
+		console.log(err)
 	}
 }

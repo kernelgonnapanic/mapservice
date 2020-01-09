@@ -8,6 +8,8 @@ export const places = (state = [], action) => {
 			return { ...state, payload: action.payload }
 		case 'SET_NOTIFICATION':
 			return { ...state, notification: action.payload }
+		case 'GET_PLACETYPE_OPTIONS':
+			return { ...state, placeTypeOptions: action.payload }
 		default:
 			return state
 	}
