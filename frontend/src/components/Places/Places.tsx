@@ -1,17 +1,12 @@
 import { Grid } from '@material-ui/core'
-import React, { useState, FunctionComponent } from 'react'
+import { Router } from '@reach/router'
+import React, { FunctionComponent, useState } from 'react'
+import { Route } from '../Navigation/Navigation'
 import PlacesList from './list/PlacesList'
 import PlaceSingle from './single/PlaceSingle'
-import { Link, Router, RouteComponentProps } from '@reach/router'
-import { Route } from '../Navigation/Navigation'
-import styled from 'styled-components'
-
 
 
 const Places: FunctionComponent = () => {
-	const [selectedListElementId, setSelectedListElementId] = useState<string>(
-		'',
-	)
 
 	return (
 		<>
@@ -19,12 +14,12 @@ const Places: FunctionComponent = () => {
 				<Grid item xs={6}>
 					<div>
 						<Router>
-							<Route component={PlacesList} setSelectedListElementId={setSelectedListElementId} path="list" />
+							<Route component={PlacesList} path="list" />
 							<Route component={PlaceSingle} path="/list/:placeId" />
 						</Router>
 					</div>
 				</Grid>
-
+				<div></div>
 			</Grid>
 		</>
 	)

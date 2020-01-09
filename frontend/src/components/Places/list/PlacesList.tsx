@@ -29,10 +29,6 @@ const PlacesList: React.FC<Props> = ({ setSelectedListElementId }) => {
 	}, [dispatch])
 
 
-	const handleClick = useCallback((id) => {
-		setSelectedListElementId!(id);
-	}, [])
-
 
 	return (
 		<S.ListWrapper>
@@ -44,7 +40,7 @@ const PlacesList: React.FC<Props> = ({ setSelectedListElementId }) => {
 					return (
 						<>
 							<Link to={_id} >
-								<PlacesListElement handleClick={handleClick} key={_id} _id={_id} title={title} placeImage={placeImage} />
+								<PlacesListElement key={_id} _id={_id} title={title} placeImage={placeImage} />
 							</Link>
 						</>
 

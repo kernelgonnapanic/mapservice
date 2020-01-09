@@ -119,6 +119,11 @@ const AddPlace: React.FC = () => {
 										label="test"
 									/>
 									<Field
+										name="city"
+										label="Miasto"
+										component={Input}
+									/>
+									<Field
 										name="lat"
 										label="Lat"
 										component={Input}

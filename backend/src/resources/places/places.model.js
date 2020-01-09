@@ -24,11 +24,17 @@ const placeSchema = new mongoose.Schema({
 		number: Number,
 	},
 	placeType: {
-		type: {
-			type: String,
-			// required: true,
-		},
-		enum: ['pizzeria', 'kebab'],
+		type: String,
+		enum: [
+			'pizzeria',
+			'kebab',
+			'restaurant',
+			'kino',
+			'pomnik',
+			'muzuem',
+			'no-category',
+		],
+		default: 'no-category',
 	},
 	placeImage: String,
 	phoneNumber: Number,

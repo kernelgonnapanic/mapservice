@@ -31,6 +31,8 @@ export const createPlace = async (req, res) => {
 		type: req.body.address,
 		phoneNumber: req.body.phoneNumber,
 		description: req.body.description,
+		city: req.body.city,
+		placeType: req.body.placeType,
 		placeImage: fullImageUrl,
 	})
 
@@ -86,6 +88,22 @@ export const updatePlace = async (req, res) => {
 		)
 
 		res.status(200).json({ data: updatedPlace })
+	} catch (err) {
+		console.log(err)
+	}
+}
+
+export const getPlaceTypeOptions = async (req, res) => {
+	try {
+		const enums = await Place.schema.path('placeType').enumValues
+
+		for (var i = 0; i < enums.length; i++) {
+			if (enums[i] === 'no-category') {
+				enums.splice(i, 1)
+			}
+		}
+
+		res.status(200).json({ data: enums })
 	} catch (err) {
 		console.log(err)
 	}

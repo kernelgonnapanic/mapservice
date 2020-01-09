@@ -41,11 +41,11 @@ const Navigation: FunctionComponent = () => {
 					</div>
 				</NavBar>
 			</AppBar>
-			<Router>
+			<Router >
 				<Route component={PlacesForm} path="/" />
 				<Route component={Main} path="/main" />
 				<Route component={Login} path="/login" />
-				<Route component={Places} path="/places">
+				<Route component={Places} path="/places" >
 					<Route component={PlacesList} path="/list" />
 					<Route component={PlaceSingle} path="/single" />
 				</Route>
