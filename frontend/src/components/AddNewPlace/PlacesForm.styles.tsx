@@ -22,18 +22,20 @@ export const useStyles = makeStyles((theme: Theme) =>
 export const Container = styled.div`
 	height: 100%;
 	display: grid;
-	grid-template-columns: 3fr 2fr;
+	grid-template-columns: 2fr 2fr;
 `
 
 export const FieldsWrapper = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	padding-right: 50px;
+
 `
 
 export const Item = styled.div`
 	display: flex;
 	flex-direction: column;
+	padding: 0 50px;
 `
 
 export const StyledForm = styled(Form)`

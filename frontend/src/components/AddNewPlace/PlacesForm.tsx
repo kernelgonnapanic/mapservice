@@ -2,12 +2,11 @@ import { Field, Formik } from 'formik'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
-import { sendPlace, getPlaceTypeOptions, setNotification as ReduxSetNotification } from '../../redux/actions'
-import { Button, FileUploadInput, Input, Select, Snackbar } from '../../_layout'
+import { sendPlace, getPlaceTypeOptions } from '../redux/actions'
+import { Button, FileUploadInput, Input, Select, Snackbar } from '../_layout'
 import * as S from './PlacesForm.styles'
 import { useStyles } from './PlacesForm.styles'
 import PlacesMap from './PlacesMap'
-
 
 const AddPlace: React.FC = () => {
 	const dispatch = useDispatch()
@@ -35,10 +34,9 @@ const AddPlace: React.FC = () => {
 		description: '',
 		lat: '',
 		long: '',
-		placeImage: ''
+		placeImage: '',
+		city: ''
 	}
-
-
 
 	useEffect(() => {
 		dispatch(getPlaceTypeOptions());
@@ -47,19 +45,20 @@ const AddPlace: React.FC = () => {
 	useEffect(() => {
 		if (notification) {
 			setNotification(notification);
+			setSnackbarOpened(true)
 		}
 	}, [notification])
 
-	const onSubmit = (values: Record<string, any>): void => {
+	const onSubmit = async (values: Record<string, any>, actions: any): Promise<void> => {
+
 		dispatch(sendPlace(values))
-		setSnackbarOpened(false)
-		setSnackbarOpened(true)
+		actions.resetForm()
 	}
 
 	const validationSchema = Yup.object().shape({
 		title: Yup.string()
 			.min(2, 'Nazwa jest zbyt krótka!')
-			.max(50, 'Nazwa jest zbyt długa!')
+			.max(30, 'Nazwa jest zbyt długa!')
 			.required('Wpisz nazwę'),
 		street: Yup.string()
 			.min(2, 'Nazwa ulicy jest zbyt krótka!')
@@ -70,8 +69,12 @@ const AddPlace: React.FC = () => {
 			.max(15, 'Zbyt długi numer')
 			.required('Wpisz numer'),
 		placeType: Yup.string().required('Wybierz Typ miejsca'),
-		lat: Yup.number().required('Podaj długość geograficzną'),
-		long: Yup.number().required('Podaj szerokość geograficzną'),
+		lat: Yup.number()
+			.required('Podaj długość geograficzną')
+			.typeError('Niepoprawny format'),
+		long: Yup.number()
+			.required('Podaj szerokość geograficzną')
+			.typeError('Niepoprawny format'),
 		city: Yup.string()
 			.min(2, 'Nazwa jest zbyt krótka!')
 			.max(50, 'Nazwa jest zbyt długa!')
@@ -119,6 +122,7 @@ const AddPlace: React.FC = () => {
 										label="Numer Telefonu"
 										component={Input}
 									/>
+									<FileUploadInput setFieldValue={setFieldValue} />
 								</S.Item>
 								<S.Item>
 									<Field
@@ -149,9 +153,9 @@ const AddPlace: React.FC = () => {
 										rows={4}
 										component={Input}
 									/>
+									<Button />
 								</S.Item>
-								<FileUploadInput setFieldValue={setFieldValue} />
-								<Button />
+
 							</S.FieldsWrapper>
 							<PlacesMap setFieldValue={setFieldValue} />
 						</S.Container>

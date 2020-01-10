@@ -2,7 +2,7 @@ import { AppBar, IconButton } from '@material-ui/core'
 import { RouteComponentProps, Router } from '@reach/router'
 import React, { FunctionComponent } from 'react'
 import { Camera } from 'react-feather'
-import PlacesForm from '../Places/AddNewPlace/PlacesForm'
+import PlacesForm from '../AddNewPlace/PlacesForm'
 import Login from '../Authorization/Login'
 import Main from '../MainPage/Main'
 import Places from '../Places/Places'
@@ -34,10 +34,10 @@ const Navigation: FunctionComponent = () => {
 						<Camera />
 					</IconButton>
 					<div>
-						<NavBarLink to="login">Login</NavBarLink>
-						<NavBarLink to="/">Dodaj miejsce</NavBarLink>
 						<NavBarLink to="main">Main</NavBarLink>
+						<NavBarLink to="/">Dodaj miejsce</NavBarLink>
 						<NavBarLink to="/places/list">Lista</NavBarLink>
+						<NavBarLink to="login">Login</NavBarLink>
 					</div>
 				</NavBar>
 			</AppBar>

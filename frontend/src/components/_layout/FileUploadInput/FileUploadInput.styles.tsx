@@ -3,11 +3,13 @@ import styled from 'styled-components'
 export const Label = styled.label`
     position: relative;
     display: flex;
+    flex-direction: column;
     height: 250px;
-    width: 75%;
+ 
     justify-content: center;
     align-items: center;
-    border: 1.5px dashed rgb(209, 196, 233);
+    color: ${props => props.theme.colors.purple};
+    border: 1.5px dashed ${props => props.theme.colors.purple};
 `;
 
 export const Input = styled.input`

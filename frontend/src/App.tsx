@@ -7,10 +7,15 @@ import { store } from './components/redux/reducers'
 const theme = {
 	colors: {
 		white: '#FFFFFF',
+		purple: 'rgb(209, 196, 233)'
 	},
 	boxshadow: '0 3px 0 hsl(220, 7%, 83%) ',
 	borderRadius: {
-		small: 5
+		small: 5,
+		medium: "20px"
+	},
+	fontSize: {
+		s: 14
 	}
 }
 

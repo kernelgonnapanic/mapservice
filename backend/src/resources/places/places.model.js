@@ -7,6 +7,7 @@ const placeSchema = new mongoose.Schema({
 		required: true,
 		trim: true,
 		maxlength: 30,
+		unique: true,
 	},
 	status: {
 		type: String,

@@ -22,9 +22,7 @@ const customSelect: React.FC<Props> = ({
 	const { name } = field
 
 
-	const StyledSelect = styled(Select)`
-		width: 75%;
-	`
+
 
 	return (
 		<>
@@ -34,12 +32,12 @@ const customSelect: React.FC<Props> = ({
 				error={touched[name] && errors[name] ? true : false}
 			>
 				<InputLabel htmlFor="age-native-simple">Typ</InputLabel>
-				<StyledSelect native {...field}>
+				<Select native {...field}>
 					<option value=""></option>
 					{
 						options && options.map((optionName: string) => <option value={optionName}>{optionName}</option>)
 					}
-				</StyledSelect>
+				</Select>
 				{touched[name] &&
 					<FormHelperText>
 						{errors[name]}

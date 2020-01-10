@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Trash } from 'react-feather';
+import { Trash, UploadCloud } from 'react-feather';
 import { truncString } from '../../../assets/helpers';
 import * as S from './FileUploadInput.styles';
 
@@ -31,7 +31,9 @@ const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
 
     return (
         <>
-            <S.Label>Dodaj obrazek...
+            <S.Label>
+                <UploadCloud size='100' color="rgb(209, 196, 233)" />
+                Dodaj obrazek...
                 <S.Input
                     id="file" name="file"
                     type="file"
