@@ -1,58 +1,63 @@
 import mongoose from 'mongoose'
 
-const placeSchema = new mongoose.Schema({
-	id: mongoose.SchemaTypes.ObjectId,
-	title: {
-		type: String,
-		required: true,
-		trim: true,
-		maxlength: 30,
-		unique: true,
-	},
-	status: {
-		type: String,
-		enum: ['opened', 'closed'],
-	},
-	address: {
-		street: {
+const placeSchema = new mongoose.Schema(
+	{
+		id: mongoose.SchemaTypes.ObjectId,
+		title: {
 			type: String,
 			required: true,
+			trim: true,
+			maxlength: 30,
+			unique: true,
 		},
-		city: {
+		status: {
 			type: String,
-			default: 'Siedlce',
+			enum: ['opened', 'closed'],
 		},
-		number: Number,
-	},
-	placeType: {
-		type: String,
-		enum: [
-			'pizzeria',
-			'kebab',
-			'restaurant',
-			'kino',
-			'pomnik',
-			'muzuem',
-			'no-category',
+		address: {
+			street: {
+				type: String,
+				required: true,
+			},
+			city: {
+				type: String,
+				default: 'Siedlce',
+			},
+			number: Number,
+		},
+		placeType: {
+			type: String,
+			enum: [
+				'pizzeria',
+				'kebab',
+				'restaurant',
+				'kino',
+				'pomnik',
+				'muzuem',
+				'no-category',
+			],
+			default: 'no-category',
+		},
+		placeImage: String,
+		phoneNumber: Number,
+		description: String,
+		coordinates: [
+			{
+				lat: {
+					type: Number,
+					required: true,
+				},
+				long: {
+					type: Number,
+					required: true,
+				},
+			},
 		],
-		default: 'no-category',
 	},
-	placeImage: String,
-	phoneNumber: Number,
-	description: String,
-	coordinates: [
-		{
-			lat: {
-				type: Number,
-				required: true,
-			},
-			long: {
-				type: Number,
-				required: true,
-			},
-		},
-	],
-})
+	{
+		timestamps: true,
+	},
+)
 
 placeSchema.index({ title: 1 }, { unique: true })
 

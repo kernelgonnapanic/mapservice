@@ -4,6 +4,7 @@ import cors from 'cors'
 import { connect } from './utils/db'
 import { config } from './config'
 import placesRouter from './resources/places/places.router'
+import { catchErrors, notFound } from './middleware/errors'
 
 require('dotenv').config()
 mongoose.set('useFindAndModify', false)
@@ -15,6 +16,9 @@ app.use(cors())
 app.use(express.json())
 app.use('/uploads', express.static('uploads'))
 app.use('/', placesRouter)
+
+app.use(notFound)
+app.use(catchErrors)
 
 export const start = async () => {
 	try {
