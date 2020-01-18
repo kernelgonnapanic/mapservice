@@ -1,8 +1,18 @@
 import { Place } from './places.model'
 
 export const getData = async (req, res) => {
-	const places = await Place.find()
-	return res.status(200).json({ data: places })
+	const offset = parseInt(req.query.offset) || 0
+	const per_page = parseInt(req.query.per_page) || 10
+
+	const placesList = Place.find()
+		.skip(offset)
+		.limit(per_page)
+
+	const placesCount = Place.count()
+
+	const [places, count] = await Promise.all([placesList, placesCount])
+
+	return res.status(200).json({ data: places, count })
 }
 
 export const createPlace = async (req, res) => {
