@@ -41,5 +41,99 @@ describe('Authentication:', () => {
 
 			await signup(req, res)
 		})
+
+		test('creates user and and sends new token from user', async () => {
+			expect.assertions(2)
+
+			const req = {
+				body: {
+					email: 'testemail@gmail.com',
+					password: 'examplepassword123',
+					login: 'testlogin',
+				},
+			}
+
+			const res = {
+				status(status) {
+					expect(status).toBe(201)
+					return this
+				},
+				async send(result) {
+					let user = await verifyToken(result.token)
+					user = await User.findById(user.id)
+						.lean()
+						.exec()
+					expect(user.email).toBe('testemail@gmail.com')
+				},
+			}
+
+			await signup(req, res)
+		})
+	})
+
+	describe('signin', () => {
+		test('requires login and password', async () => {
+			expect.assertions(2)
+
+			const req = { body: {} }
+
+			const res = {
+				status(status) {
+					expect(status).toBe(401)
+					return this
+				},
+				send(result) {
+					expect(typeof result.error).toBe('string')
+				},
+			}
+
+			await signin(req, res)
+		})
+
+		test('User must be in database', async () => {
+			expect.assertions(2)
+
+			const req = { body: { login: 'johndoe', password: 'mypassword' } }
+
+			const res = {
+				status(status) {
+					expect(status).toBe(401)
+					return this
+				},
+				send(result) {
+					expect(typeof result.error).toBe('string')
+				},
+			}
+
+			await signin(req, res)
+		})
+
+		test('passwords must match', async () => {
+			expect.assertions(2)
+
+			await User.create({
+				login: 'testuser',
+				password: 'hello',
+			})
+
+			const req = {
+				body: {
+					login: 'testuser',
+					password: 'wrongpassword',
+				},
+			}
+
+			const res = {
+				status(status) {
+					expect(status).toBe(401)
+					return this
+				},
+				send(result) {
+					expect(typeof result.error).toBe('string')
+				},
+			}
+
+			await signin(req, res)
+		})
 	})
 })
