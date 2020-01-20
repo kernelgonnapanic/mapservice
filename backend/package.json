@@ -6,6 +6,7 @@
 	"scripts": {
 		"build": "babel src --out-dir dist",
 		"test": "jest",
+		"test-silent": "SET NODE_ENV=testing jest --forceExit --detectOpenHandles  --silent",
 		"dev": "nodemon --exec npm run restart",
 		"restart": "rimraf dist && npm run build && npm run start",
 		"start": "node dist/index.js"
@@ -16,9 +17,11 @@
 		"bcrypt": "^3.0.7",
 		"cors": "^2.8.5",
 		"cross-env": "^6.0.3",
+		"cuid": "^2.1.8",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"jsonwebtoken": "^8.5.1",
+		"lodash": "^4.17.15",
 		"mongoose": "^5.8.1",
 		"multer": "^1.4.2"
 	},

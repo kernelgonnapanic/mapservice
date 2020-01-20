@@ -2,10 +2,10 @@ import mongoose from 'mongoose'
 import cuid from 'cuid'
 import _ from 'lodash'
 
-import { List } from './src/resources/list/list.model'
+import { Place } from './src/resources/places/places.model'
 import { User } from './src/resources/user/user.model'
 
-const models = { User, List }
+const models = { User, Place }
 
 const url =
 	process.env.MONGODB_URI ||
@@ -18,7 +18,7 @@ global.newId = () => {
 
 const remove = collection =>
 	new Promise((resolve, reject) => {
-		collection.remove(err => {
+		collection.deleteOne(err => {
 			if (err) return reject(err)
 			resolve()
 		})
@@ -36,7 +36,8 @@ beforeEach(async done => {
 		try {
 			await mongoose.connect(url + db, {
 				useNewUrlParser: true,
-				autoIndex: true,
+				useUnifiedTopology: true,
+				useCreateIndex: true,
 			})
 			await clearDB()
 			await Promise.all(
