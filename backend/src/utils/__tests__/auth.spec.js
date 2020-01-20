@@ -1,7 +1,7 @@
 import { newToken, verifyToken, signup, signin, protect } from '../auth'
 import mongoose from 'mongoose'
 import jwt from 'jsonwebtoken'
-import config from '../../config'
+import { config } from '../../config'
 import { User } from '../../resources/user/user.model'
 
 describe('Authentication:', () => {
@@ -35,7 +35,7 @@ describe('Authentication:', () => {
 					return this
 				},
 				send(result) {
-					expect(typeof result.message).toBe('string')
+					expect(typeof result.error).toBe('string')
 				},
 			}
 

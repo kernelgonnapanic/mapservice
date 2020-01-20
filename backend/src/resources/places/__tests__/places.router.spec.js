@@ -6,6 +6,8 @@ describe('places router', () => {
 			{ path: '/places', method: 'get' },
 			{ path: '/place', method: 'post' },
 			{ path: '/place/:id', method: 'get' },
+			{ path: '/place/:id', method: 'put' },
+			{ path: '/placetypeoptions', method: 'get' },
 		]
 
 		routes.forEach(route => {

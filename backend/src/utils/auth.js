@@ -16,7 +16,7 @@ export const verifyToken = token =>
 		})
 	})
 
-export const signup = async (req, res, next) => {
+export const signup = async (req, res) => {
 	if (!req.body.email || !req.body.password || !req.body.login) {
 		return res.status(400).send({
 			error: 'Invalid data',
@@ -28,7 +28,6 @@ export const signup = async (req, res, next) => {
 		const token = newToken(user)
 		return res.status(201).send({ token })
 	} catch (error) {
-		console.log(error)
 		return res.status(404).send({
 			error: 'User already exsists or you put invalid data',
 		})
@@ -37,7 +36,9 @@ export const signup = async (req, res, next) => {
 
 export const signin = async (req, res) => {
 	if (!req.body.password || !req.body.login) {
-		next()
+		return res.status(401).send({
+			error: 'Invalid data',
+		})
 	}
 
 	const user = await User.findOne({ login: req.body.login }).exec()
@@ -58,7 +59,6 @@ export const signin = async (req, res) => {
 
 		return res.status(201).send({ token })
 	} catch (error) {
-		console.error(error)
 		return res.status(400).end()
 	}
 }
