@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import config from '../config'
+import { config } from '../config'
 import { User } from '../resources/user/user.model'
 
 export const newToken = user => {
@@ -17,39 +17,39 @@ export const verifyToken = token =>
 	})
 
 export const signup = async (req, res, next) => {
-	console.log(req.body)
-
-	if (!req.body.email || !req.body.password || req.body.login) {
-		next()
+	if (!req.body.email || !req.body.password || !req.body.login) {
+		return res.status(400).send({
+			error: 'Invalid data',
+		})
 	}
 
-	const user = new User({
-		login: req.body.name,
-		email: req.body.email,
-		password: req.body.password,
-	})
-
-	const token = newToken(user)
-
-	res.status(201).send({ token })
+	try {
+		const user = await User.create(req.body)
+		const token = newToken(user)
+		return res.status(201).send({ token })
+	} catch (error) {
+		console.log(error)
+		return res.status(404).send({
+			error: 'User already exsists or you put invalid data',
+		})
+	}
 }
 
 export const signin = async (req, res) => {
-	console.log(req.body)
-
-	if (!req.body.password || req.body.login) {
+	if (!req.body.password || !req.body.login) {
 		next()
 	}
 
-	const user = await User.findOne({ login: req.body.login })
+	const user = await User.findOne({ login: req.body.login }).exec()
 
 	if (!user) {
-		next()
+		return res.status(401).send({
+			error: 'There is not such a user',
+		})
 	}
 
-	const match = user.checkPassword(req.body.password)
-
 	try {
+		const match = await user.checkPassword(req.body.password)
 		if (!match) {
 			return res.status(401).send({ message: 'Not auth' })
 		}
