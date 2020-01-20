@@ -1,9 +1,12 @@
+import { Field, Formik } from 'formik'
 import React from 'react'
-import { Field, Form, Formik } from 'formik'
-import Input from '../_layout/Input/Input'
 import * as Yup from 'yup'
+import { Button } from '../_layout'
+import Input from '../_layout/Input/Input'
+import * as S from './styles/LoginForm.styles'
 
-const Login: React.FC = () => {
+
+const LoginForm: React.FC = () => {
 	const validationSchema = Yup.object().shape({
 		title: Yup.string()
 			.min(2, 'Nazwa jest zbyt krótka!')
@@ -35,7 +38,7 @@ const Login: React.FC = () => {
 			validationSchema={validationSchema}
 		>
 			{() => (
-				<Form>
+				<S.CustomForm>
 					<Field name="title" label="Login" component={Input} />
 					<Field
 						name="password"
@@ -43,11 +46,11 @@ const Login: React.FC = () => {
 						type="password"
 						component={Input}
 					/>
-					<button type="submit">Submit</button>
-				</Form>
+					<Button >Submit</Button>
+				</S.CustomForm>
 			)}
 		</Formik>
 	)
 }
 
-export default Login
+export default LoginForm

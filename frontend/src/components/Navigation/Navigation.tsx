@@ -3,7 +3,7 @@ import { RouteComponentProps, Router } from '@reach/router'
 import React, { FunctionComponent } from 'react'
 import { Camera } from 'react-feather'
 import PlacesForm from '../AddNewPlace/PlacesForm'
-import Login from '../Authorization/Login'
+import LoginScreen from '../Authorization/LoginScreen'
 import Main from '../MainPage/Main'
 import Places from '../Places/Places'
 import PlacesList from '../Places/list/PlacesList'
@@ -44,7 +44,7 @@ const Navigation: FunctionComponent = () => {
 			<Router >
 				<Route component={PlacesForm} path="/" />
 				<Route component={Main} path="/main" />
-				<Route component={Login} path="/login" />
+				<Route component={LoginScreen} path="/login" />
 				<Route component={Places} path="/places" >
 					<Route component={PlacesList} path="/list" />
 					<Route component={PlaceSingle} path="/single" />
