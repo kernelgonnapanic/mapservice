@@ -1,12 +1,12 @@
+import cors from 'cors'
 import express from 'express'
 import mongoose from 'mongoose'
-import cors from 'cors'
-import { connect } from './utils/db'
 import { config } from './config'
+import { catchErrors, notFound } from './middleware/errors'
 import placesRouter from './resources/places/places.router'
 import userRouter from './resources/user/user.router'
-import { catchErrors, notFound } from './middleware/errors'
-import { protect, signup, signin } from './utils/auth'
+import { signin, signup } from './utils/auth'
+import { connect } from './utils/db'
 
 require('dotenv').config()
 mongoose.set('useFindAndModify', false)
@@ -22,7 +22,7 @@ app.post('/signup', signup)
 app.post('/signin', signin)
 
 app.use('/', placesRouter)
-app.use('/', userRouter)
+app.use('/auth', userRouter)
 
 app.use(notFound)
 app.use(catchErrors)
