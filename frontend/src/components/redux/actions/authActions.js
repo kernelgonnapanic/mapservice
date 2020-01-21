@@ -68,3 +68,29 @@ export const SignUpUser = values => async dispatch => {
 		console.log(err)
 	}
 }
+
+export const SignIn = values => async dispatch => {
+	try {
+		const { login, password } = values
+
+		const loginBody = { login, password }
+
+		console.log(loginBody)
+
+		const response = await api.post('/signin', loginBody)
+
+		dispatch({
+			type: LOGIN_SUCCESS,
+			payload: response.data,
+		})
+	} catch (err) {
+		dispatch(
+			getErrors(
+				err.response.data.message,
+				err.response.status,
+				'LOGIN_FAILED',
+			),
+		)
+		dispatch({ type: LOGIN_FAILED })
+	}
+}
