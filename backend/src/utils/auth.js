@@ -45,14 +45,14 @@ export const signin = async (req, res) => {
 
 	if (!user) {
 		return res.status(401).send({
-			error: 'There is not such a user',
+			error: 'Users does not exist in database',
 		})
 	}
 
 	try {
 		const match = await user.checkPassword(req.body.password)
 		if (!match) {
-			return res.status(401).send({ message: 'Not auth' })
+			return res.status(401).send({ error: 'Not auth' })
 		}
 
 		const token = newToken(user)

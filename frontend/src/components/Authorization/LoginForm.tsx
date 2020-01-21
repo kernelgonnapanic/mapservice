@@ -1,12 +1,22 @@
 import { Field, Formik } from 'formik'
 import React from 'react'
 import * as Yup from 'yup'
-import { Button } from '../_layout'
-import Input from '../_layout/Input/Input'
-import * as S from './styles/LoginForm.styles'
-
+import { Button, Input } from '../_layout'
+import useStyles, * as S from './styles/LoginForm.styles'
 
 const LoginForm: React.FC = () => {
+
+	const classes = useStyles();
+	const initialValues = {
+		title: '',
+		password: '',
+	}
+
+	const onSubmit = (values: Record<string, any>) => {
+		alert('GOT IT BUD')
+		console.log(values)
+	}
+
 	const validationSchema = Yup.object().shape({
 		title: Yup.string()
 			.min(2, 'Nazwa jest zbyt krótka!')
@@ -21,16 +31,6 @@ const LoginForm: React.FC = () => {
 			),
 	})
 
-	const initialValues = {
-		title: '',
-		password: '',
-	}
-
-	const onSubmit = (values: Record<string, any>) => {
-		alert('GOT IT BUD')
-		console.log(values)
-	}
-
 	return (
 		<Formik
 			initialValues={initialValues}
@@ -38,7 +38,7 @@ const LoginForm: React.FC = () => {
 			validationSchema={validationSchema}
 		>
 			{() => (
-				<S.CustomForm>
+				<S.CustomForm className={classes.root}>
 					<Field name="title" label="Login" component={Input} />
 					<Field
 						name="password"
@@ -46,7 +46,7 @@ const LoginForm: React.FC = () => {
 						type="password"
 						component={Input}
 					/>
-					<Button >Submit</Button>
+					<Button>Submit</Button>
 				</S.CustomForm>
 			)}
 		</Formik>

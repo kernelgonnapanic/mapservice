@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 
-export const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
 			'& .MuiTextField-root': {
@@ -18,6 +18,7 @@ export const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
+export default useStyles;
 
 export const Container = styled.div`
 	height: 100%;
@@ -42,3 +43,4 @@ export const StyledForm = styled(Form)`
 	width: 100%;
 	padding: 100px;
 `
+

@@ -113,6 +113,7 @@ describe('Authentication:', () => {
 
 			await User.create({
 				login: 'testuser',
+				email: 'test@gmail.com',
 				password: 'hello',
 			})
 

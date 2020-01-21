@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
 import { sendPlace, getPlaceTypeOptions } from '../redux/actions'
 import { Button, FileUploadInput, Input, Select, Snackbar } from '../_layout'
-import * as S from './PlacesForm.styles'
-import { useStyles } from './PlacesForm.styles'
+import useStyles, * as S from './PlacesForm.styles'
 import PlacesMap from './PlacesMap'
 
 const AddPlace: React.FC = () => {
@@ -155,7 +154,6 @@ const AddPlace: React.FC = () => {
 									/>
 									<Button />
 								</S.Item>
-
 							</S.FieldsWrapper>
 							<PlacesMap setFieldValue={setFieldValue} />
 						</S.Container>

@@ -1,9 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
-import { places } from './places'
+import { placesReducer } from './placesReducer'
+import { errorReducer } from './errorReducer'
 
 export const reducers = combineReducers({
-	places,
+	places: placesReducer,
+	errors: errorReducer,
 })
 
 export const store = createStore(

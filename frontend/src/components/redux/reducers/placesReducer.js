@@ -1,4 +1,4 @@
-export const places = (state = [], action) => {
+export const placesReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'GET_PLACES':
 			return { ...state, list: { ...action.payload } }
