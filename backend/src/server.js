@@ -22,7 +22,7 @@ app.post('/signup', signup)
 app.post('/signin', signin)
 
 app.use('/', placesRouter)
-app.use('/users', userRouter)
+app.use('/', userRouter)
 
 app.use(notFound)
 app.use(catchErrors)

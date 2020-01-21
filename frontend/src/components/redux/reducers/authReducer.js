@@ -30,7 +30,7 @@ export const authReducer = (state = [], action) => {
 				...state,
 				isLoading: true,
 			}
-		case LOGIN_SUCCES:
+		case LOGIN_SUCCESS:
 		case REGISTER_SUCCESS:
 			return {
 				...state,
@@ -39,6 +39,7 @@ export const authReducer = (state = [], action) => {
 			}
 		case AUTH_ERROR:
 		case LOGIN_FAILED:
+		case REGISTER_FAIL:
 		case LOGOUT_SUCCESS:
 			return {
 				...state,
