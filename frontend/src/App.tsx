@@ -4,6 +4,7 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Navigation from './components/Navigation/Navigation'
 import { store } from './components/redux/reducers'
 
+
 const theme = {
 	colors: {
 		white: '#FFFFFF',
@@ -39,6 +40,9 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const App: React.FC = () => {
+
+
+
 	return (
 		<Provider store={store}>
 			<GlobalStyle />

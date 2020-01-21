@@ -1,5 +1,6 @@
 import React from 'react'
 import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm'
 import * as S from './styles/LoginScreen.styles'
 
 const LoginScreen: React.FC = () => {
@@ -8,7 +9,7 @@ const LoginScreen: React.FC = () => {
         <>
             <S.Container>
                 <LoginForm />
-                <div>Screen</div>
+                <RegisterForm />
             </S.Container>
         </>
     )

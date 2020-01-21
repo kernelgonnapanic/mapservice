@@ -1,6 +1,6 @@
 import { AppBar, IconButton } from '@material-ui/core'
 import { RouteComponentProps, Router } from '@reach/router'
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import { Camera } from 'react-feather'
 import PlacesForm from '../AddNewPlace/PlacesForm'
 import LoginScreen from '../Authorization/LoginScreen'
@@ -9,6 +9,8 @@ import Places from '../Places/Places'
 import PlacesList from '../Places/list/PlacesList'
 import PlaceSingle from '../Places/single/PlaceSingle'
 import { NavBar, NavBarLink } from './Navigation.styles'
+import { useDispatch } from 'react-redux'
+import { loadUser } from '../redux/actions/authActions'
 
 type Props = {
 	component: React.FC,
@@ -22,6 +24,16 @@ export const Route: FunctionComponent<Props> = ({ component: Component, ...rest 
 )
 
 const Navigation: FunctionComponent = () => {
+
+
+
+	const dispatch = useDispatch();
+
+
+	useEffect(() => {
+		dispatch(loadUser())
+	}, []);
+
 	return (
 		<>
 			<AppBar position="static">

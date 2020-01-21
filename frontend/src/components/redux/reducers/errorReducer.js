@@ -11,7 +11,7 @@ export const errorReducer = (state = initialState, action) => {
 		case GET_ERRORS:
 			return {
 				message: action.payload.message,
-				status: action.payload.message,
+				status: action.payload.status,
 				id: action.payload.id,
 			}
 		case CLEAR_ERRORS: {
