@@ -9,7 +9,7 @@ import {
 	REGISTER_FAIL,
 } from '../types'
 import { api } from '../../../api'
-import { getErrors } from './errorActions'
+import { getErrors, clearErrors } from './errorActions'
 
 export const loadUser = () => (dispatch, getState) => {
 	dispatch({ type: USER_LOADING })
@@ -27,13 +27,21 @@ export const loadUser = () => (dispatch, getState) => {
 	}
 
 	api.get('/auth/user', config)
-		.then(res => dispatch({ type: USER_LOADED, payload: res.data }))
-		.catch(err => {
-			console.log(err.response.status)
+		.then(res => {
+			console.log(res)
 
+			dispatch({ type: USER_LOADED, payload: res.data })
+		})
+		.catch(err => {
 			dispatch(getErrors(err.response.data.message, err.response.status))
 			dispatch({ type: AUTH_ERROR })
 		})
+}
+
+export const LogoutUser = () => {
+	return {
+		type: LOGOUT_SUCCESS,
+	}
 }
 
 export const SignUpUser = values => async dispatch => {
@@ -49,6 +57,14 @@ export const SignUpUser = values => async dispatch => {
 			payload: response.data,
 		})
 	} catch (err) {
+		dispatch(
+			getErrors(
+				err.response.data.message,
+				err.response.status,
+				'REGISTER_FAIL',
+			),
+		)
+		dispatch({ type: REGISTER_FAIL })
 		console.log(err)
 	}
 }

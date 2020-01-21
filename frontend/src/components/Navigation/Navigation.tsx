@@ -11,6 +11,7 @@ import PlaceSingle from '../Places/single/PlaceSingle'
 import { NavBar, NavBarLink } from './Navigation.styles'
 import { useDispatch } from 'react-redux'
 import { loadUser } from '../redux/actions/authActions'
+import Logout from '../Authorization/Logout'
 
 type Props = {
 	component: React.FC,
@@ -47,6 +48,7 @@ const Navigation: FunctionComponent = () => {
 						<NavBarLink to="/">Dodaj miejsce</NavBarLink>
 						<NavBarLink to="/places/list">Lista</NavBarLink>
 						<NavBarLink to="login">Login</NavBarLink>
+						<Logout />
 					</div>
 				</NavBar>
 			</AppBar>

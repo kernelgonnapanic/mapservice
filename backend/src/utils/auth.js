@@ -26,7 +26,7 @@ export const signup = async (req, res) => {
 	try {
 		const user = await User.create(req.body)
 		const token = newToken(user)
-		return res.status(201).send({ token })
+		return res.status(201).send({ token, user })
 	} catch (error) {
 		return res.status(404).send({
 			error: 'User already exsists or you put invalid data',
@@ -57,7 +57,7 @@ export const signin = async (req, res) => {
 
 		const token = newToken(user)
 
-		return res.status(201).send({ token })
+		return res.status(201).send({ token, user })
 	} catch (error) {
 		return res.status(400).end()
 	}

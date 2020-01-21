@@ -17,7 +17,6 @@ const RegisterForm: React.FC = () => {
     }
 
     const onSubmit = (values: Record<string, any>) => {
-        console.log(values)
         dispatch(SignUpUser(values))
     }
 

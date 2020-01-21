@@ -35,6 +35,7 @@ export const authReducer = (state = [], action) => {
 			localStorage.setItem('token', action.payload.token)
 			return {
 				...state,
+				...action.payload,
 				isAuthenticated: true,
 				isLoading: false,
 			}
@@ -45,6 +46,8 @@ export const authReducer = (state = [], action) => {
 			localStorage.removeItem('token')
 			return {
 				...state,
+				token: null,
+				user: null,
 				isAuthenticated: null,
 				isLoading: false,
 				user: null,
