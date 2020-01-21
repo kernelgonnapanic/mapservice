@@ -25,10 +25,7 @@ export const Route: FunctionComponent<Props> = ({ component: Component, ...rest 
 
 const Navigation: FunctionComponent = () => {
 
-
-
 	const dispatch = useDispatch();
-
 
 	useEffect(() => {
 		dispatch(loadUser())

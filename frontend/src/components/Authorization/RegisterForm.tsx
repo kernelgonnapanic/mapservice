@@ -3,22 +3,26 @@ import React from 'react'
 import * as Yup from 'yup'
 import { Button, Input } from '../_layout'
 import useStyles, * as S from './styles/LoginForm.styles'
+import { useDispatch } from 'react-redux'
+import { SignUpUser } from '../redux/actions/authActions'
 
 const RegisterForm: React.FC = () => {
-
+    const dispatch = useDispatch();
     const classes = useStyles();
+
     const initialValues = {
-        title: '',
+        login: '',
+        email: '',
         password: '',
     }
 
     const onSubmit = (values: Record<string, any>) => {
-        alert('GOT IT BUD')
         console.log(values)
+        dispatch(SignUpUser(values))
     }
 
     const validationSchema = Yup.object().shape({
-        title: Yup.string()
+        login: Yup.string()
             .min(2, 'Nazwa jest zbyt krótka!')
             .max(50, 'Nazwa jest zbyt długa!')
             .required('Wpisz nazwę'),
@@ -30,7 +34,9 @@ const RegisterForm: React.FC = () => {
                 'Hasło musi zawierać conajmniej 1 cyfrę oraz 1 wielką literę',
             ),
         email: Yup.string()
-            .email('Niepoprawny format')
+            .required('Proszę podać adres email')
+            .min(5, 'Email jest zbyt krótki')
+            .email('Niepoprawny email')
     })
 
     return (
@@ -41,7 +47,7 @@ const RegisterForm: React.FC = () => {
         >
             {() => (
                 <Form className={classes.root}>
-                    <Field name="title" label="Login" component={Input} />
+                    <Field name="login" label="Login" component={Input} />
                     <Field name="email" label="Email" component={Input} />
                     <Field
                         name="password"

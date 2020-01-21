@@ -35,3 +35,20 @@ export const loadUser = () => (dispatch, getState) => {
 			dispatch({ type: AUTH_ERROR })
 		})
 }
+
+export const SignUpUser = values => async dispatch => {
+	try {
+		const { email, login, password } = values
+
+		const newUserBody = { login, email, password }
+
+		const response = await api.post('/signup', newUserBody)
+
+		dispatch({
+			type: REGISTER_SUCCESS,
+			payload: response.data,
+		})
+	} catch (err) {
+		console.log(err)
+	}
+}
