@@ -6,6 +6,7 @@ import PlacesForm from '../AddNewPlace/PlacesForm'
 import LoginScreen from '../Authorization/LoginScreen'
 import Main from '../MainPage/Main'
 import Places from '../Places/Places'
+import NotFound from '../NotFound/NotFound'
 import PlacesList from '../Places/list/PlacesList'
 import PlaceSingle from '../Places/single/PlaceSingle'
 import { NavBar, NavBarLink } from './Navigation.styles'
@@ -53,8 +54,9 @@ const Navigation: FunctionComponent = () => {
 				</NavBar>
 			</AppBar>
 			<Router >
+				<Route component={NotFound} path="/error" default />
 				<ProtectedRoute component={PlacesForm} path="/addplace" />
-				<Route component={Main} path="/main" />
+				<Route component={Main} path="/" />
 				<Route component={LoginScreen} path="/login" />
 				<Route component={Places} path="/places" >
 					<Route component={PlacesList} path="/list" />
