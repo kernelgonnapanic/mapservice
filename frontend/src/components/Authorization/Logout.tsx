@@ -9,9 +9,8 @@ const Logout: React.FC = () => {
         dispatch(LogoutUser())
     }
 
-
     return (
-        <button onClick={handleClick}>Logosut</button>
+        <button onClick={handleClick}>Logout</button>
     )
 }
 

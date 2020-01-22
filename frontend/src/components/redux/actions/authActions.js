@@ -1,35 +1,27 @@
+import { api } from '../../../api'
 import {
+	AUTH_ERROR,
+	LOGIN_FAILED,
+	LOGIN_SUCCESS,
+	LOGOUT_SUCCESS,
+	REGISTER_FAIL,
+	REGISTER_SUCCESS,
 	USER_LOADED,
 	USER_LOADING,
-	AUTH_ERROR,
-	LOGIN_SUCCESS,
-	LOGIN_FAILED,
-	LOGOUT_SUCCESS,
-	REGISTER_SUCCESS,
-	REGISTER_FAIL,
 } from '../types'
-import { api } from '../../../api'
-import { getErrors, clearErrors } from './errorActions'
+import { getErrors } from './errorActions'
 
 export const loadUser = () => (dispatch, getState) => {
 	dispatch({ type: USER_LOADING })
 
 	const token = getState().auth.token
 
-	const config = {
-		headers: {
-			'Content-type': 'application/json',
-		},
-	}
-
 	if (token) {
-		config.header['x-auth-token'] = token
+		api.header['x-auth-token'] = token
 	}
 
-	api.get('/auth/user', config)
+	api.get('/auth/user')
 		.then(res => {
-			console.log(res)
-
 			dispatch({ type: USER_LOADED, payload: res.data })
 		})
 		.catch(err => {
@@ -65,7 +57,6 @@ export const SignUpUser = values => async dispatch => {
 			),
 		)
 		dispatch({ type: REGISTER_FAIL })
-		console.log(err)
 	}
 }
 
@@ -74,8 +65,6 @@ export const SignIn = values => async dispatch => {
 		const { login, password } = values
 
 		const loginBody = { login, password }
-
-		console.log(loginBody)
 
 		const response = await api.post('/signin', loginBody)
 
@@ -86,7 +75,7 @@ export const SignIn = values => async dispatch => {
 	} catch (err) {
 		dispatch(
 			getErrors(
-				err.response.data.message,
+				err.response.data.error,
 				err.response.status,
 				'LOGIN_FAILED',
 			),

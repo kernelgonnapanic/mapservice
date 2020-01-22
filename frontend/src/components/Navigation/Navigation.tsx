@@ -9,24 +9,19 @@ import Places from '../Places/Places'
 import PlacesList from '../Places/list/PlacesList'
 import PlaceSingle from '../Places/single/PlaceSingle'
 import { NavBar, NavBarLink } from './Navigation.styles'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loadUser } from '../redux/actions/authActions'
 import Logout from '../Authorization/Logout'
+import ProtectedRoute from './ProtectedRoute'
+import Route from './Route'
 
-type Props = {
-	component: React.FC,
-	setSelectedListElementId?: (
-		value: string | ((prevVar: string) => string),
-	) => void
-} & RouteComponentProps
-
-export const Route: FunctionComponent<Props> = ({ component: Component, ...rest }) => (
-	<Component {...rest} />
-)
 
 const Navigation: FunctionComponent = () => {
 
 	const dispatch = useDispatch();
+	const isAuthenticated = useSelector(
+		(state: any) => state.auth.isAuthenticated
+	)
 
 	useEffect(() => {
 		dispatch(loadUser())
@@ -45,15 +40,20 @@ const Navigation: FunctionComponent = () => {
 					</IconButton>
 					<div>
 						<NavBarLink to="main">Main</NavBarLink>
-						<NavBarLink to="/">Dodaj miejsce</NavBarLink>
 						<NavBarLink to="/places/list">Lista</NavBarLink>
-						<NavBarLink to="login">Login</NavBarLink>
-						<Logout />
+						{
+							isAuthenticated ?
+								<>
+									<NavBarLink to="/addplace">Dodaj miejsce</NavBarLink>
+									<Logout />
+								</>
+								: <NavBarLink to="login">Login</NavBarLink>
+						}
 					</div>
 				</NavBar>
 			</AppBar>
 			<Router >
-				<Route component={PlacesForm} path="/" />
+				<ProtectedRoute component={PlacesForm} path="/addplace" />
 				<Route component={Main} path="/main" />
 				<Route component={LoginScreen} path="/login" />
 				<Route component={Places} path="/places" >

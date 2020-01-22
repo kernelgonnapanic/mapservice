@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core'
 import { Router } from '@reach/router'
 import React, { FunctionComponent } from 'react'
-import { Route } from '../Navigation/Navigation'
+import Route from '../Navigation/Route'
 import Bar from './Bar'
 import PlacesList from './list/PlacesList'
 import PlaceSingle from './single/PlaceSingle'
