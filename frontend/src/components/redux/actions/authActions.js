@@ -16,9 +16,9 @@ export const loadUser = () => (dispatch, getState) => {
 
 	const token = getState().auth.token
 
-	if (token) {
-		api.header['x-auth-token'] = token
-	}
+	// if (token) {
+	// 	api.header['x-auth-token'] = token
+	// }
 
 	api.get('/auth/user')
 		.then(res => {
@@ -26,7 +26,7 @@ export const loadUser = () => (dispatch, getState) => {
 		})
 		.catch(err => {
 			dispatch(getErrors(err.response.data.message, err.response.status))
-			dispatch({ type: AUTH_ERROR })
+			// dispatch({ type: AUTH_ERROR })
 		})
 }
 
