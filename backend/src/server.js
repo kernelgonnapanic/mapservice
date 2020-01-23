@@ -7,6 +7,7 @@ import placesRouter from './resources/places/places.router'
 import userRouter from './resources/user/user.router'
 import { signin, signup } from './utils/auth'
 import { connect } from './utils/db'
+import { protect } from './utils/auth'
 
 require('dotenv').config()
 mongoose.set('useFindAndModify', false)
@@ -22,7 +23,7 @@ app.post('/signup', signup)
 app.post('/signin', signin)
 
 app.use('/', placesRouter)
-app.use('/auth', userRouter)
+app.use('/auth', protect, userRouter)
 
 app.use(notFound)
 app.use(catchErrors)

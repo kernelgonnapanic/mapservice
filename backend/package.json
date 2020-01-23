@@ -9,7 +9,8 @@
 		"test-silent": "SET NODE_ENV=testing jest --forceExit --detectOpenHandles  --silent",
 		"dev": "nodemon --exec npm run restart",
 		"restart": "rimraf dist && npm run build && npm run start",
-		"start": "node dist/index.js"
+		"start": "node dist/index.js",
+		"debugger": "node --inspect src/server.js"
 	},
 	"author": "Michal Stosio",
 	"license": "ISC",
@@ -34,6 +35,8 @@
 		"babel-core": "^6.26.3",
 		"babel-eslint": "^10.0.3",
 		"babel-jest": "^24.9.0",
+		"babel-preset-es2015": "^6.24.1",
+		"babel-register": "^6.26.0",
 		"eslint": "^6.7.2",
 		"eslint-config-prettier": "^6.7.0",
 		"eslint-config-standard": "^14.1.0",

@@ -1,13 +1,8 @@
 import { User } from './user.model'
 
+//REWRITE TO GET USER IF LOGGED
 export const getUser = async (req, res, next) => {
-	const userId = req.body.id
-
-	if (!userId || !userId.match(/^[0-9a-fA-F]{24}$/)) {
-		return res.status(404).send({ message: 'Wrong id' })
-	}
-
-	const user = await User.findById(userId)
+	const user = req.user
 
 	if (!user) {
 		return res.status(404).send({ message: 'User not found' })

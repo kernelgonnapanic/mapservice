@@ -70,15 +70,17 @@ export const protect = async (req, res, next) => {
 		})
 	}
 
-	let token = req.headers.authorization.split('Bearer')[1]
+	let token = req.headers.authorization.split('Bearer ')[1]
 
 	if (!token) {
 		return res.status(400).end()
 	}
 
+	//FIX VERIFY TOKEN
 	try {
 		const payload = await verifyToken(token)
-		const user = await (await User.findById(payload.id))
+
+		const user = await User.findById(payload.id)
 			.select('-password')
 			.lean()
 			.exec()
@@ -86,7 +88,9 @@ export const protect = async (req, res, next) => {
 		req.user = user
 
 		next()
-	} catch (e) {
+	} catch (err) {
+		console.log(err.name)
+
 		return res.status(400).end()
 	}
 }
