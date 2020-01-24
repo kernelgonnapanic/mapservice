@@ -5,6 +5,7 @@ import { Button, Input } from '../_layout'
 import useStyles, * as S from './styles/LoginForm.styles'
 import { useDispatch } from 'react-redux'
 import { SignIn } from '../redux/actions/authActions'
+import { Link } from '@reach/router'
 
 const LoginForm: React.FC = () => {
 	const dispatch = useDispatch();
@@ -30,24 +31,35 @@ const LoginForm: React.FC = () => {
 	})
 
 	return (
-		<Formik
-			initialValues={initialValues}
-			onSubmit={onSubmit}
-			validationSchema={validationSchema}
-		>
-			{() => (
-				<S.CustomForm className={classes.root}>
-					<Field name="login" label="Login" component={Input} />
-					<Field
-						name="password"
-						label="Password"
-						type="password"
-						component={Input}
-					/>
-					<Button>Submit</Button>
-				</S.CustomForm>
-			)}
-		</Formik>
+
+		<S.Wrapper>
+			<Formik
+				initialValues={initialValues}
+				onSubmit={onSubmit}
+				validationSchema={validationSchema}
+			>
+				{() => (
+
+					<S.CustomForm className={classes.root}>
+						<Field name="login" label="Login" component={Input} />
+						<Field
+							name="password"
+							label="Password"
+							type="password"
+							component={Input}
+						/>
+						<Button>Submit</Button>
+					</S.CustomForm>
+
+
+				)}
+			</Formik>
+			<p>
+				Nie posiadasz konta?
+				<Link to="/auth/register">Zarejestruj się</Link>
+			</p>
+		</S.Wrapper>
+
 	)
 }
 

@@ -1,13 +1,12 @@
 import { api, apiFormData } from '../../../api'
-import axios from 'axios'
+import { jsonToFormData } from '../../../assets/helpers'
 import {
 	GET_PLACES,
-	SEND_PLACES,
-	GET_SINGLE_PLACE,
-	SET_NOTIFICATION,
 	GET_PLACETYPE_OPTIONS,
+	GET_SINGLE_PLACE,
+	SEND_PLACES,
+	SET_NOTIFICATION,
 } from '../types'
-import { jsonToFormData } from '../../../assets/helpers'
 
 export const getPlaces = () => async dispatch => {
 	try {
@@ -52,7 +51,9 @@ export const sendPlace = data => async dispatch => {
 	try {
 		const bodyFormData = jsonToFormData(data)
 
-		const response = await apiFormData.post('/place', bodyFormData)
+		const response = await api.post('/place', bodyFormData, {
+			headers: { 'Content-Type': 'multipart/form-data' },
+		})
 
 		const action = {
 			type: SEND_PLACES,

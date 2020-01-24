@@ -10,27 +10,24 @@ import {
 	USER_LOADING,
 } from '../types'
 import { getErrors } from './errorActions'
+import { navigate } from '@reach/router'
 
 export const loadUser = () => (dispatch, getState) => {
 	dispatch({ type: USER_LOADING })
 
-	const token = getState().auth.token
-
-	// if (token) {
-	// 	api.header['x-auth-token'] = token
-	// }
-
 	api.get('/auth/user')
 		.then(res => {
-			dispatch({ type: USER_LOADED, payload: res.data })
+			dispatch({ type: USER_LOADED, payload: res.data.data })
 		})
 		.catch(err => {
 			dispatch(getErrors(err.response.data.message, err.response.status))
-			// dispatch({ type: AUTH_ERROR })
+			dispatch({ type: AUTH_ERROR })
 		})
 }
 
 export const LogoutUser = () => {
+	navigate(`/auth/login`)
+
 	return {
 		type: LOGOUT_SUCCESS,
 	}
@@ -72,6 +69,7 @@ export const SignIn = values => async dispatch => {
 			type: LOGIN_SUCCESS,
 			payload: response.data,
 		})
+		navigate(`/`)
 	} catch (err) {
 		dispatch(
 			getErrors(

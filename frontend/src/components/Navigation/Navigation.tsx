@@ -1,18 +1,19 @@
 import { AppBar, IconButton } from '@material-ui/core'
-import { RouteComponentProps, Router } from '@reach/router'
+import { Router } from '@reach/router'
 import React, { FunctionComponent, useEffect } from 'react'
 import { Camera } from 'react-feather'
+import { useDispatch, useSelector } from 'react-redux'
 import PlacesForm from '../AddNewPlace/PlacesForm'
-import LoginScreen from '../Authorization/LoginScreen'
+import { default as LoginForm, default as LoginScreen } from '../Authorization/LoginScreen'
+import Logout from '../Authorization/Logout'
+import RegisterForm from '../Authorization/RegisterForm'
 import Main from '../MainPage/Main'
-import Places from '../Places/Places'
 import NotFound from '../NotFound/NotFound'
 import PlacesList from '../Places/list/PlacesList'
+import Places from '../Places/Places'
 import PlaceSingle from '../Places/single/PlaceSingle'
-import { NavBar, NavBarLink } from './Navigation.styles'
-import { useDispatch, useSelector } from 'react-redux'
 import { loadUser } from '../redux/actions/authActions'
-import Logout from '../Authorization/Logout'
+import { NavBar, NavBarLink } from './Navigation.styles'
 import ProtectedRoute from './ProtectedRoute'
 import Route from './Route'
 
@@ -48,7 +49,7 @@ const Navigation: FunctionComponent = () => {
 									<NavBarLink to="/addplace">Dodaj miejsce</NavBarLink>
 									<Logout />
 								</>
-								: <NavBarLink to="login">Login</NavBarLink>
+								: <NavBarLink to="/auth/login">Login</NavBarLink>
 						}
 					</div>
 				</NavBar>
@@ -57,7 +58,15 @@ const Navigation: FunctionComponent = () => {
 				<Route component={NotFound} path="/error" default />
 				<ProtectedRoute component={PlacesForm} path="/addplace" />
 				<Route component={Main} path="/" />
-				<Route component={LoginScreen} path="/login" />
+				{!isAuthenticated &&
+
+
+					<Route component={LoginScreen} path="/auth">
+						<Route component={LoginForm} path='/login' />
+						<Route component={RegisterForm} path='/register' />
+					</Route>
+
+				}
 				<Route component={Places} path="/places" >
 					<Route component={PlacesList} path="/list" />
 					<Route component={PlaceSingle} path="/single" />

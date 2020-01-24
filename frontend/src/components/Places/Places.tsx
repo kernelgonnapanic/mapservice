@@ -7,7 +7,7 @@ import PlacesList from './list/PlacesList'
 import PlaceSingle from './single/PlaceSingle'
 
 
-const Places: FunctionComponent = () => {
+const Places: React.FC = () => {
 
 	return (
 		<>
