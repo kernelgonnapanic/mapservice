@@ -2,7 +2,7 @@ import { Field, Formik, Form } from 'formik'
 import React from 'react'
 import * as Yup from 'yup'
 import { Button, Input } from '../_layout'
-import useStyles, * as S from './styles/LoginForm.styles'
+import useStyles, * as S from './styles/RegisterForm.styles'
 import { useDispatch } from 'react-redux'
 import { SignUpUser } from '../redux/actions/authActions'
 
@@ -45,7 +45,7 @@ const RegisterForm: React.FC = () => {
             validationSchema={validationSchema}
         >
             {() => (
-                <Form className={classes.root}>
+                <S.CustomForm className={classes.root}>
                     <Field name="login" label="Login" component={Input} />
                     <Field name="email" label="Email" component={Input} />
                     <Field
@@ -55,7 +55,7 @@ const RegisterForm: React.FC = () => {
                         component={Input}
                     />
                     <Button>Submit</Button>
-                </Form>
+                </S.CustomForm>
             )}
         </Formik>
     )

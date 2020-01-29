@@ -10,6 +10,8 @@ const theme = {
 		white: '#FFFFFF',
 		purple: 'rgb(209, 196, 233)'
 	},
+	headerHeight: '64px',
+	barHeight: '75px',
 	boxshadow: '0 3px 0 hsl(220, 7%, 83%) ',
 	borderRadius: {
 		small: 5,

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Link } from '@reach/router'
+import { Link, Router } from '@reach/router'
 import { Toolbar } from '@material-ui/core'
 
 export const NavBar = styled(Toolbar)`
@@ -15,3 +15,8 @@ export const NavBarLink = styled(Link)`
 		margin-right: 10px;
 	}
 `
+
+export const CustomRouter = styled(Router)`
+	height: calc(100% - ${props => props.theme.headerHeight});
+`
+

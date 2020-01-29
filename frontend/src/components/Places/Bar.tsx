@@ -1,4 +1,5 @@
 import React from 'react'
+import * as S from './Bar.styles'
 
 interface Props {
 
@@ -6,9 +7,9 @@ interface Props {
 
 const Bar: React.FC<Props> = () => {
     return (
-        <div>
+        <S.BarWrapper>
             Bar
-        </div>
+        </S.BarWrapper>
     )
 }
 

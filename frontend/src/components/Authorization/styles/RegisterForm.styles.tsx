@@ -18,3 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }),
 );
+
+export default useStyles
+
+export const CustomForm = styled(Form)`
+    display: flex;
+    flex-direction: column;
+    margin: 0 150px
+`   

@@ -3,10 +3,9 @@ import styled from 'styled-components'
 
 export const ListWrapper = styled.div`
 	overflow-y: scroll;
-	height: 90vh;
+	height: calc(100vh - ${({ theme }) => theme.headerHeight} - ${({ theme }) => theme.barHeight});
 
 `
-
 
 export const Image = styled.img`
 	width: 50px;
@@ -20,8 +19,24 @@ export const ListElement = styled.div`
     box-shadow: ${props => props.theme.boxshadow};
     height: 75px;
     margin: 0 10px 12px 10px;
-    padding: 0;
+    padding: 0 25px;
     background-color: ${props => props.theme.colors.white};
     display: flex;
+    justify-content: space-between;
+    
 	align-items: center;
+`
+
+export const ListElementContent = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+export const Title = styled.div`
+    text-decoration:none
+`
+
+export const Description = styled.div`
+    text-decoration: none;
+
 `

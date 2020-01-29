@@ -1,9 +1,9 @@
 import { Link } from '@reach/router'
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlaces } from '../../redux/actions'
-import PlacesListElement from './PlacesListElement'
 import * as S from './PlacesList.styles'
+import PlacesListElement from './PlacesListElement'
 
 interface Props {
 	setSelectedListElementId?: (

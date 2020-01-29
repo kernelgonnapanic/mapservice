@@ -11,8 +11,8 @@ const Places: React.FC = () => {
 
 	return (
 		<>
+			<Bar />
 			<Grid container>
-				<Bar />
 				<Grid item xs={6}>
 					<div>
 						<Router>
@@ -22,7 +22,8 @@ const Places: React.FC = () => {
 					</div>
 				</Grid>
 				<div>
-					test</div>
+					test
+				</div>
 			</Grid>
 		</>
 	)

@@ -1,10 +1,8 @@
-import React, { useEffect, useCallback, memo } from 'react'
-import * as S from './PlacesList.styles'
-import { connect } from 'http2';
+import React, { memo } from 'react';
+import * as S from './PlacesList.styles';
+import DefaultPlaceImage from '../../../assets/images/default-place-image.jpg'
 
 interface Props {
-
-
     placeImage: string
     title: String
     _id: string
@@ -12,13 +10,17 @@ interface Props {
 
 const PlacesListElement: React.FC<Props> = memo(({ title, placeImage, _id }) => {
 
-
     return (
         <S.ListElement>
-            <S.Image src={placeImage} />
-            <span>
-                {title}
-            </span>
+            <S.ListElementContent>
+                <S.Title>
+                    {title}
+                </S.Title>
+                <S.Description>
+                    Description
+                </S.Description>
+            </S.ListElementContent>
+            <S.Image src={placeImage ? placeImage : DefaultPlaceImage} />
         </S.ListElement>
     )
 })

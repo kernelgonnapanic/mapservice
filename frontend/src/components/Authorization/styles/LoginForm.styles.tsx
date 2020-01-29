@@ -23,12 +23,12 @@ export default useStyles;
 
 
 export const Wrapper = styled.div`
-    margin-left: 150px
-
+    margin: 150px
 `
 
 export const CustomForm = styled(Form)`
   display: flex;
+  width: 100%;
   flex-direction: column;
 
 `

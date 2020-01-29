@@ -1,5 +1,4 @@
 import { AppBar, IconButton } from '@material-ui/core'
-import { Router } from '@reach/router'
 import React, { FunctionComponent, useEffect } from 'react'
 import { Camera } from 'react-feather'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,9 +12,10 @@ import PlacesList from '../Places/list/PlacesList'
 import Places from '../Places/Places'
 import PlaceSingle from '../Places/single/PlaceSingle'
 import { loadUser } from '../redux/actions/authActions'
-import { NavBar, NavBarLink } from './Navigation.styles'
+import * as S from './Navigation.styles'
 import ProtectedRoute from './ProtectedRoute'
 import Route from './Route'
+
 
 
 const Navigation: FunctionComponent = () => {
@@ -31,8 +31,8 @@ const Navigation: FunctionComponent = () => {
 
 	return (
 		<>
-			<AppBar position="static">
-				<NavBar>
+			<AppBar position="static" >
+				<S.NavBar>
 					<IconButton
 						edge="start"
 						color="inherit"
@@ -41,26 +41,24 @@ const Navigation: FunctionComponent = () => {
 						<Camera />
 					</IconButton>
 					<div>
-						<NavBarLink to="main">Main</NavBarLink>
-						<NavBarLink to="/places/list">Lista</NavBarLink>
+						<S.NavBarLink to="main">Main</S.NavBarLink>
+						<S.NavBarLink to="/places/list">Lista</S.NavBarLink>
 						{
 							isAuthenticated ?
 								<>
-									<NavBarLink to="/addplace">Dodaj miejsce</NavBarLink>
+									<S.NavBarLink to="/addplace">Dodaj miejsce</S.NavBarLink>
 									<Logout />
 								</>
-								: <NavBarLink to="/auth/login">Login</NavBarLink>
+								: <S.NavBarLink to="/auth/login">Login</S.NavBarLink>
 						}
 					</div>
-				</NavBar>
+				</S.NavBar>
 			</AppBar>
-			<Router >
+			<S.CustomRouter >
 				<Route component={NotFound} path="/error" default />
 				<ProtectedRoute component={PlacesForm} path="/addplace" />
 				<Route component={Main} path="/" />
 				{!isAuthenticated &&
-
-
 					<Route component={LoginScreen} path="/auth">
 						<Route component={LoginForm} path='/login' />
 						<Route component={RegisterForm} path='/register' />
@@ -71,7 +69,7 @@ const Navigation: FunctionComponent = () => {
 					<Route component={PlacesList} path="/list" />
 					<Route component={PlaceSingle} path="/single" />
 				</Route>
-			</Router>
+			</S.CustomRouter>
 		</>
 	)
 }
