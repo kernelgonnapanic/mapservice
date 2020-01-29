@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
 import { sendPlace, getPlaceTypeOptions } from '../redux/actions'
 import { Button, FileUploadInput, Input, Select, Snackbar } from '../_layout'
-import useStyles, * as S from './PlacesForm.styles'
-import PlacesMap from './PlacesMap'
+import useStyles, * as S from './styles/AddNewPlaceForm.styles'
+import AddNewPlaceMap from './AddNewPlaceMap'
 
-const AddPlace: React.FC = () => {
+const AddNewPlaceForm: React.FC = () => {
 	const dispatch = useDispatch()
 	const classes = useStyles();
 	const [isSnackbarOpened, setSnackbarOpened] = useState(false);
@@ -155,7 +155,7 @@ const AddPlace: React.FC = () => {
 									<Button />
 								</S.Item>
 							</S.FieldsWrapper>
-							<PlacesMap setFieldValue={setFieldValue} />
+							<AddNewPlaceMap setFieldValue={setFieldValue} />
 						</S.Container>
 					</S.StyledForm>
 					<Snackbar
@@ -170,4 +170,4 @@ const AddPlace: React.FC = () => {
 	)
 }
 
-export default AddPlace
+export default AddNewPlaceForm

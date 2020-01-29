@@ -5,6 +5,7 @@ import Route from '../Navigation/Route'
 import Bar from './Bar'
 import PlacesList from './list/PlacesList'
 import PlaceSingle from './single/PlaceSingle'
+import PlacesMap from './map/PlacesMap'
 
 
 const Places: React.FC = () => {
@@ -14,16 +15,16 @@ const Places: React.FC = () => {
 			<Bar />
 			<Grid container>
 				<Grid item xs={6}>
-					<div>
-						<Router>
-							<Route component={PlacesList} path="list" />
-							<Route component={PlaceSingle} path="/list/:placeId" />
-						</Router>
-					</div>
+
+					<Router>
+						<Route component={PlacesList} path="list" />
+						<Route component={PlaceSingle} path="/list/:placeId" />
+					</Router>
+
 				</Grid>
-				<div>
-					test
-				</div>
+				<Grid item xs={6}>
+					<PlacesMap />
+				</Grid>
 			</Grid>
 		</>
 	)

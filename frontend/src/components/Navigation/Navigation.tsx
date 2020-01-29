@@ -2,7 +2,7 @@ import { AppBar, IconButton } from '@material-ui/core'
 import React, { FunctionComponent, useEffect } from 'react'
 import { Camera } from 'react-feather'
 import { useDispatch, useSelector } from 'react-redux'
-import PlacesForm from '../AddNewPlace/PlacesForm'
+import AddNewPlaceForm from '../AddNewPlace/AddNewPlaceForm'
 import { default as LoginForm, default as LoginScreen } from '../Authorization/LoginScreen'
 import Logout from '../Authorization/Logout'
 import RegisterForm from '../Authorization/RegisterForm'
@@ -56,7 +56,7 @@ const Navigation: FunctionComponent = () => {
 			</AppBar>
 			<S.CustomRouter >
 				<Route component={NotFound} path="/error" default />
-				<ProtectedRoute component={PlacesForm} path="/addplace" />
+				<ProtectedRoute component={AddNewPlaceForm} path="/addplace" />
 				<Route component={Main} path="/" />
 				{!isAuthenticated &&
 					<Route component={LoginScreen} path="/auth">

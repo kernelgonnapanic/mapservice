@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react'
 import { Marker, Popup, TileLayer } from 'react-leaflet'
-import * as S from './PlacesMap.styles'
+import * as S from './styles/AddNewPlaceMap.styles'
 
 type Position = { lat: number; lng: number }
 
@@ -15,7 +15,7 @@ type State = {
 	draggable: boolean
 }
 
-class PlacesMap extends Component<Props, State> {
+class AddNewPlaceMap extends Component<Props, State> {
 	public state = {
 		center: {
 			lat: 52.163228,
@@ -89,4 +89,4 @@ class PlacesMap extends Component<Props, State> {
 	}
 }
 
-export default PlacesMap
+export default AddNewPlaceMap

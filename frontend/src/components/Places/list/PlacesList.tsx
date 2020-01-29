@@ -29,7 +29,6 @@ const PlacesList: React.FC<Props> = ({ setSelectedListElementId }) => {
 	}, [dispatch])
 
 
-
 	return (
 		<S.ListWrapper>
 
