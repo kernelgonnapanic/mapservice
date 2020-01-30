@@ -33,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
   body {
 	margin: 0;
 	padding: 0;
+	background-color: #FBFBFB;
 	font-family: 'Varela Round', sans-serif;
   }
 

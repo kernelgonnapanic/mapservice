@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPlaces } from '../../redux/actions'
 import * as S from './PlacesList.styles'
 import PlacesListElement from './PlacesListElement'
+import { getIt } from '../../redux/selectors/placesSelectors'
 
 interface Props {
 	setSelectedListElementId?: (
@@ -21,10 +22,12 @@ const PlacesList: React.FC<Props> = ({ setSelectedListElementId }) => {
 	const dispatch = useDispatch()
 
 	const places = useSelector(
-		(state: any) => state.places.list?.data.data,
+		(state: any) => getIt(state),
 	)
 
 	useEffect(() => {
+		console.log("MOUNTING")
+
 		dispatch(getPlaces())
 	}, [dispatch])
 
