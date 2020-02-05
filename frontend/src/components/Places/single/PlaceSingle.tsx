@@ -1,4 +1,3 @@
-import { Link } from '@reach/router'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSinglePlace } from '../../redux/actions'
@@ -23,9 +22,7 @@ const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 	return (<>
 
 		<S.Wrapper>
-			<Link to="/places/list">
-				BACK
-			</Link>
+
 			{placeData &&
 				<div>
 					<S.Image src={placeData.placeImage ? placeData.placeImage : DefaultPlaceImage} />
