@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export const Wrapper = styled.div`
     margin: 0 100px;
     padding: 50px 50px;
+    height: calc(100vh - ${({ theme }) => theme.headerHeight} - ${({ theme }) => theme.barHeight});
     background-color: ${({ theme }) => theme.colors.white};
     border-radius:  ${({ theme }) => theme.borderRadius.small + 'px'};
     box-shadow: ${({ theme }) => theme.boxshadow};

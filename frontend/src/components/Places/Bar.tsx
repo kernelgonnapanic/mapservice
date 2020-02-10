@@ -1,14 +1,12 @@
 import React from 'react'
 import * as S from './Bar.styles'
+import { GoBack } from '../_layout'
 
-interface Props {
 
-}
-
-const Bar: React.FC<Props> = () => {
+const Bar: React.FC = () => {
     return (
         <S.BarWrapper>
-            Bar
+            <GoBack />
         </S.BarWrapper>
     )
 }

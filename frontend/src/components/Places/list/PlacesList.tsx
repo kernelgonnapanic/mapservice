@@ -1,7 +1,7 @@
 import { Link } from '@reach/router'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPlaces } from '../../redux/actions'
+import { getPlaces } from '../../redux/actions/placesActions'
 import * as S from './PlacesList.styles'
 import PlacesListElement from './PlacesListElement'
 import { getIt } from '../../redux/selectors/placesSelectors'
@@ -26,22 +26,19 @@ const PlacesList: React.FC<Props> = ({ setSelectedListElementId }) => {
 	)
 
 	useEffect(() => {
-		console.log("MOUNTING")
-
 		dispatch(getPlaces())
 	}, [dispatch])
 
 
 	return (
 		<S.ListWrapper>
-
 			{places
 				? places.map((place: PlaceValue) => {
 					const { title, _id, placeImage } = place
 
 					return (
 						<>
-							<Link to={_id} >
+							<Link to={_id} style={{ textDecoration: "none" }} >
 								<PlacesListElement key={_id} _id={_id} title={title} placeImage={placeImage} />
 							</Link>
 						</>
