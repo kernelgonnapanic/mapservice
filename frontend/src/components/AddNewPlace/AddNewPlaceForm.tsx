@@ -128,7 +128,7 @@ const AddNewPlaceForm: React.FC = () => {
 										component={Select}
 										name="placeType"
 										label="test"
-										options={placeTypeOptions && placeTypeOptions.data.data}
+										options={placeTypeOptions && placeTypeOptions.data?.data}
 									/>
 									<Field
 										name="city"

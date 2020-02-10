@@ -11,7 +11,7 @@ interface Props {
 const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 	const dispatch = useDispatch()
 	const placeData = useSelector(
-		(state: any) => state.places.place?.data.data
+		(state: any) => state.places.place?.data?.data
 	)
 
 	useEffect(() => {

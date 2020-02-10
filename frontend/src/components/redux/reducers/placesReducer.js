@@ -1,4 +1,12 @@
-export const placesReducer = (state = [], action) => {
+const INITIAL_STATE = {
+	list: [],
+	place: [],
+	payload: [],
+	notification: [],
+	placeTypeOptions: [],
+}
+
+export const placesReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case 'GET_PLACES_SUCCESS':
 			return { ...state, list: { ...action.payload } }
