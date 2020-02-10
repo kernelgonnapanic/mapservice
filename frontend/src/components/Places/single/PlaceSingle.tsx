@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSinglePlace } from '../../redux/actions'
+import { getSinglePlace } from '../../redux/actions/placesActions'
 import * as S from './PlaceSingle.styles'
 import DefaultPlaceImage from '../../../assets/images/default-place-image.jpg'
 
@@ -19,25 +19,23 @@ const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 	}, [dispatch])
 
 
-	return (<>
+	return <S.Wrapper>
 
-		<S.Wrapper>
+		{placeData &&
+			<div>
+				<S.Image src={placeData.placeImage ? placeData.placeImage : DefaultPlaceImage} />
+				<div>{placeData.title}</div>
+				<div>{placeData.address.street}<span>{placeData.address.number}</span></div>
+				<span>{placeData.phoneNumber}</span>
+				<div>{placeData.coordinates[0].lat}</div>
+				<div>{placeData.coordinates[0].long}</div>
+				<div>{placeData.description}</div>
 
-			{placeData &&
-				<div>
-					<S.Image src={placeData.placeImage ? placeData.placeImage : DefaultPlaceImage} />
-					<div>{placeData.title}</div>
-					<div>{placeData.address.street}<span>{placeData.address.number}</span></div>
-					<span>{placeData.phoneNumber}</span>
-					<div>{placeData.coordinates[0].lat}</div>
-					<div>{placeData.coordinates[0].long}</div>
-					<div>{placeData.description}</div>
+			</div>
+		}
+	</S.Wrapper>
 
-				</div>
-			}
-		</S.Wrapper>
-	</>
-	)
+
 
 
 

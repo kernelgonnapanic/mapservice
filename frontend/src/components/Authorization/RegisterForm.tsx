@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import { Button, Input } from '../_layout'
 import useStyles, * as S from './styles/RegisterForm.styles'
 import { useDispatch } from 'react-redux'
+import { GoBack } from '../_layout'
 import { SignUpUser } from '../redux/actions/authActions'
 
 const RegisterForm: React.FC = () => {
@@ -39,25 +40,28 @@ const RegisterForm: React.FC = () => {
     })
 
     return (
-        <Formik
-            initialValues={initialValues}
-            onSubmit={onSubmit}
-            validationSchema={validationSchema}
-        >
-            {() => (
-                <S.CustomForm className={classes.root}>
-                    <Field name="login" label="Login" component={Input} />
-                    <Field name="email" label="Email" component={Input} />
-                    <Field
-                        name="password"
-                        label="Password"
-                        type="password"
-                        component={Input}
-                    />
-                    <Button>Submit</Button>
-                </S.CustomForm>
-            )}
-        </Formik>
+        <>
+            <GoBack customStyle={{ margin: "25px" }} />
+            <Formik
+                initialValues={initialValues}
+                onSubmit={onSubmit}
+                validationSchema={validationSchema}
+            >
+                {() => (
+                    <S.CustomForm className={classes.root}>
+                        <Field name="login" label="Login" component={Input} />
+                        <Field name="email" label="Email" component={Input} />
+                        <Field
+                            name="password"
+                            label="Password"
+                            type="password"
+                            component={Input}
+                        />
+                        <Button>Submit</Button>
+                    </S.CustomForm>
+                )}
+            </Formik>
+        </>
     )
 }
 

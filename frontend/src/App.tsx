@@ -7,8 +7,11 @@ import { store } from './components/redux/reducers'
 
 const theme = {
 	colors: {
+		mainDark: '#203A55',
+		mediumGray: '#546577',
 		white: '#FFFFFF',
-		purple: 'rgb(209, 196, 233)'
+		purple: 'rgb(209, 196, 233)',
+		gray: 'hsl(220, 7%, 83%)',
 	},
 	headerHeight: '64px',
 	barHeight: '75px',
@@ -18,7 +21,10 @@ const theme = {
 		medium: "20px"
 	},
 	fontSize: {
-		s: 14
+		s: "14px",
+		l: "16px",
+		xl: "20px",
+		xxl: "30px"
 	}
 }
 
@@ -43,8 +49,6 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const App: React.FC = () => {
-
-
 
 	return (
 		<Provider store={store}>
