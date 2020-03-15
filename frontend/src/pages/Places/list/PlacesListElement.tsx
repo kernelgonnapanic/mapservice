@@ -14,7 +14,7 @@ const PlacesListElement: React.FC<Props> = memo(({ title, placeImage, _id }) => 
         <S.ListElement>
             <S.ListElementContent>
                 <S.Title>
-                    {title}
+                    {title ? title : "Brak nazwy"}
                 </S.Title>
                 <S.Description>
                     Description

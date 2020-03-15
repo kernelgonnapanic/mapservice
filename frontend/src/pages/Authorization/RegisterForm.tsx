@@ -1,7 +1,7 @@
 import { Field, Formik, Form } from 'formik'
 import React from 'react'
 import * as Yup from 'yup'
-import { Button, Input } from '../_layout'
+import { Button, Input } from '../../components'
 import useStyles, * as S from './styles/RegisterForm.styles'
 import { useDispatch } from 'react-redux'
 import { SignUpUser } from '../redux/actions/authActions'

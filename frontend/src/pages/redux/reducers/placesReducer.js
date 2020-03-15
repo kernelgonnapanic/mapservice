@@ -1,16 +1,57 @@
-export const placesReducer = (state = [], action) => {
-	switch (action.type) {
-		case 'GET_PLACES':
-			return { ...state, list: { ...action.payload } }
-		case 'GET_SINGLE_PLACE':
-			return { ...state, place: { ...action.payload } }
-		case 'SEND_PLACES':
-			return { ...state, payload: { ...action.payload } }
-		case 'SET_NOTIFICATION':
-			return { ...state, notification: { ...action.payload } }
-		case 'GET_PLACETYPE_OPTIONS':
-			return { ...state, placeTypeOptions: { ...action.payload } }
-		default:
-			return state
-	}
+const initialState = {
+    list: {},
+    place: null,
+    notification: {},
+    errorPlaces: null,
+    placeTypeOptions: {},
+
+    loadingSinglePlace: false,
+    loadingPlaces: false,
+};
+
+
+export const placesReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case 'GET_PLACES': {
+            return {
+                ...state,
+                loadingPlaces: true,
+                errorPlaces: null
+            }
+        }
+        case 'GET_PLACES_SUCCESS':
+            return {
+                ...state,
+                list: {...action.payload},
+                loadingPlaces: false,
+            };
+        case 'GET_PLACES_FAIL':
+            return {
+                ...state,
+                loadingPlaces: false,
+                errorPlaces: {...action.payload},
+            };
+
+        case 'GET_SINGLE_PLACE':
+            return {...state, loadingSinglePlace: true, errorsSinglePlace: null}
+        case 'GET_SINGLE_PLACE_SUCCESS':
+            return {...state,
+                place: {...action.payload.data.data},
+                loadingSinglePlace: false,
+                errorsSinglePlace: null};
+        case 'GET_SINGLE_PLACE_FAIL':
+            return {...state, loadingSinglePlace: false, errorsSinglePlace:  {...action.payload}};
+        case 'CLEAR_SINGLEPLACE': {
+            return {...state, loadingSinglePlace: null, errorsSinglePlace: null, place: {}};
+        }
+
+        case 'SEND_PLACES':
+            return {...state, payload: {...action.payload}};
+        case 'SET_NOTIFICATION':
+            return {...state, notification: {...action.payload}};
+        case 'GET_PLACETYPE_OPTIONS':
+            return {...state, placeTypeOptions: {...action.payload}};
+        default:
+            return state
+    }
 }

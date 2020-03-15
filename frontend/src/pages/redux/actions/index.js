@@ -2,41 +2,54 @@ import { api, apiFormData } from '../../../api'
 import { jsonToFormData } from '../../../assets/helpers'
 import {
 	GET_PLACES,
-	GET_PLACETYPE_OPTIONS,
+	GET_PLACES_SUCCESS,
+	GET_PLACES_FAIL,
+
 	GET_SINGLE_PLACE,
+	GET_SINGLE_PLACE_SUCCESS,
+	GET_SINGLE_PLACE_FAIL,
+
+	CLEAR_SINGLEPLACE,
+
+	GET_PLACETYPE_OPTIONS,
+
 	SEND_PLACES,
 	SET_NOTIFICATION,
 } from '../types'
 
 export const getPlaces = () => async dispatch => {
+	const action = {type: GET_PLACES, payload: {}};
+	dispatch(action);
 	try {
 		const response = await api.get('/places')
 
-		const action = {
-			type: GET_PLACES,
-			payload: response,
-		}
-
+		const action = {type: GET_PLACES_SUCCESS, payload: response};
 		dispatch(action)
 	} catch (err) {
-		console.log(err)
+		const action = {type: GET_PLACES_FAIL, payload: err};
+		dispatch(action);
 	}
 }
 
 export const getSinglePlace = id => async dispatch => {
+	const action = {type: GET_SINGLE_PLACE, payload: {}};
+
+	dispatch(action);
 	try {
 		const response = await api.get(`/place/${id}`)
 
-		const action = {
-			type: GET_SINGLE_PLACE,
-			payload: response,
-		}
-
+		const action = {type: GET_SINGLE_PLACE_SUCCESS, payload: response};
 		dispatch(action)
 	} catch (err) {
-		console.log(err)
+		const action = {type: GET_SINGLE_PLACE_FAIL, payload: err};
+		dispatch(action)
 	}
-}
+};
+
+export const clearSingePlace = () => async dispatch => {
+	const action = {type: CLEAR_SINGLEPLACE, payload: {}}
+	dispatch(action);
+};
 
 export const setNotification = message => async dispatch => {
 	const action = {

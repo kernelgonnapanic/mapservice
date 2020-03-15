@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
 import { sendPlace, getPlaceTypeOptions } from '../redux/actions'
-import { Button, FileUploadInput, Input, Select, Snackbar } from '../_layout'
+import { Button, FileUploadInput, Input, Select, Snackbar } from '../../components'
 import useStyles, * as S from './styles/AddNewPlaceForm.styles'
 import AddNewPlaceMap from './AddNewPlaceMap'
 
@@ -128,7 +128,7 @@ const AddNewPlaceForm: React.FC = () => {
 										component={Select}
 										name="placeType"
 										label="test"
-										options={placeTypeOptions && placeTypeOptions.data.data}
+										options={placeTypeOptions && placeTypeOptions.data?.data}
 									/>
 									<Field
 										name="city"
