@@ -14,6 +14,7 @@ export const Image = styled.img`
 `
 
 export const ListElement = styled.div`
+
 	cursor: pointer;
     border-radius:  ${props => props.theme.borderRadius.small + 'px'};
     box-shadow: ${props => props.theme.boxshadow};

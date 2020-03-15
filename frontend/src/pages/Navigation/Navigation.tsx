@@ -41,7 +41,7 @@ const Navigation: FunctionComponent = () => {
 						<Camera />
 					</IconButton>
 					<div>
-						<S.NavBarLink to="main">Main</S.NavBarLink>
+						<S.NavBarLink to="">Main</S.NavBarLink>
 						<S.NavBarLink to="/places/list">Lista</S.NavBarLink>
 						{
 							isAuthenticated ?

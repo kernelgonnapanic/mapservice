@@ -5,10 +5,14 @@ import DefaultPlaceImage from '../../../assets/images/default-place-image.jpg'
 interface Props {
     placeImage: string
     title: String
-    _id: string
+    _id: string,
+    placeType: String
 }
 
-const PlacesListElement: React.FC<Props> = memo(({ title, placeImage, _id }) => {
+const PlacesListElement: React.FC<Props> = memo(({ title, placeImage, placeType, _id }) => {
+
+
+
 
     return (
         <S.ListElement>
@@ -17,7 +21,7 @@ const PlacesListElement: React.FC<Props> = memo(({ title, placeImage, _id }) => 
                     {title ? title : "Brak nazwy"}
                 </S.Title>
                 <S.Description>
-                    Description
+                    {placeType}
                 </S.Description>
             </S.ListElementContent>
             <S.Image src={placeImage ? placeImage : DefaultPlaceImage} />

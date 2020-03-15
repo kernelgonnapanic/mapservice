@@ -35,10 +35,7 @@ export const placesReducer = (state = initialState, action) => {
         case 'GET_SINGLE_PLACE':
             return {...state, loadingSinglePlace: true, errorsSinglePlace: null}
         case 'GET_SINGLE_PLACE_SUCCESS':
-            return {...state,
-                place: {...action.payload.data.data},
-                loadingSinglePlace: false,
-                errorsSinglePlace: null};
+            return {...state, place: {...action.payload.data.data}, loadingSinglePlace: false, errorsSinglePlace: null};
         case 'GET_SINGLE_PLACE_FAIL':
             return {...state, loadingSinglePlace: false, errorsSinglePlace:  {...action.payload}};
         case 'CLEAR_SINGLEPLACE': {
@@ -50,7 +47,7 @@ export const placesReducer = (state = initialState, action) => {
         case 'SET_NOTIFICATION':
             return {...state, notification: {...action.payload}};
         case 'GET_PLACETYPE_OPTIONS':
-            return {...state, placeTypeOptions: {...action.payload}};
+            return {...state, placeTypeOptions: {...action.payload.data.data}};
         default:
             return state
     }

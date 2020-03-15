@@ -13,26 +13,27 @@ interface Props extends RouteComponentProps <{
     id: string
 }> {}
 
-const PlacesList: React.FC<Props> = ({
+const PlacesList: React.FC<Props> = React.memo(({
 										 places,
                                          placesLoading
                                      }) => {
     interface PlaceValue {
         title: string
         _id: string
-        placeImage: string
+        placeImage: string,
+        placeType: string
     }
 
     return (
         <S.ListWrapper>
             {!placesLoading && places ?
                  places.map((place: PlaceValue) => {
-                    const {title, _id, placeImage} = place
+                    const {title, _id, placeImage, placeType} = place
 
                     return (
                         <>
                             <Link style={{textDecoration: "none"}} to={_id}>
-                                <PlacesListElement key={_id} _id={_id} title={title} placeImage={placeImage}/>
+                                <PlacesListElement key={_id} _id={_id} title={title} placeImage={placeImage} placeType={placeType}/>
                             </Link>
                         </>
 
@@ -43,6 +44,6 @@ const PlacesList: React.FC<Props> = ({
                 </div>}
         </S.ListWrapper>
     )
-}
+})
 
 export default PlacesList

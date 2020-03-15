@@ -92,3 +92,4 @@ export const getPlaceTypeOptions = async (req, res) => {
 
 	res.status(200).json({ data: enums })
 }
+

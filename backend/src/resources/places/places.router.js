@@ -7,6 +7,7 @@ import {
 	getPlace,
 	updatePlace,
 	getPlaceTypeOptions,
+
 } from './places.controllers'
 
 const router = Router()
@@ -16,5 +17,6 @@ router.post('/place', upload.single('placeImage'), createPlace)
 router.get('/place/:id', getPlace)
 router.put('/place/:id', updatePlace)
 router.get('/placetypeoptions', getPlaceTypeOptions)
+
 
 export default router

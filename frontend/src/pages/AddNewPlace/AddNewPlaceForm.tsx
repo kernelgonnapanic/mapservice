@@ -6,6 +6,8 @@ import { sendPlace, getPlaceTypeOptions } from '../redux/actions'
 import { Button, FileUploadInput, Input, Select, Snackbar } from '../../components'
 import useStyles, * as S from './styles/AddNewPlaceForm.styles'
 import AddNewPlaceMap from './AddNewPlaceMap'
+import {extractPlacesOptions} from '../redux/selectors/placesSelectors'
+import {shallowEqual} from "react-redux";
 
 const AddNewPlaceForm: React.FC = () => {
 	const dispatch = useDispatch()
@@ -13,16 +15,16 @@ const AddNewPlaceForm: React.FC = () => {
 	const [isSnackbarOpened, setSnackbarOpened] = useState(false);
 	const [isNotification, setNotification] = useState(false);
 
-	interface selectorTypes {
-		places: any
-		notification: any
-	}
+	const {placeTypeOptions, notification} = useSelector(
+		(state: any) => {
+			return {
+				placeTypeOptions: extractPlacesOptions(state),
+				notification: state.places.notification
+			}
+		}, shallowEqual
+	);
 
-	const content = useSelector(
-		(state: selectorTypes) => state,
-	)
-
-	const { placeTypeOptions, notification } = content.places;
+	// const { placeTypeOptions, notification } = content.places;
 
 	const initialValues = {
 		title: '',
@@ -53,6 +55,8 @@ const AddNewPlaceForm: React.FC = () => {
 		dispatch(sendPlace(values))
 		actions.resetForm()
 	}
+
+
 
 	const validationSchema = Yup.object().shape({
 		title: Yup.string()
@@ -86,6 +90,8 @@ const AddNewPlaceForm: React.FC = () => {
 			.required('Podaj numer telefonu'),
 	})
 
+
+	console.log(placeTypeOptions);
 
 	return (
 		<Formik
@@ -128,7 +134,7 @@ const AddNewPlaceForm: React.FC = () => {
 										component={Select}
 										name="placeType"
 										label="test"
-										options={placeTypeOptions && placeTypeOptions.data?.data}
+										options={placeTypeOptions && placeTypeOptions}
 									/>
 									<Field
 										name="city"

@@ -24,6 +24,7 @@ export default useStyles;
 
 export const Wrapper = styled.div`
     margin: 150px
+  
 `
 
 export const CustomForm = styled(Form)`
