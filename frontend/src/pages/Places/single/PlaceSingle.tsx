@@ -1,10 +1,11 @@
 import {Link, useParams} from '@reach/router'
 import React, {useEffect} from 'react'
-import { CircularProgress } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import {useDispatch, useSelector} from 'react-redux'
 import {getSinglePlace, clearSingePlace} from '../../redux/actions'
 import * as S from './PlaceSingle.styles'
 import DefaultPlaceImage from '../../../assets/images/default-place-image.jpg'
+import { ArrowLeft } from 'react-feather'
 
 interface Props {
     placeId?: string
@@ -30,8 +31,13 @@ const PlaceSingle: React.FC<Props> = ({placeId}) => {
     }, [dispatch]);
 
     return (<>
-            <Link to="/places/list">
-                BACK
+            <Link to="/places/list" style={{textDecoration: "none", marginLeft: "35px", display: "flex", alignItems: "center"}}>
+                <IconButton>
+                    <ArrowLeft/>
+                </IconButton>
+                <span style={{paddingLeft: "25px"}}>
+                    Back
+                </span>
             </Link>
             {!loadingSinglePlace && placeData &&
                 <>

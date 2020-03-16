@@ -9,8 +9,7 @@ import { Link } from '@reach/router'
 
 const LoginForm: React.FC = () => {
 	const dispatch = useDispatch();
-
-
+	
 	const classes = useStyles();
 	const initialValues = {
 		login: '',

@@ -10,10 +10,11 @@ import LoginImage from '../../assets/images/login.svg';
 const LoginScreen: React.FC = () => {
 
     const StyledRouter = styled(Router)`
-          
         height: 100%
-
-    `
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    `;
 
     return (
         <>
@@ -23,7 +24,7 @@ const LoginScreen: React.FC = () => {
                     <Route component={RegisterForm} path='/register' />
                 </StyledRouter>
                 <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <img src={LoginImage} alt="Image" width={500} height={500}/>
+                    <img src={LoginImage} alt="Image" width="75%" height="75%" style={{marginBottom: "200px"}}/>
                 </div>
             </S.Container>
         </>
