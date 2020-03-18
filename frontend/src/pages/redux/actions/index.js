@@ -1,4 +1,4 @@
-import { api, apiFormData } from '../../../api'
+import { api } from '../../../api'
 import { jsonToFormData } from '../../../assets/helpers'
 import {
 	GET_PLACES,
@@ -16,12 +16,13 @@ import {
 	SEND_PLACES,
 	SET_NOTIFICATION,
 } from '../types'
+import {getPlacesList} from "../api";
 
-export const getPlaces = () => async dispatch => {
+export const getPlaces = (perPage, offset) => async dispatch => {
 	const action = {type: GET_PLACES, payload: {}};
 	dispatch(action);
 	try {
-		const response = await api.get('/places')
+		const response = await getPlacesList(perPage, offset);
 
 		const action = {type: GET_PLACES_SUCCESS, payload: response};
 		dispatch(action)
@@ -87,7 +88,7 @@ export const sendPlace = data => async dispatch => {
 			message += 'Błąd krytyczny'
 		} else if (err.response.status === 500) {
 			message += 'Przepraszamy, problem z serwerem.'
-		} else if (err.response.data.message.code === 11000) {
+		} else if (err.response.err.message.code === 11000) {
 			message += 'Taka placówka już istnieje'
 		} else {
 			message = err.message

@@ -50,7 +50,6 @@ export const authReducer = (state = intialState, action) => {
 				user: null,
 				isAuthenticated: null,
 				isLoading: false,
-				user: null,
 			}
 		default:
 			return state
