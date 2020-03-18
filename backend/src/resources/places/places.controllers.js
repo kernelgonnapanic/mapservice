@@ -1,14 +1,19 @@
 import { Place } from './places.model'
 
-export const getData = async (req, res) => {
-	const offset = parseInt(req.query.offset) || 0
-	const per_page = parseInt(req.query.per_page) || 10
-
+export const getData = async (req, res, next) => {
+	const offset = parseInt(req.query.offset) || 0;
+	const per_page = parseInt(req.query.per_page) || 20
+	
 	const placesList = Place.find()
-		.skip(offset)
 		.limit(per_page)
+		.skip(offset*per_page)
+		.sort({
+			title: 'asc'
+		})
 
-	const placesCount = Place.count()
+	if(!placesList) next();
+
+	const placesCount = Place.countDocuments()
 
 	const [places, count] = await Promise.all([placesList, placesCount])
 
