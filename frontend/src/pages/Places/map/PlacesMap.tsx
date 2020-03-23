@@ -54,19 +54,19 @@ class PlacesMap extends Component<Props> {
                     attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {places && places.map((place: PlaceValue) => {
-                        const {lat, long } = place.coordinates[0];
-                        const {_id} = place;
+                {/*{places && places.map((place: PlaceValue) => {*/}
+                {/*        const {lat, long } = place.coordinates[0];*/}
+                {/*        const {_id} = place;*/}
 
-                        if(place && lat && long){
-                                return <Marker key={_id} position={[lat,  long]}>
-                                    <Popup>
-                                        <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
-                                    </Popup>
-                                </Marker>
-                            }
-                        }
-                )}
+                {/*        if(place && lat && long){*/}
+                {/*                return <Marker key={_id} position={[lat,  long]}>*/}
+                {/*                    <Popup>*/}
+                {/*                        <span>A pretty CSS3 popup. <br/> Easily customizable.</span>*/}
+                {/*                    </Popup>*/}
+                {/*                </Marker>*/}
+                {/*            }*/}
+                {/*        }*/}
+                {/*)}*/}
             </StyledMap>
         )
     }

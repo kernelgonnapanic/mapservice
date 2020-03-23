@@ -30,13 +30,22 @@ export const placesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loadingPlaces: true,
-                errorPlaces: null
+                // errorPlaces: null
             }
         }
         case GET_PLACES_SUCCESS:
+
+
+            console.log(Object.values(state.list));
+            console.log(action.payload.data.data)
+
+            console.log({...Object.values(state.list), ...action.payload.data.data});
+
+            //store them by Id because they are overwritng themselves.
+
             return {
                 ...state,
-                list: {...action.payload},
+                list: {...Object.values(state.list), ...action.payload.data.data},
                 loadingPlaces: false,
             };
         case GET_PLACES_FAIL:

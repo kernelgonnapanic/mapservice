@@ -6,13 +6,11 @@ interface Props {
     placeImage: string
     title: String
     _id: string,
-    placeType: String
+    placeType: String,
+    ref?: any
 }
 
 const PlacesListElement: React.FC<Props> = memo(({ title, placeImage, placeType, _id }) => {
-
-
-
 
     return (
         <S.ListElement>

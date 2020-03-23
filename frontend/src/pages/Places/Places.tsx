@@ -15,7 +15,7 @@ import {getPlaces} from '../redux/actions'
 
 //Props are used by Route component
 export type PlacesRouteProps = {
-    places?: [],
+    places?: any[],
     placesLoading?: boolean
 }
 
@@ -38,9 +38,9 @@ const Places: React.FC = () => {
         }
     });
 
-    useEffect(() => {
-        dispatch(getPlaces());
-    }, [getPlaces]);
+    // useEffect(() => {
+    //     dispatch(getPlaces());
+    // }, [getPlaces]);
 
     return (
         <>
@@ -53,7 +53,7 @@ const Places: React.FC = () => {
                     </Router>
                 </Grid>
                 <StyledGrid item xs={6}>
-                    <PlacesMap places={places} singlePlace={singlePlace}/>
+                    {/*<PlacesMap places={places} singlePlace={singlePlace}/>*/}
                 </StyledGrid>
             </Grid>
         </>
