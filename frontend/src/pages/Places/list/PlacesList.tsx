@@ -57,7 +57,7 @@ const PlacesList: React.FC<Props> = ({}) => {
     }, [placesLoading]);
 
     return (
-        <div style={{height: "10000px"}}>
+        <div >
             <S.ListWrapper>
                 {places.length > 0 &&
                 <>

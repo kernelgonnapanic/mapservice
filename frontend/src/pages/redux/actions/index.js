@@ -9,6 +9,10 @@ import {
 	GET_SINGLE_PLACE_SUCCESS,
 	GET_SINGLE_PLACE_FAIL,
 
+	GET_MARKERS,
+	GET_MARKERS_SUCCESS,
+	GET_MARKERS_FAIL,
+
 	CLEAR_SINGLEPLACE,
 
 	GET_PLACETYPE_OPTIONS,
@@ -23,9 +27,6 @@ export const getPlaces = (perPage, offset) => async dispatch => {
 	dispatch(action);
 	try {
 		
-		console.log("SUKAA")
-		console.log(perPage);
-
 		const response = await getPlacesList(perPage, offset);
 
 		const action = {type: GET_PLACES_SUCCESS, payload: response};
@@ -34,6 +35,21 @@ export const getPlaces = (perPage, offset) => async dispatch => {
 		const action = {type: GET_PLACES_FAIL, payload: err};
 		dispatch(action);
 	}
+}
+
+export const getMarkers = (perPage) => async dispatch => {
+	const action = { type: GET_MARKERS, payload: {}};
+
+	dispatch(action);
+	try {
+		const response = await getPlacesList(perPage);
+		
+		const action = {type: GET_MARKERS_SUCCESS, payload: response}
+		dispatch(action);
+	} catch (err){
+		const action = {type: GET_MARKERS_FAIL, payload: err};
+		dispatch(action);
+	} 
 }
 
 export const getSinglePlace = id => async dispatch => {

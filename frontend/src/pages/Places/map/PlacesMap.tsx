@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { TileLayer, Map, Marker, Popup } from 'react-leaflet'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
-import {getPlaces} from '../../redux/actions'
-import {extractPlaces} from '../../redux/selectors/placesSelectors'
+import {getMarkers} from '../../redux/actions'
+import {extractMarkers} from '../../redux/selectors/placesSelectors'
 
 interface Props {
-    places?: [],
-    singlePlace?: any
+    markers?: [],
+    singlePlace?: any,
+    getMarkers: (perPage: number) => void
 }
 
 
@@ -15,7 +16,7 @@ const StyledMap = styled(Map)`
     height: 100%;
 `;
 
-interface PlaceValue {
+interface MarkerValue {
     title: string
     coordinates: any,
     _id: string
@@ -32,6 +33,8 @@ class PlacesMap extends Component<Props> {
     };
 
     componentDidMount(): void {
+       
+
         if(this.props.singlePlace && this.props.singlePlace.coordinates){
 
             this.setState({
@@ -44,12 +47,12 @@ class PlacesMap extends Component<Props> {
             });
         }
 
-        getPlaces(1000, 0);
+        this.props.getMarkers(1000);
     }
 
 
     public render(): JSX.Element {
-        const {  places } = this.props;
+        const {  markers} = this.props;
 
         return (
             <StyledMap animate={true}
@@ -58,11 +61,11 @@ class PlacesMap extends Component<Props> {
                     attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {places && places.map((place: PlaceValue) => {
-                  const {lat, long } = place.coordinates[0];
-                   const {_id} = place
+                {markers && markers.map((marker: MarkerValue) => {
+                  const {lat, long } = marker.coordinates[0];
+                   const {_id} = marker
 
-                     if(place && lat && long){
+                     if(marker && lat && long){
                                 return <Marker key={_id} position={[lat,  long]}>
                                     <Popup>
                                         <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
@@ -83,22 +86,21 @@ interface RootState {
             place: {}
         }
     },
-    places: {
-        place: {}
-    }
-
 }
 
-const mapStateToProps = (state: RootState) => {
 
-    // console.log(state.places.place);
+const mapStateToProps = (state: RootState) => ({
 
-    return {
-        places: extractPlaces(state)
+        markers: extractMarkers(state)
         // singlePlace: state.places.place
-    }
-};
+    
+});
 
-const mapDispatchToProps = () => ({});
+
+
+//@ts-ignore
+const mapDispatchToProps = (dispatch) => ({
+    getMarkers: (perPage: number) => dispatch(getMarkers(perPage))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlacesMap)

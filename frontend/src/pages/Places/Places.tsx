@@ -25,11 +25,6 @@ const Places: React.FC = () => {
 		height: calc(100vh - ${({theme}) => theme.headerHeight} - ${({theme}) => theme.barHeight});
 	`;
 
-    console.log("PLACES RERENDER");
-
-
-
-    
     return (
         <>
             <Bar/>

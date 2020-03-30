@@ -5,6 +5,9 @@ import {
     GET_SINGLE_PLACE,
     GET_SINGLE_PLACE_SUCCESS,
     GET_SINGLE_PLACE_FAIL,
+    GET_MARKERS,
+    GET_MARKERS_SUCCESS,
+    GET_MARKERS_FAIL,
     CLEAR_SINGLEPLACE,
     SEND_PLACES,
     SET_NOTIFICATION,
@@ -18,6 +21,7 @@ const initialState = {
     notification: {},
     errorPlaces: null,
     placeTypeOptions: {},
+    markers: null,
     hasMoreData: null,
     loadingSinglePlace: false,
     loadingPlaces: false,
@@ -66,7 +70,6 @@ export const placesReducer = (state = initialState, action) => {
                 hasMoreData: false,
                 errorPlaces: {...action.payload},
             };
-
         case GET_SINGLE_PLACE:
             return {...state, loadingSinglePlace: true, errorsSinglePlace: null}
         case GET_SINGLE_PLACE_SUCCESS:
@@ -75,6 +78,28 @@ export const placesReducer = (state = initialState, action) => {
             return {...state, loadingSinglePlace: false, errorsSinglePlace:  {...action.payload}};
         case CLEAR_SINGLEPLACE: {
             return {...state, loadingSinglePlace: null, errorsSinglePlace: null, place: {}};
+        }
+        case GET_MARKERS: {
+            return {
+                ...state,
+                markers: [],
+                loadingMarkers: true
+            }
+        }
+        case GET_MARKERS_SUCCESS: {
+            return {
+                ...state,
+                markers: action.payload.data.data,
+                loadingMarkers: false
+            }
+        }
+        case GET_MARKERS_FAIL: {
+            return {
+                ...state,
+                markers: null,
+                markersError: action.payload,
+                loadingMarkers: false
+            }
         }
 
         case SEND_PLACES:
