@@ -1,26 +1,23 @@
 import {Link, RouteComponentProps} from '@reach/router'
-import React, {useCallback, useEffect, useRef} from 'react'
+import React, {useState, useCallback, useEffect, useRef} from 'react'
 import * as S from './PlacesList.styles'
 import PlacesListElement from './PlacesListElement'
 import {CircularProgress} from "@material-ui/core";
-import {shallowEqual, useDispatch, useSelector} from "react-redux";
-import {extractPlaces} from "../../redux/selectors/placesSelectors";
-import {getPlaces} from "../../redux/actions";
-import {getPlacesList} from "../../redux/api";
+import usePlaces from "../../../assets/hooks/usePlaces";
 
 interface Props extends RouteComponentProps <{
     places?: any[],
     placesLoading?: boolean
     id: string,
-}> {}
+}> {
+}
 
+interface Ref extends HTMLInputElement {
+    disconnect: () => void,
+    observe(target: Element): void
+}
 
-
-const PlacesList: React.FC<Props> = React.memo(({
-										 // places,
-                                         // placesLoading
-                                     }) => {
-
+const PlacesList: React.FC<Props> = ({}) => {
     interface PlaceValue {
         title: string
         _id: string
@@ -28,118 +25,69 @@ const PlacesList: React.FC<Props> = React.memo(({
         placeType: string
     }
 
+    const [pageNumber, setPageNumber] = useState(0);
 
-    const observer = useRef<HTMLInputElement>(null);
+    //@ts-ignore
+    const [places, placesLoading, hasMoreData] = usePlaces(pageNumber);
 
-    const dispatch = useDispatch();
-
-    const {places, placesLoading, } = useSelector((state: any) => {
-        return {
-            places: extractPlaces(state),
-            placesLoading: state.places.loadingPlaces,
-
-        }
-    }, shallowEqual);
-
+    let observer = useRef<Ref | null>(null);
 
     const options = {
         rootMargin: '-50px',
     };
 
     const lastElement = useCallback(node => {
-        if(placesLoading) return;
-        //@ts-ignore
-        observer.current = new IntersectionObserver(([entry]) => {
-            if(entry.isIntersecting && places && places.length > 8){
+        if (placesLoading) return;
+
+        if (observer.current) observer.current.disconnect()
 
 
-                dispatch(getPlaces(10, 1));
+        const handleObserver = ([entry]: any): void => {
+            if (entry.isIntersecting && places && hasMoreData) {
+                setPageNumber(prevPage => prevPage + 1)
             }
-        }, options);
+        };
 
-        if(node ) {
-            //@ts-ignore
+           //@ts-ignore
+        observer.current = new IntersectionObserver(handleObserver, options);
+
+        if (node && observer.current) {
             observer.current.observe(node)
         }
-
-        //@ts-ignore
-        // if(observer.current) observer.current.disconnect();
-
     }, [placesLoading]);
-
-
-    //
-    // useEffect(() => {
-    //
-    //     if(placesLoading) return;
-    //
-    //     if(places){
-    //         const observer = new IntersectionObserver(([entry]) => {
-    //             // console.log(lastElement);
-    //             if(entry.isIntersecting){
-    //                 // console.log(entry);
-    //                 // dispatch(getPlaces(10, 1));
-    //                 // getPlacesList(10, 1).then(response => {
-    //                 //    console.log(response.data.data);
-    //                 // });
-    //             }
-    //         }, options);
-    //
-    //         // if(observer.current){
-    //         //     const lastElement = observer.current.children[observer.current.children.length - 1];
-    //         //     observer.observe(lastElement)
-    //         // }
-    //         //
-    //         // return () => {
-    //         //     if(ref.current){
-    //         //         const lastElement = observer.current.children[observer.current.children.length - 1];
-    //         //         observer.unobserve(lastElement)
-    //         //     }
-    //         // }
-    //
-    //     }
-    //
-    //
-    // }, [observer, options, dispatch, places]);
-
-
-    useEffect(() => {
-        console.log("MOUNT");
-
-        dispatch(getPlaces(10, 0));
-    }, []);
 
     return (
         <div style={{height: "10000px"}}>
-            <S.ListWrapper >
-        {/*<S.ListWrapper ref={observer}>*/}
-            {!placesLoading && places ?
-                 places.map((place: PlaceValue, index: number) => {
-                    const {title, _id, placeImage, placeType} = place;
+            <S.ListWrapper>
+                {places.length > 0 &&
+                <>
+                    {places.map((place: PlaceValue, index: number) => {
+                        const {title, _id, placeImage, placeType} = place;
 
-                    if(places.length === index + 1) {
-                        return <>
-                            <Link ref={lastElement} style={{textDecoration: "none"}} to={_id} >
-                                <PlacesListElement   key={_id} _id={_id} title={title} placeImage={placeImage} placeType={placeType}/>
-                            </Link>
-                        </>
-                    }
+                        if (places.length === index + 1) {
+                            return <>
+                                <Link ref={lastElement} style={{textDecoration: "none"}} to={_id}>
+                                    <PlacesListElement key={_id} _id={_id} title={title} placeImage={placeImage}
+                                                       placeType={placeType}/>
+                                </Link>
+                            </>
+                        }
 
-                    return (
-                        <>
-                            <Link style={{textDecoration: "none"}} to={_id} >
-                                <PlacesListElement key={_id} _id={_id} title={title} placeImage={placeImage} placeType={placeType}/>
-                            </Link>
-                        </>
-
-                    )
-                })
-                : <div style={{display: "flex", justifyContent: "center"}}>
-                    <CircularProgress/>
-                </div>}
-        </S.ListWrapper>
+                        return (
+                            <>
+                                <Link style={{textDecoration: "none"}} to={_id}>
+                                    <PlacesListElement key={_id} _id={_id} title={title} placeImage={placeImage}
+                                                       placeType={placeType}/>
+                                </Link>
+                            </>
+                        )
+                    })}
+                </>
+                }
+            </S.ListWrapper>
         </div>
     )
-});
+};
 
 export default PlacesList
+

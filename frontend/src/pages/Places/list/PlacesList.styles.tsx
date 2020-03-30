@@ -2,8 +2,10 @@ import styled from 'styled-components'
 
 
 export const ListWrapper = styled.div`
-	overflow-y: scroll;
-	height: calc(100vh - ${({ theme }) => theme.headerHeight} - ${({ theme }) => theme.barHeight});
+    overflow-y: scroll;
+
+    height: calc(100vh - ${({ theme }) => theme.headerHeight} - ${({ theme }) => theme.barHeight});
+   
        padding: 0 50px;
 `
 

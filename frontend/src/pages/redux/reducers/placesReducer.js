@@ -11,47 +11,59 @@ import {
     GET_PLACETYPE_OPTIONS
 } from "../types";
 
-
 const initialState = {
     list: {},
+    listIds: [],
     place: null,
     notification: {},
     errorPlaces: null,
     placeTypeOptions: {},
-
+    hasMoreData: null,
     loadingSinglePlace: false,
     loadingPlaces: false,
 };
 
+const storeById = (data) => {
+    return data.reduce((totalPlaces,place) => {
+        totalPlaces[place._id] =  place;
+        return totalPlaces;
+    }, {});
+};
+
+const storeIds = data => {
+    return data.map(item => item._id);
+};
 
 export const placesReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_PLACES: {
             return {
                 ...state,
+                list: {...state.list},
+                listIds: [...state.listIds],
                 loadingPlaces: true,
+                hasMoreData: true,
                 // errorPlaces: null
             }
         }
         case GET_PLACES_SUCCESS:
+            const places = storeById(action.payload.data.data);
+            const placesIds = storeIds(action.payload.data.data);
 
-
-            console.log(Object.values(state.list));
-            console.log(action.payload.data.data)
-
-            console.log({...Object.values(state.list), ...action.payload.data.data});
-
-            //store them by Id because they are overwritng themselves.
+            const hasMoreData = action.payload.data.data.length > 0;
 
             return {
                 ...state,
-                list: {...Object.values(state.list), ...action.payload.data.data},
+                list: {...state.list, ...places },
+                listIds: [...state.listIds, ...placesIds ],
+                hasMoreData,
                 loadingPlaces: false,
             };
         case GET_PLACES_FAIL:
             return {
                 ...state,
                 loadingPlaces: false,
+                hasMoreData: false,
                 errorPlaces: {...action.payload},
             };
 

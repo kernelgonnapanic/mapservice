@@ -22,6 +22,10 @@ export const getPlaces = (perPage, offset) => async dispatch => {
 	const action = {type: GET_PLACES, payload: {}};
 	dispatch(action);
 	try {
+		
+		console.log("SUKAA")
+		console.log(perPage);
+
 		const response = await getPlacesList(perPage, offset);
 
 		const action = {type: GET_PLACES_SUCCESS, payload: response};

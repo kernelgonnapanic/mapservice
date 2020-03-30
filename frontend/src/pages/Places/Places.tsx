@@ -21,39 +21,31 @@ export type PlacesRouteProps = {
 
 const Places: React.FC = () => {
 
-
-
     const StyledGrid = styled(Grid)`
 		height: calc(100vh - ${({theme}) => theme.headerHeight} - ${({theme}) => theme.barHeight});
 	`;
 
-    const dispatch = useDispatch();
+    console.log("PLACES RERENDER");
 
-    const {places, placesLoading, singlePlace, placesErrors} = useSelector((state: any) => {
-        return {
-            places: extractPlaces(state),
-            singlePlace: state.places.place,
-            placesLoading: state.places.loadingPlaces,
-            placesErrors: state.places.errorPlaces
-        }
-    });
 
-    // useEffect(() => {
-    //     dispatch(getPlaces());
-    // }, [getPlaces]);
 
+    
     return (
         <>
             <Bar/>
             <Grid container>
                 <Grid item xs={6}>
                     <Router>
-                        <Route component={PlacesList} places={places} placesLoading={placesLoading} path="list"/>
-                        <Route component={PlaceSingle} places={places} path="/list/:placeId"/>
+                        <Route component={PlacesList} path="list"/>
+                        <Route component={PlaceSingle} path="/list/:placeId"/>
+						{/*<Route component={PlacesList} places={places} placesLoading={placesLoading} path="list"/>*/}
+                        {/*<Route component={PlaceSingle} places={places} path="/list/:placeId"/>*/}
                     </Router>
                 </Grid>
                 <StyledGrid item xs={6}>
-                    {/*<PlacesMap places={places} singlePlace={singlePlace}/>*/}
+                    <PlacesMap 
+              
+                     />
                 </StyledGrid>
             </Grid>
         </>
@@ -61,3 +53,4 @@ const Places: React.FC = () => {
 }
 
 export default Places
+      //  singlePlace={singlePlace}

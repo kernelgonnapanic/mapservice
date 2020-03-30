@@ -17,6 +17,8 @@ const Bar: React.FC<Props> = React.memo(() => {
         dispatch(getPlaceTypeOptions())
     }, []);
 
+    console.log("RERENDER BAR")
+
     return (
         <S.BarWrapper>
             {placeCategories && placeCategories.map((category: any) => {

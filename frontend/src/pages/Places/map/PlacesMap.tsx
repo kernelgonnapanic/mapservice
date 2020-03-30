@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { TileLayer, Map, Marker, Popup } from 'react-leaflet'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
+import {getPlaces} from '../../redux/actions'
+import {extractPlaces} from '../../redux/selectors/placesSelectors'
 
 interface Props {
     places?: [],
-    singlePlace: any
+    singlePlace?: any
 }
 
 
@@ -41,6 +43,8 @@ class PlacesMap extends Component<Props> {
                 zoom: 14
             });
         }
+
+        getPlaces(1000, 0);
     }
 
 
@@ -54,19 +58,19 @@ class PlacesMap extends Component<Props> {
                     attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {/*{places && places.map((place: PlaceValue) => {*/}
-                {/*        const {lat, long } = place.coordinates[0];*/}
-                {/*        const {_id} = place;*/}
+                {places && places.map((place: PlaceValue) => {
+                  const {lat, long } = place.coordinates[0];
+                   const {_id} = place
 
-                {/*        if(place && lat && long){*/}
-                {/*                return <Marker key={_id} position={[lat,  long]}>*/}
-                {/*                    <Popup>*/}
-                {/*                        <span>A pretty CSS3 popup. <br/> Easily customizable.</span>*/}
-                {/*                    </Popup>*/}
-                {/*                </Marker>*/}
-                {/*            }*/}
-                {/*        }*/}
-                {/*)}*/}
+                     if(place && lat && long){
+                                return <Marker key={_id} position={[lat,  long]}>
+                                    <Popup>
+                                        <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
+                                    </Popup>
+                                </Marker>
+                            }
+                        }
+                )} 
             </StyledMap>
         )
     }
@@ -90,6 +94,7 @@ const mapStateToProps = (state: RootState) => {
     // console.log(state.places.place);
 
     return {
+        places: extractPlaces(state)
         // singlePlace: state.places.place
     }
 };
