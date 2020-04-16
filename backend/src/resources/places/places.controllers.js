@@ -2,8 +2,11 @@ import { Place } from './places.model'
 
 export const getData = async (req, res, next) => {
 	const offset = parseInt(req.query.offset) || 0;
-	const per_page = parseInt(req.query.per_page) || 20
-	
+  const per_page = parseInt(req.query.per_page) || 20
+  const search = req.query.search;
+
+  console.log(search);
+
 	const placesList = Place.find()
 		.limit(per_page)
 		.skip(offset*per_page)
