@@ -22,14 +22,14 @@ import {
 } from '../types'
 import {getPlacesList} from "../api";
 
-export const getPlaces = (perPage, offset) => async dispatch => {
+export const getPlaces = (perPage, offset, search = null) => async dispatch => {
 	const action = {type: GET_PLACES, payload: {}};
 	dispatch(action);
 	try {
-		
-		const response = await getPlacesList(perPage, offset);
 
-		const action = {type: GET_PLACES_SUCCESS, payload: response};
+    const response = await getPlacesList(perPage, offset, search);
+
+		const action = {type: GET_PLACES_SUCCESS, payload: response, meta: {isSearching: !!search}};
 		dispatch(action)
 	} catch (err) {
 		const action = {type: GET_PLACES_FAIL, payload: err};
@@ -43,13 +43,13 @@ export const getMarkers = (perPage) => async dispatch => {
 	dispatch(action);
 	try {
 		const response = await getPlacesList(perPage);
-		
+
 		const action = {type: GET_MARKERS_SUCCESS, payload: response}
 		dispatch(action);
 	} catch (err){
 		const action = {type: GET_MARKERS_FAIL, payload: err};
 		dispatch(action);
-	} 
+	}
 }
 
 export const getSinglePlace = id => async dispatch => {

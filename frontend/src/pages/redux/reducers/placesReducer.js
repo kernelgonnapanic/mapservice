@@ -22,7 +22,7 @@ const initialState = {
     errorPlaces: null,
     placeTypeOptions: {},
     markers: null,
-    hasMoreData: null,
+    hasMoreData: true,
     loadingSinglePlace: false,
     loadingPlaces: false,
 };
@@ -53,16 +53,33 @@ export const placesReducer = (state = initialState, action) => {
         case GET_PLACES_SUCCESS:
             const places = storeById(action.payload.data.data);
             const placesIds = storeIds(action.payload.data.data);
-
             const hasMoreData = action.payload.data.data.length > 0;
 
-            return {
+            const {isSearching} = action.meta;
+
+
+
+            const updatedState = {
+              ...state,
+              list: { ...state.list, ...places },
+              listIds: Array.from(new Set([...state.listIds, ...placesIds])),
+              hasMoreData,
+              loadingPlaces: false,
+            }
+
+            if (isSearching) {
+              const searchState = {
                 ...state,
-                list: {...state.list, ...places },
-                listIds: [...state.listIds, ...placesIds ],
-                hasMoreData,
+                list: places,
+                listIds: placesIds,
+                hasMoreData: true,
                 loadingPlaces: false,
-            };
+              }
+
+              return searchState
+            }
+
+            return updatedState;
         case GET_PLACES_FAIL:
             return {
                 ...state,

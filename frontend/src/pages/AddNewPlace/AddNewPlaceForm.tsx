@@ -3,26 +3,30 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
 import { sendPlace, getPlaceTypeOptions } from '../redux/actions'
-import { Button, FileUploadInput, Input, Select, Snackbar } from '../../components'
+import {
+	Button,
+	FileUploadInput,
+	Input,
+	Select,
+	Snackbar,
+} from '../../components'
 import useStyles, * as S from './styles/AddNewPlaceForm.styles'
 import AddNewPlaceMap from './AddNewPlaceMap'
-import {extractPlacesOptions} from '../redux/selectors/placesSelectors'
-import {shallowEqual} from "react-redux";
+import { extractPlacesOptions } from '../redux/selectors/placesSelectors'
+import { shallowEqual } from 'react-redux'
 
 const AddNewPlaceForm: React.FC = () => {
 	const dispatch = useDispatch()
-	const classes = useStyles();
-	const [isSnackbarOpened, setSnackbarOpened] = useState(false);
-	const [isNotification, setNotification] = useState(false);
+	const classes = useStyles()
+	const [isSnackbarOpened, setSnackbarOpened] = useState(false)
+	const [isNotification, setNotification] = useState(false)
 
-	const {placeTypeOptions, notification} = useSelector(
-		(state: any) => {
-			return {
-				placeTypeOptions: extractPlacesOptions(state),
-				notification: state.places.notification
-			}
-		}, shallowEqual
-	);
+	const { placeTypeOptions, notification } = useSelector((state: any) => {
+		return {
+			placeTypeOptions: extractPlacesOptions(state),
+			notification: state.places.notification,
+		}
+	}, shallowEqual)
 
 	// const { placeTypeOptions, notification } = content.places;
 
@@ -36,27 +40,27 @@ const AddNewPlaceForm: React.FC = () => {
 		lat: '',
 		long: '',
 		placeImage: '',
-		city: ''
+		city: '',
 	}
 
 	useEffect(() => {
-		dispatch(getPlaceTypeOptions());
+		dispatch(getPlaceTypeOptions())
 	}, [])
 
 	useEffect(() => {
 		if (notification) {
-			setNotification(notification);
+			setNotification(notification)
 			setSnackbarOpened(true)
 		}
 	}, [notification])
 
-	const onSubmit = async (values: Record<string, any>, actions: any): Promise<void> => {
-
+	const onSubmit = async (
+		values: Record<string, any>,
+		actions: any,
+	): Promise<void> => {
 		dispatch(sendPlace(values))
 		actions.resetForm()
 	}
-
-
 
 	const validationSchema = Yup.object().shape({
 		title: Yup.string()
@@ -90,9 +94,6 @@ const AddNewPlaceForm: React.FC = () => {
 			.required('Podaj numer telefonu'),
 	})
 
-
-	console.log(placeTypeOptions);
-
 	return (
 		<Formik
 			initialValues={initialValues}
@@ -104,24 +105,11 @@ const AddNewPlaceForm: React.FC = () => {
 					<S.StyledForm className={classes.root}>
 						<S.Container>
 							<S.FieldsWrapper>
-								<S.Item >
-									<Field
-										name="title"
-										label="Nazwa"
-										component={Input}
-									/>
-									<Field
-										name="street"
-										label="Ulica"
-										component={Input}
-									/>
+								<S.Item>
+									<Field name="title" label="Nazwa" component={Input} />
+									<Field name="street" label="Ulica" component={Input} />
 
-									<Field
-										name="number"
-										label="Numer"
-										value="rofl"
-										component={Input}
-									/>
+									<Field name="number" label="Numer" component={Input} />
 									<Field
 										name="phoneNumber"
 										label="Numer Telefonu"
@@ -136,21 +124,9 @@ const AddNewPlaceForm: React.FC = () => {
 										label="test"
 										options={placeTypeOptions && placeTypeOptions}
 									/>
-									<Field
-										name="city"
-										label="Miasto"
-										component={Input}
-									/>
-									<Field
-										name="lat"
-										label="Lat"
-										component={Input}
-									/>
-									<Field
-										name="long"
-										label="Lng"
-										component={Input}
-									/>
+									<Field name="city" label="Miasto" component={Input} />
+									<Field name="lat" label="Lat" component={Input} />
+									<Field name="long" label="Lng" component={Input} />
 									<Field
 										name="description"
 										label="Opis"
@@ -170,9 +146,8 @@ const AddNewPlaceForm: React.FC = () => {
 						notification={isNotification}
 					/>
 				</>
-			)
-			}
-		</Formik >
+			)}
+		</Formik>
 	)
 }
 
