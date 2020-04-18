@@ -1,26 +1,29 @@
 import { Place } from './places.model'
 
+
 export const getData = async (req, res, next) => {
 	const offset = parseInt(req.query.offset) || 0;
   const per_page = parseInt(req.query.per_page) || 20
   const search = req.query.search;
 
-  console.log(search);
+  const searchforValue = search ? { title: search } : null
 
-	const placesList = Place.find()
+  const placesList = Place.find(searchforValue)
 		.limit(per_page)
 		.skip(offset*per_page)
 		.sort({
 			title: 'asc'
-		})
+    })
 
-	if(!placesList) next();
+  if (!placesList) next();
 
-	const placesCount = Place.countDocuments()
+  const searchValue = search ? true : false
 
-	const [places, count] = await Promise.all([placesList, placesCount])
+  const placesCount = Place.countDocuments()
 
-	return res.status(200).json({ data: places, count })
+  const [places, count] = await Promise.all([placesList, placesCount])
+
+  return res.status(200).json({ data: places, count, search: searchValue})
 }
 
 export const createPlace = async (req, res) => {

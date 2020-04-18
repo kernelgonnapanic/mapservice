@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { upload } from './place.upload'
 
 import {
-	getData,
+  getData,
 	createPlace,
 	getPlace,
 	updatePlace,

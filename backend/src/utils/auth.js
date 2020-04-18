@@ -89,8 +89,6 @@ export const protect = async (req, res, next) => {
 
 		next()
 	} catch (err) {
-		console.log(err.name)
-
 		return res.status(400).end()
 	}
 }
