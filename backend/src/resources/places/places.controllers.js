@@ -6,7 +6,7 @@ export const getData = async (req, res, next) => {
   const per_page = parseInt(req.query.per_page) || 20
   const search = req.query.search;
 
-  const searchforValue = search ? { title: search } : null
+  const searchforValue = search ? { title: { "$regex": search } } : null
 
   const placesList = Place.find(searchforValue)
 		.limit(per_page)
