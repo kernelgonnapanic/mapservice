@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const BarWrapper = styled.div`
-    display: flex;
-    height: ${props => props.theme.barHeight};
-`;
+	display: flex;
+	align-items: center;
+	height: ${props => props.theme.barHeight};
+`

@@ -1,4 +1,5 @@
 import { api } from '../../../api'
+import axios from 'axios'
 import { jsonToFormData } from '../../../assets/helpers'
 import {
 	GET_PLACES,
@@ -22,16 +23,23 @@ import {
 } from '../types'
 import {getPlacesList} from "../api";
 
+var CancelToken = axios.CancelToken;
+var source = CancelToken.source();
+
 export const getPlaces = (perPage, offset, search = null) => async dispatch => {
 	const action = {type: GET_PLACES, payload: {}};
-	dispatch(action);
+  dispatch(action);
+
 	try {
+
 
     const response = await getPlacesList(perPage, offset, search);
 
 		const action = {type: GET_PLACES_SUCCESS, payload: response, meta: {isSearching: !!search}};
 		dispatch(action)
 	} catch (err) {
+
+
 		const action = {type: GET_PLACES_FAIL, payload: err};
 		dispatch(action);
 	}

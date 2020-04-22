@@ -25,8 +25,7 @@ const PlacesList: React.FC<Props> = ({}) => {
 		placeType: string
 	}
 
-	const [isSearch, setIsSearching] = useState()
-
+	const [isSearch, setIsSearching] = useState(false)
 	const [pageNumber, setPageNumber] = useState(0)
 
 	//@ts-ignore
@@ -62,9 +61,8 @@ const PlacesList: React.FC<Props> = ({}) => {
 
 	return (
 		<div>
+			<PlacesSearch setIsSearching={setIsSearching} />
 			<S.ListWrapper>
-				//@ts-ignore
-				<PlacesSearch setIsSearching={setIsSearching} />
 				{places.length > 0 && (
 					<>
 						{places.map((place: PlaceValue, index: number) => {
