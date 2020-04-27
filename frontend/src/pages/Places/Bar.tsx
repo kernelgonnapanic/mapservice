@@ -12,8 +12,8 @@ const Bar: React.FC = React.memo(() => {
 		extractPlacesOptions(state),
 	)
 
-	const handleClick = () => {
-		dispatch(getPlaces())
+	const handleClick = (category: any) => () => {
+		dispatch(getPlaces(10, 0, null, category))
 	}
 
 	useEffect(() => {
@@ -23,11 +23,15 @@ const Bar: React.FC = React.memo(() => {
 	return (
 		<S.BarWrapper>
 			{placeCategories &&
-				placeCategories.map((category: string) => (
-					<button onClick={handleClick}>
-						<S.BarItem>{category}</S.BarItem>
-					</button>
-				))}
+				placeCategories.map((category: string) => {
+					console.log(category)
+
+					return (
+						<button onClick={handleClick(category)}>
+							<S.BarItem>{category}</S.BarItem>
+						</button>
+					)
+				})}
 		</S.BarWrapper>
 	)
 })
