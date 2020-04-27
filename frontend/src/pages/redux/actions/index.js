@@ -23,9 +23,6 @@ import {
 } from '../types'
 import {getPlacesList} from "../api";
 
-var CancelToken = axios.CancelToken;
-var source = CancelToken.source();
-
 export const getPlaces = (perPage, offset, search = null) => async dispatch => {
 	const action = {type: GET_PLACES, payload: {}};
   dispatch(action);
@@ -39,6 +36,7 @@ export const getPlaces = (perPage, offset, search = null) => async dispatch => {
 		dispatch(action)
 	} catch (err) {
 
+    if (axios.isCancel(err)) return
 
 		const action = {type: GET_PLACES_FAIL, payload: err};
 		dispatch(action);
