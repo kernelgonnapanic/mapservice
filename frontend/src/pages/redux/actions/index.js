@@ -14,6 +14,8 @@ import {
 	GET_MARKERS_SUCCESS,
 	GET_MARKERS_FAIL,
 
+  UPDATE_PLACE_TYPE,
+
 	CLEAR_SINGLEPLACE,
 
 	GET_PLACETYPE_OPTIONS,
@@ -146,4 +148,13 @@ export const getPlaceTypeOptions = data => async dispatch => {
 	} catch (err) {
 		console.log(err)
 	}
+}
+
+
+export const updatePlaceType = (type) => async dispatch => {
+  try {
+    dispatch({ type: UPDATE_PLACE_TYPE, payload:  type})
+  } catch (err) {
+    console.log(err)
+  }
 }

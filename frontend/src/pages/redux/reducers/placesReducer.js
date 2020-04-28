@@ -11,7 +11,8 @@ import {
     CLEAR_SINGLEPLACE,
     SEND_PLACES,
     SET_NOTIFICATION,
-    GET_PLACETYPE_OPTIONS
+    GET_PLACETYPE_OPTIONS,
+    UPDATE_PLACE_TYPE
 } from "../types";
 
 const initialState = {
@@ -50,6 +51,7 @@ export const placesReducer = (state = initialState, action) => {
                 listIds: [...state.listIds],
                 loadingPlaces: true,
                 hasMoreData: true,
+                firstPage: false
                 // placeType: null,
                 // errorPlaces: null
             }
@@ -58,13 +60,13 @@ export const placesReducer = (state = initialState, action) => {
             let places = storeById(action.payload.data.data);
             let placesIds = storeIds(action.payload.data.data);
             const { currentPage, numberOfPages, byPlaceType, placeType } = action.payload.data;
-            const hasMoreData = currentPage !== numberOfPages;
+            const hasMoreData = currentPage !== numberOfPages && currentPage < numberOfPages;
 
             const {isSearching} = action.meta;
 
             const filteredStateByType = Object.values(state.list).filter(place => place.placeType === placeType) || []
 
-            if(byPlaceType) {
+            if (byPlaceType && placeType) {
               return {
                 ...state,
                 list: { ...storeById(filteredStateByType), ...places},
@@ -93,6 +95,7 @@ export const placesReducer = (state = initialState, action) => {
               hasMoreData,
               placeType: null,
               loadingPlaces: false,
+              byPlaceType: false
             };
 
 
@@ -103,6 +106,13 @@ export const placesReducer = (state = initialState, action) => {
                 hasMoreData: false,
                 errorPlaces: {...action.payload},
             };
+      case UPDATE_PLACE_TYPE:
+            return {
+              ...state,
+              placeType: action.payload,
+              hasMoreData: true,
+              firstPage: true,
+            }
         case GET_SINGLE_PLACE:
             return {...state, loadingSinglePlace: true, errorsSinglePlace: null}
         case GET_SINGLE_PLACE_SUCCESS:

@@ -15,23 +15,34 @@ const usePlaces: React.FC<Props> = (
 ) => {
 	const dispatch = useDispatch()
 
-	const { places, placesLoading, hasMoreData, placeType } = useSelector(
-		(state: any) => {
-			return {
-				places: extractPlaces(state),
-				placesLoading: state.places.loadingPlaces,
-				placeType: state.places.placeType,
-				hasMoreData: state.places.hasMoreData,
-			}
-		},
-		shallowEqual,
-	)
+	const {
+		places,
+		placesLoading,
+		hasMoreData,
+		placeType,
+		firstPage,
+	} = useSelector((state: any) => {
+		return {
+			places: extractPlaces(state),
+			placesLoading: state.places.loadingPlaces,
+			placeType: state.places.placeType,
+			hasMoreData: state.places.hasMoreData,
+			firstPage: state.places.firstPage,
+		}
+	}, shallowEqual)
+
+	console.log(places)
 
 	useEffect(() => {
+		if (firstPage) {
+			dispatch(getPlaces(10, 0, isSearch, placeType))
+			return
+		}
+
 		if (hasMoreData && !isSearch) {
 			dispatch(getPlaces(10, pageNumber, isSearch, placeType))
 		}
-	}, [pageNumber, hasMoreData])
+	}, [pageNumber, hasMoreData, placeType])
 
 	return [places, placesLoading, hasMoreData, placeType]
 }

@@ -3,7 +3,7 @@ import * as S from './Bar.styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlaceTypeOptions } from '../redux/actions'
 import { extractPlacesOptions } from '../redux/selectors/placesSelectors'
-import { getPlaces } from '../redux/actions'
+import { updatePlaceType, getPlaces } from '../redux/actions'
 
 const Bar: React.FC = React.memo(() => {
 	const dispatch = useDispatch()
@@ -13,7 +13,8 @@ const Bar: React.FC = React.memo(() => {
 	)
 
 	const handleClick = (category: any) => () => {
-		dispatch(getPlaces(10, 0, null, category))
+		dispatch(updatePlaceType(category))
+		// dispatch(getPlaces(10, 0, null, category))
 	}
 
 	useEffect(() => {
