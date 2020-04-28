@@ -36,8 +36,6 @@ const PlacesList: React.FC<Props> = ({}) => {
 		isSearch,
 	)
 
-	const prevPlaceType = usePrevious(placeType)
-
 	let observer = useRef<Ref | null>(null)
 
 	const options = {
@@ -65,8 +63,6 @@ const PlacesList: React.FC<Props> = ({}) => {
 		},
 		[placesLoading],
 	)
-
-	console.log(placeType)
 
 	return (
 		<div>
