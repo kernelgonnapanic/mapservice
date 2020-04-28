@@ -1,3 +1,1 @@
-import useIntersectionObserver from "./useIntersectionObserver";
-
-export {useIntersectionObserver};
+export {usePrevious} from './usePrevious'

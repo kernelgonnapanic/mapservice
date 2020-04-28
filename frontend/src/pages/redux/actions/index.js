@@ -14,6 +14,8 @@ import {
 	GET_MARKERS_SUCCESS,
 	GET_MARKERS_FAIL,
 
+  UPDATE_PLACE_TYPE,
+
 	CLEAR_SINGLEPLACE,
 
 	GET_PLACETYPE_OPTIONS,
@@ -21,27 +23,34 @@ import {
 	SEND_PLACES,
 	SET_NOTIFICATION,
 } from '../types'
-import {getPlacesList} from "../api";
+import { getPlacesList, getSinglePlaceById } from '../api'
 
-export const getPlaces = (perPage, offset, search = null) => async dispatch => {
-	const action = {type: GET_PLACES, payload: {}};
-  dispatch(action);
+export const getPlaces = (
+					perPage,
+					offset,
+					search = null,
+					type = null,
+				) => async dispatch => {
+					const action = { type: GET_PLACES, payload: {} }
+					dispatch(action)
 
-	try {
+					try {
 
+						const response = await getPlacesList(perPage, offset, search, type)
 
-    const response = await getPlacesList(perPage, offset, search);
+						const action = {
+							type: GET_PLACES_SUCCESS,
+							payload: response,
+							meta: { isSearching: !!search },
+						}
+						dispatch(action)
+					} catch (err) {
+						if (axios.isCancel(err)) return
 
-		const action = {type: GET_PLACES_SUCCESS, payload: response, meta: {isSearching: !!search}};
-		dispatch(action)
-	} catch (err) {
-
-    if (axios.isCancel(err)) return
-
-		const action = {type: GET_PLACES_FAIL, payload: err};
-		dispatch(action);
-	}
-}
+						const action = { type: GET_PLACES_FAIL, payload: err }
+						dispatch(action)
+					}
+				}
 
 export const getMarkers = (perPage) => async dispatch => {
 	const action = { type: GET_MARKERS, payload: {}};
@@ -63,7 +72,7 @@ export const getSinglePlace = id => async dispatch => {
 
 	dispatch(action);
 	try {
-		const response = await api.get(`/place/${id}`)
+		const response = await getSinglePlaceById(id)
 
 		const action = {type: GET_SINGLE_PLACE_SUCCESS, payload: response};
 		dispatch(action)
@@ -137,4 +146,13 @@ export const getPlaceTypeOptions = data => async dispatch => {
 	} catch (err) {
 		console.log(err)
 	}
+}
+
+
+export const updatePlaceType = (type) => async dispatch => {
+  try {
+    dispatch({ type: UPDATE_PLACE_TYPE, payload:  type})
+  } catch (err) {
+    console.log(err)
+  }
 }

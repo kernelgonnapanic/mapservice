@@ -5,12 +5,16 @@ const CancelToken = axios.CancelToken;
 
 export let cancelGetPlacesRequest;
 
-export const getPlacesList = (perPage = 10, offset = 0, search = null) => {
+export const getPlacesList = (perPage = 10, offset = 0, search, type = null) => {
 
     let params = `?per_page=${perPage}&offset=${offset}`;
 
     if(search){
       params += `&search=${search}`
+    }
+
+    if(type){
+      params += `&type=${type}`
     }
 
     return api.get(`/places${params}`, {
@@ -20,3 +24,5 @@ export const getPlacesList = (perPage = 10, offset = 0, search = null) => {
     })
 };
 
+
+export const getSinglePlaceById = id => api.get(`/place/${id}`)

@@ -2,28 +2,50 @@ import { Place } from './places.model'
 
 
 export const getData = async (req, res, next) => {
+  const { type, search } = req.query
 	const offset = parseInt(req.query.offset) || 0;
   const per_page = parseInt(req.query.per_page) || 20
-  const search = req.query.search;
 
-  const searchforValue = search ? { title: { "$regex": search } } : null
+  let query = {};
 
-  const placesList = Place.find(searchforValue)
+  if(search) query.title = { $regex: search || '' }
+
+  if(type) query.placeType = type
+
+  const searchValues =
+    (search || type) ? query : null
+
+  const placesList = Place.find(searchValues)
 		.limit(per_page)
-		.skip(offset*per_page)
+		.skip(offset * per_page)
 		.sort({
-			title: 'asc'
-    })
+			title: 'asc',
+		})
 
   if (!placesList) next();
 
   const searchValue = search ? true : false
 
-  const placesCount = Place.countDocuments()
+  const placesCount = Place.countDocuments(searchValues)
 
   const [places, count] = await Promise.all([placesList, placesCount])
 
-  return res.status(200).json({ data: places, count, search: searchValue})
+  const numberOfPages = await placesCount / per_page;
+  const currentPage = offset + 1
+
+  const successResponse = {
+    data: places,
+    count,
+    currentPage,
+    numberOfPages: Math.ceil(numberOfPages),
+    search: searchValue,
+    byPlaceType: Boolean(type),
+    placeType: type
+  }
+
+  return res
+		.status(200)
+    .json(successResponse)
 }
 
 export const createPlace = async (req, res) => {

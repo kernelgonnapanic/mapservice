@@ -11,7 +11,8 @@ import {
     CLEAR_SINGLEPLACE,
     SEND_PLACES,
     SET_NOTIFICATION,
-    GET_PLACETYPE_OPTIONS
+    GET_PLACETYPE_OPTIONS,
+    UPDATE_PLACE_TYPE
 } from "../types";
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
     placeTypeOptions: {},
     markers: null,
     hasMoreData: true,
+    byPlaceType: null,
     loadingSinglePlace: false,
     loadingPlaces: false,
 };
@@ -35,6 +37,8 @@ const storeById = (data) => {
 };
 
 const storeIds = data => {
+    if(!data) return
+
     return data.map(item => item._id);
 };
 
@@ -47,39 +51,55 @@ export const placesReducer = (state = initialState, action) => {
                 listIds: [...state.listIds],
                 loadingPlaces: true,
                 hasMoreData: true,
+                firstPage: false
+                // placeType: null,
                 // errorPlaces: null
             }
         }
         case GET_PLACES_SUCCESS:
-            const places = storeById(action.payload.data.data);
-            const placesIds = storeIds(action.payload.data.data);
-            const hasMoreData = action.payload.data.data.length > 0;
+            let places = storeById(action.payload.data.data);
+            let placesIds = storeIds(action.payload.data.data);
+            const { currentPage, numberOfPages, byPlaceType, placeType } = action.payload.data;
+            const hasMoreData = currentPage !== numberOfPages && currentPage < numberOfPages;
 
             const {isSearching} = action.meta;
 
+            const filteredStateByType = Object.values(state.list).filter(place => place.placeType === placeType) || []
 
 
-            const updatedState = {
+              if ((isSearching && placeType) || isSearching) {
+                    return {
+                      ...state,
+                      list: places,
+                      listIds: placesIds,
+                      hasMoreData: true,
+                      placeType: placeType,
+                      loadingPlaces: false,
+                    }
+                  }
+
+            if (byPlaceType && placeType) {
+              return {
+                ...state,
+                list: { ...storeById(filteredStateByType), ...places},
+                listIds: Array.from(new Set([...storeIds(filteredStateByType), ...placesIds])),
+                hasMoreData,
+                loadingPlaces: false,
+                placeType: placeType
+              }
+            }
+
+            return {
               ...state,
               list: { ...state.list, ...places },
               listIds: Array.from(new Set([...state.listIds, ...placesIds])),
               hasMoreData,
+              placeType: null,
               loadingPlaces: false,
-            }
+              byPlaceType: false
+            };
 
-            if (isSearching) {
-              const searchState = {
-                ...state,
-                list: places,
-                listIds: placesIds,
-                hasMoreData: true,
-                loadingPlaces: false,
-              }
 
-              return searchState
-            }
-
-            return updatedState;
         case GET_PLACES_FAIL:
             return {
                 ...state,
@@ -87,6 +107,13 @@ export const placesReducer = (state = initialState, action) => {
                 hasMoreData: false,
                 errorPlaces: {...action.payload},
             };
+      case UPDATE_PLACE_TYPE:
+            return {
+              ...state,
+              placeType: action.payload,
+              hasMoreData: true,
+              firstPage: true,
+            }
         case GET_SINGLE_PLACE:
             return {...state, loadingSinglePlace: true, errorsSinglePlace: null}
         case GET_SINGLE_PLACE_SUCCESS:
