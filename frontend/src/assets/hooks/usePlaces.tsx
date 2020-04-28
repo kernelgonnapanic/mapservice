@@ -8,20 +8,28 @@ interface Props {
 }
 
 //@ts-ignore
-const usePlaces: React.FC<Props> = (pageNumber = 0, isSearch = false) => {
+const usePlaces: React.FC<Props> = (
+	//@ts-ignore
+	pageNumber = 0,
+	isSearch = false,
+) => {
 	const dispatch = useDispatch()
 
-	const { places, placesLoading, hasMoreData } = useSelector((state: any) => {
-		return {
-			places: extractPlaces(state),
-			placesLoading: state.places.loadingPlaces,
-			hasMoreData: state.places.hasMoreData,
-		}
-	}, shallowEqual)
+	const { places, placesLoading, hasMoreData, placeType } = useSelector(
+		(state: any) => {
+			return {
+				places: extractPlaces(state),
+				placesLoading: state.places.loadingPlaces,
+				placeType: state.places.placeType,
+				hasMoreData: state.places.hasMoreData,
+			}
+		},
+		shallowEqual,
+	)
 
 	useEffect(() => {
 		if (hasMoreData && !isSearch) {
-			dispatch(getPlaces(10, pageNumber))
+			dispatch(getPlaces(10, pageNumber, isSearch, placeType))
 		}
 	}, [pageNumber, hasMoreData])
 

@@ -23,6 +23,7 @@ const initialState = {
     placeTypeOptions: {},
     markers: null,
     hasMoreData: true,
+    byPlaceType: null,
     loadingSinglePlace: false,
     loadingPlaces: false,
 };
@@ -35,6 +36,8 @@ const storeById = (data) => {
 };
 
 const storeIds = data => {
+    if(!data) return
+
     return data.map(item => item._id);
 };
 
@@ -51,35 +54,49 @@ export const placesReducer = (state = initialState, action) => {
             }
         }
         case GET_PLACES_SUCCESS:
-            const places = storeById(action.payload.data.data);
-            const placesIds = storeIds(action.payload.data.data);
+            let places = storeById(action.payload.data.data);
+            let placesIds = storeIds(action.payload.data.data);
             const hasMoreData = action.payload.data.data.length > 0;
+            const { byPlaceType, placeType } =  action.payload.data
 
             const {isSearching} = action.meta;
 
+            const filteredStateByType = Object.values(state.list).filter(place => place.placeType === placeType) || []
 
 
-            const updatedState = {
-              ...state,
-              list: { ...state.list, ...places },
-              listIds: Array.from(new Set([...state.listIds, ...placesIds])),
-              hasMoreData,
-              loadingPlaces: false,
+
+            if(byPlaceType) {
+              return {
+                ...state,
+                list: { ...storeById(filteredStateByType), ...places},
+                listIds: Array.from(new Set([...storeIds(filteredStateByType), ...placesIds])),
+                hasMoreData,
+                loadingPlaces: false,
+                placeType: placeType
+              }
             }
 
             if (isSearching) {
-              const searchState = {
+              return {
                 ...state,
                 list: places,
                 listIds: placesIds,
                 hasMoreData: true,
+                placeType: placeType,
                 loadingPlaces: false,
               }
-
-              return searchState
             }
 
-            return updatedState;
+            return {
+              ...state,
+              list: { ...state.list, ...places },
+              listIds: Array.from(new Set([...state.listIds, ...placesIds])),
+              hasMoreData,
+              placeType: null,
+              loadingPlaces: false,
+            };
+
+
         case GET_PLACES_FAIL:
             return {
                 ...state,
