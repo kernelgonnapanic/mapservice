@@ -4,6 +4,7 @@ import * as S from './PlacesList.styles'
 import PlacesListElement from './PlacesListElement'
 import usePlaces from '../../../assets/hooks/usePlaces'
 import PlacesSearch from './PlacesSearch'
+import { usePrevious } from '../../../assets/hooks'
 
 interface Props
 	extends RouteComponentProps<{
@@ -29,7 +30,13 @@ const PlacesList: React.FC<Props> = ({}) => {
 	const [pageNumber, setPageNumber] = useState(0)
 
 	//@ts-ignore
-	const [places, placesLoading, hasMoreData] = usePlaces(pageNumber, isSearch)
+	const [places, placesLoading, hasMoreData, placeType] = usePlaces(
+		//@ts-ignore
+		pageNumber,
+		isSearch,
+	)
+
+	const prevPlaceType = usePrevious(placeType)
 
 	let observer = useRef<Ref | null>(null)
 
@@ -58,6 +65,8 @@ const PlacesList: React.FC<Props> = ({}) => {
 		},
 		[placesLoading],
 	)
+
+	console.log(placeType)
 
 	return (
 		<div>

@@ -4,7 +4,7 @@ import { extractPlaces } from '../../pages/redux/selectors/placesSelectors'
 import { getPlaces } from '../../pages/redux/actions'
 
 interface Props {
-	pageNumber?: number
+	pageNumber?: any
 }
 
 //@ts-ignore
@@ -33,7 +33,7 @@ const usePlaces: React.FC<Props> = (
 		}
 	}, [pageNumber, hasMoreData])
 
-	return [places, placesLoading, hasMoreData]
+	return [places, placesLoading, hasMoreData, placeType]
 }
 
 export default usePlaces

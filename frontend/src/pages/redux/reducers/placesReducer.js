@@ -50,20 +50,19 @@ export const placesReducer = (state = initialState, action) => {
                 listIds: [...state.listIds],
                 loadingPlaces: true,
                 hasMoreData: true,
+                // placeType: null,
                 // errorPlaces: null
             }
         }
         case GET_PLACES_SUCCESS:
             let places = storeById(action.payload.data.data);
             let placesIds = storeIds(action.payload.data.data);
-            const hasMoreData = action.payload.data.data.length > 0;
-            const { byPlaceType, placeType } =  action.payload.data
+            const { currentPage, numberOfPages, byPlaceType, placeType } = action.payload.data;
+            const hasMoreData = currentPage !== numberOfPages;
 
             const {isSearching} = action.meta;
 
             const filteredStateByType = Object.values(state.list).filter(place => place.placeType === placeType) || []
-
-
 
             if(byPlaceType) {
               return {

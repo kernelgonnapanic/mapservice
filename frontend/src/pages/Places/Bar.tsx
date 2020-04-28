@@ -24,8 +24,6 @@ const Bar: React.FC = React.memo(() => {
 		<S.BarWrapper>
 			{placeCategories &&
 				placeCategories.map((category: string) => {
-					console.log(category)
-
 					return (
 						<button onClick={handleClick(category)}>
 							<S.BarItem>{category}</S.BarItem>
