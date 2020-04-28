@@ -66,6 +66,18 @@ export const placesReducer = (state = initialState, action) => {
 
             const filteredStateByType = Object.values(state.list).filter(place => place.placeType === placeType) || []
 
+
+              if ((isSearching && placeType) || isSearching) {
+                    return {
+                      ...state,
+                      list: places,
+                      listIds: placesIds,
+                      hasMoreData: true,
+                      placeType: placeType,
+                      loadingPlaces: false,
+                    }
+                  }
+
             if (byPlaceType && placeType) {
               return {
                 ...state,
@@ -74,17 +86,6 @@ export const placesReducer = (state = initialState, action) => {
                 hasMoreData,
                 loadingPlaces: false,
                 placeType: placeType
-              }
-            }
-
-            if (isSearching) {
-              return {
-                ...state,
-                list: places,
-                listIds: placesIds,
-                hasMoreData: true,
-                placeType: placeType,
-                loadingPlaces: false,
               }
             }
 

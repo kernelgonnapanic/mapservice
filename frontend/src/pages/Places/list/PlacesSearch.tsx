@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { getPlaces } from '../../redux/actions'
 import { Search } from 'react-feather'
 import * as S from './PlacesSearch.styles'
-import { useSelector } from 'react-redux'
+import { useSelector, shallowEqual } from 'react-redux'
 import { cancelGetPlacesRequest } from '../../redux/api'
 
 interface Props {
@@ -16,11 +16,12 @@ const PlacesSearch: React.FC<Props> = ({ setIsSearching }) => {
 
 	const [searchValue, setSearchValue] = useState('')
 
-	const { placesLoading } = useSelector((state: any) => {
+	const { placesLoading, placeType } = useSelector((state: any) => {
 		return {
 			placesLoading: state.places.loadingPlaces,
+			placeType: state.places.placeType,
 		}
-	})
+	}, shallowEqual)
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValue(searchValue)
@@ -31,13 +32,13 @@ const PlacesSearch: React.FC<Props> = ({ setIsSearching }) => {
 		if (!value.length) {
 			setIsSearching(false)
 
-			dispatch(getPlaces(10, 0, null))
+			dispatch(getPlaces(10, 0, null, placeType))
 
 			return
 		}
 
 		setIsSearching(true)
-		dispatch(getPlaces(10, 0, value))
+		dispatch(getPlaces(10, 0, value, placeType))
 	}
 
 	return (

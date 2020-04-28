@@ -36,8 +36,6 @@ export const getPlaces = (
 
 					try {
 
-     console.log(type)
-
 						const response = await getPlacesList(perPage, offset, search, type)
 
 						const action = {

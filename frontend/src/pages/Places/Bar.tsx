@@ -14,7 +14,6 @@ const Bar: React.FC = React.memo(() => {
 
 	const handleClick = (category: any) => () => {
 		dispatch(updatePlaceType(category))
-		// dispatch(getPlaces(10, 0, null, category))
 	}
 
 	useEffect(() => {
