@@ -1,27 +1,18 @@
 import { api } from '../../../api'
-import {
-	AUTH_ERROR,
-	LOGIN_FAILED,
-	LOGIN_SUCCESS,
-	LOGOUT_SUCCESS,
-	REGISTER_FAIL,
-	REGISTER_SUCCESS,
-	USER_LOADED,
-	USER_LOADING,
-} from '../types'
+import TYPES from '../types'
 import { getErrors } from './errorActions'
 import { navigate } from '@reach/router'
 
 export const loadUser = () => (dispatch, getState) => {
-	dispatch({ type: USER_LOADING })
+	dispatch({ type: TYPES.USER_LOADING })
 
 	api.get('/auth/user')
 		.then(res => {
-			dispatch({ type: USER_LOADED, payload: res.data.data })
+			dispatch({ type: TYPES.USER_LOADED, payload: res.data.data })
 		})
 		.catch(err => {
 			// dispatch(getErrors(err.message, err.response.status))
-			dispatch({ type: AUTH_ERROR })
+			dispatch({ type: TYPES.AUTH_ERROR })
 		})
 }
 
@@ -29,7 +20,7 @@ export const LogoutUser = () => {
 	navigate(`/auth/login`)
 
 	return {
-		type: LOGOUT_SUCCESS,
+		type: TYPES.LOGOUT_SUCCESS,
 	}
 }
 
@@ -42,7 +33,7 @@ export const SignUpUser = values => async dispatch => {
 		const response = await api.post('/signup', newUserBody)
 
 		dispatch({
-			type: REGISTER_SUCCESS,
+			type: TYPES.REGISTER_SUCCESS,
 			payload: response.data,
 		})
 	} catch (err) {
@@ -53,7 +44,7 @@ export const SignUpUser = values => async dispatch => {
 				'REGISTER_FAIL',
 			),
 		)
-		dispatch({ type: REGISTER_FAIL })
+		dispatch({ type: TYPES.REGISTER_FAIL })
 	}
 }
 
@@ -66,7 +57,7 @@ export const SignIn = values => async dispatch => {
 		const response = await api.post('/signin', loginBody)
 
 		dispatch({
-			type: LOGIN_SUCCESS,
+			type: TYPES.LOGIN_SUCCESS,
 			payload: response.data,
 		})
 		navigate(`/`)
@@ -78,6 +69,6 @@ export const SignIn = values => async dispatch => {
 				'LOGIN_FAILED',
 			),
 		)
-		dispatch({ type: LOGIN_FAILED })
+		dispatch({ type: TYPES.LOGIN_FAILED })
 	}
 }

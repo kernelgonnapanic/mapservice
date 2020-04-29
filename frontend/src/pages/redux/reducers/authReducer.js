@@ -1,13 +1,4 @@
-import {
-	USER_LOADED,
-	USER_LOADING,
-	AUTH_ERROR,
-	LOGIN_SUCCESS,
-	LOGIN_FAILED,
-	LOGOUT_SUCCESS,
-	REGISTER_SUCCESS,
-	REGISTER_FAIL,
-} from '../types'
+import TYPES from '../types'
 
 const intialState = {
 	token: localStorage.getItem('token'),
@@ -18,20 +9,20 @@ const intialState = {
 
 export const authReducer = (state = intialState, action) => {
 	switch (action.type) {
-		case USER_LOADED:
+		case TYPES.USER_LOADED:
 			return {
 				...state,
 				isAuthenticated: true,
 				isLoading: false,
 				user: action.payload,
 			}
-		case USER_LOADING:
+		case TYPES.USER_LOADING:
 			return {
 				...state,
 				isLoading: true,
 			}
-		case LOGIN_SUCCESS:
-		case REGISTER_SUCCESS:
+		case TYPES.LOGIN_SUCCESS:
+		case TYPES.REGISTER_SUCCESS:
 			localStorage.setItem('token', action.payload.token)
 			return {
 				...state,
@@ -39,10 +30,10 @@ export const authReducer = (state = intialState, action) => {
 				isAuthenticated: true,
 				isLoading: false,
 			}
-		case AUTH_ERROR:
-		case LOGIN_FAILED:
-		case REGISTER_FAIL:
-		case LOGOUT_SUCCESS:
+		case TYPES.AUTH_ERROR:
+		case TYPES.LOGIN_FAILED:
+		case TYPES.REGISTER_FAIL:
+		case TYPES.LOGOUT_SUCCESS:
 			localStorage.removeItem('token')
 			return {
 				...state,

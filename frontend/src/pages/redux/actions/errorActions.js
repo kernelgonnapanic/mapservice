@@ -1,15 +1,15 @@
-import { GET_ERRORS, CLEAR_ERRORS } from '../types'
+import TYPES from '../types'
 
 export const getErrors = (message, status, id = null) => {
 	return {
-		type: GET_ERRORS,
+		type: TYPES.GET_ERRORS,
 		payload: { message, status, id },
 	}
 }
 
 export const clearErrors = () => {
 	return {
-		type: CLEAR_ERRORS,
+		type: TYPES.CLEAR_ERRORS,
 		payload: {
 			message: null,
 			status: null,

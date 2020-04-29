@@ -1,28 +1,7 @@
 import { api } from '../../../api'
 import axios from 'axios'
 import { jsonToFormData } from '../../../assets/helpers'
-import {
-	GET_PLACES,
-	GET_PLACES_SUCCESS,
-	GET_PLACES_FAIL,
-
-	GET_SINGLE_PLACE,
-	GET_SINGLE_PLACE_SUCCESS,
-	GET_SINGLE_PLACE_FAIL,
-
-	GET_MARKERS,
-	GET_MARKERS_SUCCESS,
-	GET_MARKERS_FAIL,
-
-  UPDATE_PLACE_TYPE,
-
-	CLEAR_SINGLEPLACE,
-
-	GET_PLACETYPE_OPTIONS,
-
-	SEND_PLACES,
-	SET_NOTIFICATION,
-} from '../types'
+import TYPES from '../types'
 import { getPlacesList, getSinglePlaceById } from '../api'
 
 export const getPlaces = (
@@ -31,7 +10,7 @@ export const getPlaces = (
 					search = null,
 					type = null,
 				) => async dispatch => {
-					const action = { type: GET_PLACES, payload: {} }
+					const action = { type: TYPES.GET_PLACES, payload: {} }
 					dispatch(action)
 
 					try {
@@ -39,7 +18,7 @@ export const getPlaces = (
 						const response = await getPlacesList(perPage, offset, search, type)
 
 						const action = {
-							type: GET_PLACES_SUCCESS,
+							type: TYPES.GET_PLACES_SUCCESS,
 							payload: response,
 							meta: { isSearching: !!search },
 						}
@@ -47,49 +26,49 @@ export const getPlaces = (
 					} catch (err) {
 						if (axios.isCancel(err)) return
 
-						const action = { type: GET_PLACES_FAIL, payload: err }
+						const action = { type: TYPES.GET_PLACES_FAIL, payload: err }
 						dispatch(action)
 					}
 				}
 
 export const getMarkers = (perPage) => async dispatch => {
-	const action = { type: GET_MARKERS, payload: {}};
+	const action = { type: TYPES.GET_MARKERS, payload: {}};
 
 	dispatch(action);
 	try {
 		const response = await getPlacesList(perPage);
 
-		const action = {type: GET_MARKERS_SUCCESS, payload: response}
+		const action = {type: TYPES.GET_MARKERS_SUCCESS, payload: response}
 		dispatch(action);
 	} catch (err){
-		const action = {type: GET_MARKERS_FAIL, payload: err};
+		const action = {type: TYPES.GET_MARKERS_FAIL, payload: err};
 		dispatch(action);
 	}
 }
 
 export const getSinglePlace = id => async dispatch => {
-	const action = {type: GET_SINGLE_PLACE, payload: {}};
+	const action = {type: TYPES.GET_SINGLE_PLACE, payload: {}};
 
 	dispatch(action);
 	try {
 		const response = await getSinglePlaceById(id)
 
-		const action = {type: GET_SINGLE_PLACE_SUCCESS, payload: response};
+		const action = {type: TYPES.GET_SINGLE_PLACE_SUCCESS, payload: response};
 		dispatch(action)
 	} catch (err) {
-		const action = {type: GET_SINGLE_PLACE_FAIL, payload: err};
+		const action = {type: TYPES.GET_SINGLE_PLACE_FAIL, payload: err};
 		dispatch(action)
 	}
 };
 
 export const clearSingePlace = () => async dispatch => {
-	const action = {type: CLEAR_SINGLEPLACE, payload: {}}
+	const action = {type: TYPES.CLEAR_SINGLEPLACE, payload: {}}
 	dispatch(action);
 };
 
 export const setNotification = message => async dispatch => {
 	const action = {
-		type: SET_NOTIFICATION,
+		type: TYPES.SET_NOTIFICATION,
 		payload: message,
 	}
 
@@ -105,7 +84,7 @@ export const sendPlace = data => async dispatch => {
 		})
 
 		const action = {
-			type: SEND_PLACES,
+			type: TYPES.SEND_PLACES,
 			payload: response,
 		}
 
@@ -138,7 +117,7 @@ export const getPlaceTypeOptions = data => async dispatch => {
 		const response = await api.get('./placetypeoptions')
 
 		const action = {
-			type: GET_PLACETYPE_OPTIONS,
+			type: TYPES.GET_PLACETYPE_OPTIONS,
 			payload: response,
 		}
 
@@ -151,7 +130,7 @@ export const getPlaceTypeOptions = data => async dispatch => {
 
 export const updatePlaceType = (type) => async dispatch => {
   try {
-    dispatch({ type: UPDATE_PLACE_TYPE, payload:  type})
+    dispatch({ type: TYPES.UPDATE_PLACE_TYPE, payload:  type})
   } catch (err) {
     console.log(err)
   }
