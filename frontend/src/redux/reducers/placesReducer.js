@@ -27,8 +27,6 @@ const storeIds = data => {
     return data.map(item => item._id);
 };
 
-
-
 export const placesReducer = (state = initialState, action) => {
     switch (action.type) {
         case TYPES.GET_PLACES: {

@@ -1,6 +1,6 @@
-import { api } from '../../../api'
+import { api } from '../../api'
 import axios from 'axios'
-import { jsonToFormData } from '../../../assets/helpers'
+import { jsonToFormData } from '../../assets/helpers'
 import TYPES from '../types'
 import { getPlacesList, getSinglePlaceById } from '../api'
 
