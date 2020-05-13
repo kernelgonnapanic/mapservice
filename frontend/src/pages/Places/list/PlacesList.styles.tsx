@@ -20,12 +20,12 @@ export const Image = styled.img`
 
 export const ListElement = styled.div`
 	cursor: pointer;
-	border-radius: ${props => props.theme.borderRadius.small + 'px'};
-	box-shadow: ${props => props.theme.boxshadow};
+	border-radius: ${(props) => props.theme.borderRadius.small + 'px'};
+	box-shadow: ${(props) => props.theme.boxshadow};
 	height: 75px;
 	margin: 25px 10px 12px 10px;
 	padding: 0 25px;
-	background-color: ${props => props.theme.colors.white};
+	background-color: ${(props) => props.theme.colors.white};
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -37,12 +37,11 @@ export const ListElementContent = styled.div`
 `
 
 export const Title = styled.div`
-    color: ${({ theme }) => theme.colors.black}
-    text-decoration:none
+	color: ${({ theme }) => theme.colors.black};
+	text-decoration: none;
 `
 
 export const Description = styled.div`
-    color: ${({ theme }) => theme.colors.gray}
-    text-decoration: none;
-
+	color: ${({ theme }) => theme.colors.gray};
+	text-decoration: none;
 `

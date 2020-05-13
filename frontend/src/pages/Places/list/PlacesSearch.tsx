@@ -2,8 +2,8 @@ import { CircularProgress, TextField } from '@material-ui/core'
 import React, { useState } from 'react'
 import { Search } from 'react-feather'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { getPlaces } from '../../redux/actions'
-import { cancelGetPlacesRequest } from '../../redux/api'
+import { getPlaces } from '../../../redux/actions/placesActions'
+import { cancelGetPlacesRequest } from '../../../redux/api'
 import * as S from './PlacesSearch.styles'
 
 interface Props {

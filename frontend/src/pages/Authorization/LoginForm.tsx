@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import { Button, Input } from '../../components'
 import useStyles, * as S from './styles/LoginForm.styles'
 import { useDispatch } from 'react-redux'
-import { SignIn } from '../redux/actions/authActions'
+import { SignIn } from '../../redux/actions/authActions'
 import { Link } from '@reach/router'
 
 const LoginForm: React.FC = () => {

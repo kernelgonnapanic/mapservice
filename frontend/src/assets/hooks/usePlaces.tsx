@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { extractPlaces } from '../../pages/redux/selectors/placesSelectors'
-import { getPlaces } from '../../pages/redux/actions'
+import { extractPlaces } from '../../redux/selectors/placesSelectors'
+import { getPlaces } from '../../redux/actions/placesActions'
 
 interface Props {
 	pageNumber?: any
@@ -30,8 +30,6 @@ const usePlaces: React.FC<Props> = (
 			firstPage: state.places.firstPage,
 		}
 	}, shallowEqual)
-
-	console.log(places)
 
 	useEffect(() => {
 		if (firstPage) {

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { TileLayer, Map, Marker, Popup } from 'react-leaflet'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { getMarkers } from '../../redux/actions'
-import { extractMarkers } from '../../redux/selectors/placesSelectors'
+import { getMarkers } from '../../../redux/actions/placesActions'
+import { extractMarkers } from '../../../redux/selectors/placesSelectors'
 import PlacesMapMarker from './PlacesMapMarker'
 
 interface Props {

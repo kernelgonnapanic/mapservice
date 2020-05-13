@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Navigation from './pages/Navigation/Navigation'
-import { store } from './pages/redux/reducers'
+import { store } from './redux/reducers'
 import { StylesProvider } from '@material-ui/core/styles'
 
 const theme = {

@@ -9,8 +9,8 @@ import PlaceSingle from './single/PlaceSingle'
 import PlacesMap from './map/PlacesMap'
 import styled from 'styled-components'
 import {useDispatch, useSelector} from "react-redux";
-import {extractPlaces} from "../redux/selectors/placesSelectors";
-import {getPlaces} from '../redux/actions'
+import {extractPlaces} from "../../redux/selectors/placesSelectors";
+import {getPlaces} from '../../redux/actions/placesActions'
 
 
 //Props are used by Route component

@@ -1,4 +1,4 @@
-import {api} from "../../api";
+import {api} from "../api";
 import axios from 'axios'
 
 const CancelToken = axios.CancelToken;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { LogoutUser } from '../redux/actions/authActions'
+import { LogoutUser } from '../../redux/actions/authActions'
 import { useDispatch } from 'react-redux'
 
 const Logout: React.FC = () => {

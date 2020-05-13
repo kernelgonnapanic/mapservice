@@ -2,7 +2,7 @@ import { Field, Formik } from 'formik'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
-import { sendPlace, getPlaceTypeOptions } from '../redux/actions'
+import { sendPlace, getPlaceTypeOptions } from '../../redux/actions/placesActions'
 import {
 	Button,
 	FileUploadInput,
@@ -12,7 +12,7 @@ import {
 } from '../../components'
 import useStyles, * as S from './styles/AddNewPlaceForm.styles'
 import AddNewPlaceMap from './AddNewPlaceMap'
-import { extractPlacesOptions } from '../redux/selectors/placesSelectors'
+import { extractPlacesOptions } from '../../redux/selectors/placesSelectors'
 import { shallowEqual } from 'react-redux'
 
 const AddNewPlaceForm: React.FC = () => {

@@ -1,4 +1,4 @@
-import { api } from '../../../api'
+import { api } from '../../api'
 import TYPES from '../types'
 import { getErrors } from './errorActions'
 import { navigate } from '@reach/router'

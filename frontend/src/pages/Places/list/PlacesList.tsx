@@ -4,7 +4,7 @@ import * as S from './PlacesList.styles'
 import PlacesListElement from './PlacesListElement'
 import usePlaces from '../../../assets/hooks/usePlaces'
 import PlacesSearch from './PlacesSearch'
-import { usePrevious } from '../../../assets/hooks'
+import { usePrevious } from '../../../assets/hooks/usePrevious'
 
 interface Props
 	extends RouteComponentProps<{
@@ -43,14 +43,14 @@ const PlacesList: React.FC<Props> = ({}) => {
 	}
 
 	const lastElement = useCallback(
-		node => {
+		(node) => {
 			if (placesLoading) return
 
 			if (observer.current) observer.current.disconnect()
 
 			const handleObserver = ([entry]: any): void => {
 				if (entry.isIntersecting && places && hasMoreData) {
-					setPageNumber(prevPage => prevPage + 1)
+					setPageNumber((prevPage) => prevPage + 1)
 				}
 			}
 
@@ -63,6 +63,16 @@ const PlacesList: React.FC<Props> = ({}) => {
 		},
 		[placesLoading],
 	)
+
+	const previousPlaceType = usePrevious(placeType)
+
+	console.log(pageNumber)
+	console.log(previousPlaceType)
+	console.log(placeType)
+
+	useEffect(() => {
+		setPageNumber(0)
+	}, [placeType])
 
 	return (
 		<div>
