@@ -10,7 +10,7 @@ export const extractPlaces = createSelector(
 	extractPlacesFromState,
 	extractPlacesIds,
 	(places, ids) => {
-	
+
 	if(!places || !ids) return [];
 
 	return ids.map(id => places[id])

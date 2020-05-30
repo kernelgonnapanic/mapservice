@@ -4,7 +4,6 @@ import * as S from './PlacesList.styles'
 import PlacesListElement from './PlacesListElement'
 import usePlaces from '../../../assets/hooks/usePlaces'
 import PlacesSearch from './PlacesSearch'
-import { usePrevious } from '../../../assets/hooks/usePrevious'
 
 interface Props
 	extends RouteComponentProps<{
@@ -63,12 +62,6 @@ const PlacesList: React.FC<Props> = ({}) => {
 		},
 		[placesLoading],
 	)
-
-	const previousPlaceType = usePrevious(placeType)
-
-	console.log(pageNumber)
-	console.log(previousPlaceType)
-	console.log(placeType)
 
 	useEffect(() => {
 		setPageNumber(0)
