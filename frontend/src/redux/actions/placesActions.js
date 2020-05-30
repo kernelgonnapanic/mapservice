@@ -96,19 +96,7 @@ export const sendPlace = data => async dispatch => {
 		)
 		dispatch(action)
 	} catch (err) {
-		let message = ''
-
-		if (!err.response) {
-			message += 'Błąd krytyczny'
-		} else if (err.response.status === 500) {
-			message += 'Przepraszamy, problem z serwerem.'
-		} else if (err.response.err.message.code === 11000) {
-			message += 'Taka placówka już istnieje'
-		} else {
-			message = err.message
-		}
-
-		dispatch(setNotification({ sentStatus: false, message: message }))
+		dispatch(setNotification({ sentStatus: false, message: "error" }))
 	}
 }
 

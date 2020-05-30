@@ -1,6 +1,5 @@
 import { Place } from './places.model'
 
-
 export const getData = async (req, res, next) => {
   const { type, search } = req.query
 	const offset = parseInt(req.query.offset) || 0;
@@ -48,7 +47,7 @@ export const getData = async (req, res, next) => {
     .json(successResponse)
 }
 
-export const createPlace = async (req, res) => {
+export const createPlace = async (req, res, next) => {
 	const fullImageUrl = req.file
 		? req.protocol + '://' + req.get('host') + '/' + req.file.path
 		: ''
@@ -72,6 +71,20 @@ export const createPlace = async (req, res) => {
 		placeType: req.body.placeType,
 		placeImage: fullImageUrl,
 	})
+
+  Place.find(
+		{
+			title: new RegExp('^' + req.body.title + '$', 'i'),
+		},
+		function(err, count) {
+			if (count.length > 0) {
+				const errorMessage = {
+					message: 'Place with this title already exists!',
+				}
+				return res.status(400).send(errorMessage)
+			}
+		},
+  )
 
 	const savedPlace = await place.save()
 

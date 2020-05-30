@@ -2,7 +2,10 @@ import { Field, Formik } from 'formik'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
-import { sendPlace, getPlaceTypeOptions } from '../../redux/actions/placesActions'
+import {
+	sendPlace,
+	getPlaceTypeOptions,
+} from '../../redux/actions/placesActions'
 import {
 	Button,
 	FileUploadInput,
@@ -59,7 +62,7 @@ const AddNewPlaceForm: React.FC = () => {
 		actions: any,
 	): Promise<void> => {
 		dispatch(sendPlace(values))
-		actions.resetForm()
+		// actions.resetForm()
 	}
 
 	const validationSchema = Yup.object().shape({

@@ -4,7 +4,7 @@ const initialState = {
     list: {},
     listIds: [],
     place: null,
-    notification: {},
+    notification: null,
     errorPlaces: null,
     placeTypeOptions: {},
     markers: null,
