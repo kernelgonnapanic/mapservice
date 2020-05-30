@@ -2,7 +2,10 @@ import { Link, useParams } from '@reach/router'
 import React, { useEffect } from 'react'
 import { IconButton } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSinglePlace, clearSingePlace } from '../../../redux/actions/placesActions'
+import {
+	getSinglePlace,
+	clearSingePlace,
+} from '../../../redux/actions/placesActions'
 import * as S from './PlaceSingle.styles'
 import DefaultPlaceImage from '../../../assets/images/default-place-image.jpg'
 import { ArrowLeft } from 'react-feather'
@@ -26,7 +29,7 @@ const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 		return () => {
 			dispatch(clearSingePlace())
 		}
-	}, [dispatch])
+	}, [dispatch, placeId])
 
 	return (
 		<>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { TileLayer, Map, Marker, Popup } from 'react-leaflet'
-import styled from 'styled-components'
+import * as S from './PlacesMap.styles'
 import { connect } from 'react-redux'
 import { getMarkers } from '../../../redux/actions/placesActions'
 import { extractMarkers } from '../../../redux/selectors/placesSelectors'
@@ -10,11 +10,12 @@ interface Props {
 	markers?: []
 	singlePlace?: any
 	getMarkers: (perPage: number) => void
+	coordinates: {
+		lat: number
+		long: number
+	}
+	zoom: number
 }
-
-const StyledMap = styled(Map)`
-	height: 100%;
-`
 
 interface MarkerValue {
 	title: string
@@ -29,28 +30,14 @@ interface MarkerValue {
 	placeImage: string
 	placeType: string
 }
-
 class PlacesMap extends Component<Props> {
 	public state = {
-		center: {
-			lat: 52.163228,
-			lng: 22.269012,
-		},
-		zoom: 12,
+		center: this.props.coordinates,
+		zoom: this.props.zoom,
 		draggable: true,
 	}
 
 	componentDidMount(): void {
-		if (this.props.singlePlace && this.props.singlePlace.coordinates) {
-			this.setState({
-				center: {
-					lat: this.props.singlePlace.coordinates[0].lat,
-					lng: this.props.singlePlace.coordinates[0].long,
-				},
-				zoom: 14,
-			})
-		}
-
 		this.props.getMarkers(1000)
 	}
 
@@ -58,8 +45,9 @@ class PlacesMap extends Component<Props> {
 		const { markers } = this.props
 
 		return (
-			<StyledMap
+			<S.StyledMap
 				animate={true}
+				//@ts-ignore
 				center={this.state.center}
 				zoom={this.state.zoom}
 			>
@@ -76,22 +64,29 @@ class PlacesMap extends Component<Props> {
 							return <PlacesMapMarker marker={marker} key={_id} />
 						}
 					})}
-			</StyledMap>
+			</S.StyledMap>
 		)
 	}
 }
-
 interface RootState {
 	singlePlace: {
 		places: {
 			place: {}
 		}
 	}
+	global: {
+		coordinates: {
+			lat: number
+			long: number
+		}
+		zoom: number
+	}
 }
 
 const mapStateToProps = (state: RootState) => ({
 	markers: extractMarkers(state),
-	// singlePlace: state.places.place
+	coordinates: state.global.coordinates,
+	zoom: state.global.zoom,
 })
 
 //@ts-ignore
