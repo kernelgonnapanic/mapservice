@@ -1,59 +1,58 @@
-import React from 'react'
-import {Marker, Popup, useLeaflet} from 'react-leaflet'
-import {cinemaIcon, pointerIcon, pizzaIcon, kebabIcon, statueIcon, museumIcon, restaurantIcon} from './PlacesMapIcons'
-
-
+import React, { MouseEvent } from 'react'
+import * as Leaflet from 'leaflet'
+import { Marker, Popup } from 'react-leaflet'
+import * as S from './PlacesMap.styles'
+import { useMarkerIcon } from '../../../assets/hooks/useMarkerIcon'
 interface Props {
-    marker: {
-        title: string
-        coordinates: any
-        _id: string
-        address: {
-            street: string
-            number: number
-        }
-        phoneNumber: number
-        placeImage: string
-        placeType: string
-    }
-    currentMarker?: boolean
+	marker: {
+		title: string
+		coordinates: any
+		_id: string
+		address: {
+			city: string
+			street: string
+			number: number
+		}
+		phoneNumber: number
+		placeImage: string
+		placeType: string
+	}
+	currentMarker?: boolean
 }
 
-const PlacesMapMarker: React.FC<Props> = ({marker}) => {
-    const {lat, long} = marker.coordinates[0]
-    const {_id, placeType} = marker
+const PlacesMapMarker: React.FC<Props> = ({ marker }) => {
+	const { lat, long } = marker.coordinates[0]
+	const {
+		_id,
+		placeType,
+		phoneNumber,
+		title,
+		address: { city, street, number },
+	} = marker
+	const icon = useMarkerIcon(placeType)
 
-    const getIcon = (placeType: string): any => {
-        switch (placeType) {
-            case "kino":
-                return pointerIcon
-            case "pizzeria":
-                return pizzaIcon
-            case "kebab":
-                return kebabIcon
-            case "restaurant":
-                return restaurantIcon
-            case "pomnik":
-                return statueIcon
-            case "muzeum":
-                return museumIcon
+	const openPopUp = (e: Leaflet.LeafletMouseEvent) => e.target.openPopup()
 
-            default:
-                return cinemaIcon
-        }
-    }
-
-    const icon = getIcon(placeType);
-
-    return (
-        <Marker icon={icon} key={_id} position={[lat, long]}>
-            <Popup>
-				<span>
-					A pretty CSS3 popup. <br/> Easily customizable.
-				</span>
-            </Popup>
-        </Marker>
-    )
+	const closePopUp = (e: Leaflet.LeafletMouseEvent) => e.target.closePopup()
+	return (
+		<Marker
+			onMouseOver={openPopUp}
+			onMouseOut={closePopUp}
+			icon={icon}
+			key={_id}
+			position={[lat, long]}
+		>
+			<Popup>
+				<S.PopUp>
+					<S.PopUpTitle>{title}</S.PopUpTitle>
+					<S.PopUpAddress>
+						{city} {street} {number}
+					</S.PopUpAddress>
+					<span> {phoneNumber}</span>
+				</S.PopUp>
+			</Popup>
+		</Marker>
+	)
 }
 
 export default PlacesMapMarker

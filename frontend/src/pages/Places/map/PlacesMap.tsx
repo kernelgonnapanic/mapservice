@@ -21,6 +21,7 @@ interface MarkerValue {
 	coordinates: any
 	_id: string
 	address: {
+		city: string
 		street: string
 		number: number
 	}
@@ -94,7 +95,7 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 //@ts-ignore
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
 	getMarkers: (perPage: number) => dispatch(getMarkers(perPage)),
 })
 
