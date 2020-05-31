@@ -3,8 +3,9 @@ import { TileLayer, Map, Marker, Popup } from 'react-leaflet'
 import * as S from './PlacesMap.styles'
 import { connect } from 'react-redux'
 import { getMarkers } from '../../../redux/actions/placesActions'
-import { extractMarkers } from '../../../redux/selectors/placesSelectors'
+import {extractMarkers, extractPlaces} from '../../../redux/selectors/placesSelectors'
 import PlacesMapMarker from './PlacesMapMarker'
+import PlacesMapMarkers from "./PlacesMapMarkers";
 
 interface Props {
 	markers?: []
@@ -17,19 +18,6 @@ interface Props {
 	zoom: number
 }
 
-interface MarkerValue {
-	title: string
-	coordinates: any
-	_id: string
-	address: {
-		city: string
-		street: string
-		number: number
-	}
-	phoneNumber: number
-	placeImage: string
-	placeType: string
-}
 class PlacesMap extends Component<Props> {
 	public state = {
 		center: this.props.coordinates,
@@ -41,7 +29,9 @@ class PlacesMap extends Component<Props> {
 		this.props.getMarkers(1000)
 	}
 
+
 	public render(): JSX.Element {
+
 		const { markers } = this.props
 
 		return (
@@ -55,15 +45,10 @@ class PlacesMap extends Component<Props> {
 					attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
-				{markers &&
-					markers.map((marker: MarkerValue) => {
-						const { lat, long } = marker.coordinates[0]
-						const { _id } = marker
+				<PlacesMapMarkers
+					markers={markers}
+				/>
 
-						if (marker && lat && long) {
-							return <PlacesMapMarker marker={marker} key={_id} />
-						}
-					})}
 			</S.StyledMap>
 		)
 	}

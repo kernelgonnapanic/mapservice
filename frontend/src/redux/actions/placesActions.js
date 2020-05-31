@@ -31,12 +31,12 @@ export const getPlaces = (
 					}
 				}
 
-export const getMarkers = (perPage) => async dispatch => {
+export const getMarkers = (perPage, offset, search, placeType) => async dispatch => {
 	const action = { type: TYPES.GET_MARKERS, payload: {}};
 
 	dispatch(action);
 	try {
-		const response = await getPlacesList(perPage);
+		const response = await getPlacesList(perPage, offset, search, placeType);
 
 		const action = {type: TYPES.GET_MARKERS_SUCCESS, payload: response}
 		dispatch(action);

@@ -27,6 +27,19 @@ const storeIds = data => {
     return data.map(item => item._id);
 };
 
+const checkIfIsSearch = (isSearching, placeType, state, places,placesIds) => {
+    if ((isSearching && placeType) || isSearching) {
+        return {
+            ...state,
+            list: places,
+            listIds: placesIds,
+            hasMoreData: true,
+            placeType: placeType,
+            loadingPlaces: false,
+        }
+    }
+}
+
 export const placesReducer = (state = initialState, action) => {
     switch (action.type) {
         case TYPES.GET_PLACES: {
@@ -50,7 +63,6 @@ export const placesReducer = (state = initialState, action) => {
             const {isSearching} = action.meta;
 
             const filteredStateByType = Object.values(state.list).filter(place => place.placeType === placeType) || []
-
 
               if ((isSearching && placeType) || isSearching) {
                     return {
@@ -102,7 +114,11 @@ export const placesReducer = (state = initialState, action) => {
         case TYPES.GET_SINGLE_PLACE:
             return {...state, loadingSinglePlace: true, errorsSinglePlace: null}
         case TYPES.GET_SINGLE_PLACE_SUCCESS:
-            return {...state, place: {...action.payload.data.data}, loadingSinglePlace: false, errorsSinglePlace: null};
+            return {...state,
+                place: action.payload.data.data,
+                loadingSinglePlace: false,
+                errorsSinglePlace: null
+            };
         case TYPES.GET_SINGLE_PLACE_FAIL:
             return {...state, loadingSinglePlace: false, errorsSinglePlace:  {...action.payload}};
         case TYPES.CLEAR_SINGLEPLACE: {
@@ -116,6 +132,9 @@ export const placesReducer = (state = initialState, action) => {
             }
         }
         case TYPES.GET_MARKERS_SUCCESS: {
+
+            console.log(state.placeType)
+
             return {
                 ...state,
                 markers: action.payload.data.data,
