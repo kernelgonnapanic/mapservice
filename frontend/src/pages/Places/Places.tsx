@@ -1,16 +1,13 @@
-import { Grid } from '@material-ui/core'
-import { RouteComponentProps, Router, useParams } from '@reach/router'
+import {Grid} from '@material-ui/core'
+import {Router} from '@reach/router'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Route from '../Navigation/Route'
 import Bar from './Bar'
 import PlacesList from './list/PlacesList'
 import PlaceSingle from './single/PlaceSingle'
 import PlacesMap from './map/PlacesMap'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
-import { extractPlaces } from '../../redux/selectors/placesSelectors'
-import { getPlaces } from '../../redux/actions/placesActions'
 
 //Props are used by Route component
 export type PlacesRouteProps = {
@@ -25,7 +22,6 @@ const Places: React.FC = () => {
 				${({ theme }) => theme.barHeight}
 		);
 	`
-
 	return (
 		<>
 			<Bar />
@@ -34,8 +30,6 @@ const Places: React.FC = () => {
 					<Router>
 						<Route component={PlacesList} path="list" />
 						<Route component={PlaceSingle} path="/list/:placeId" />
-						{/*<Route component={PlacesList} places={places} placesLoading={placesLoading} path="list"/>*/}
-						{/*<Route component={PlaceSingle} places={places} path="/list/:placeId"/>*/}
 					</Router>
 				</Grid>
 				<StyledGrid item xs={6}>
@@ -47,4 +41,3 @@ const Places: React.FC = () => {
 }
 
 export default Places
-//  singlePlace={singlePlace}

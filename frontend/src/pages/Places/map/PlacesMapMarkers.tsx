@@ -27,7 +27,6 @@ const PlacesMapMarkers: React.FC<Props>  = ({markers}) => {
 
     const placeType = useSelector((state: any) => state.places.placeType)
 
-    console.log(placeType);
 
     useEffect(() => {
         dispatch(getMarkers(1000, undefined, undefined, placeType))

@@ -12,14 +12,14 @@ interface Props extends FieldProps, TextFieldProps {
 
 const Input: React.FC<Props> = ({
 	field,
-	form: { touched, errors },
+	form,
 	label,
 	multiline,
 	rows = 0,
 	type = 'text',
 }) => {
-	const { name } = field
-
+	const {touched, errors  } = form || {}
+	const { name } = field || {}
 
 	return (
 		<>
@@ -30,8 +30,8 @@ const Input: React.FC<Props> = ({
 				multiline={multiline}
 				rows={rows}
 				{...field}
-				error={touched[name] && errors[name] ? true : false}
-				helperText={touched[name] && errors[name] && errors[name]}
+				error={touched && touched[name] && errors[name] ? true : false}
+				helperText={touched && touched[name] && errors[name] && errors[name]}
 			/>
 		</>
 	)

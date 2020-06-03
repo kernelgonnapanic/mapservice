@@ -10,7 +10,7 @@ export const Button = styled.button`
 	text-transform: none;
 	font-weight: 600;
 	line-height: 42px;
-	font-size: ${props => props.theme.fontSize.s};
+    // font-size: ${props => props.theme.fontSize.s};
 	height: 45px;
 	padding: 0 22px;
 	border: none;

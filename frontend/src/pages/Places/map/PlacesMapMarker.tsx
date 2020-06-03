@@ -3,9 +3,10 @@ import * as Leaflet from 'leaflet'
 import { Marker, Popup } from 'react-leaflet'
 import * as S from './PlacesMap.styles'
 import { useMarkerIcon } from '../../../assets/hooks/useMarkerIcon'
-import { navigate } from '@reach/router'
+import {navigate, useParams} from '@reach/router'
 import { updateCoordinates } from '../../../redux/actions/globalActions'
 import { useDispatch } from 'react-redux'
+import {getSinglePlace} from "../../../redux/actions/placesActions";
 
 interface Props {
 	marker: {
@@ -26,6 +27,7 @@ interface Props {
 
 const PlacesMapMarker: React.FC<Props> = ({ marker }) => {
 	const dispatch = useDispatch()
+
 	const { lat, long } = marker.coordinates[0]
 
 	const {
@@ -52,8 +54,7 @@ const PlacesMapMarker: React.FC<Props> = ({ marker }) => {
 		}
 
 		dispatch(updateCoordinates(updatedProperties))
-
-		navigate(`/places/list/${_id}`)
+		dispatch(getSinglePlace(_id))
 	}
 
 	return (

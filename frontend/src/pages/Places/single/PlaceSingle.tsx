@@ -1,7 +1,7 @@
 import { Link, useParams } from '@reach/router'
 import React, { useEffect } from 'react'
 import { IconButton } from '@material-ui/core'
-import { useDispatch, useSelector } from 'react-redux'
+import {shallowEqual, useDispatch, useSelector} from 'react-redux'
 import {
 	getSinglePlace,
 	clearSingePlace,
@@ -9,19 +9,49 @@ import {
 import * as S from './PlaceSingle.styles'
 import DefaultPlaceImage from '../../../assets/images/default-place-image.jpg'
 import { ArrowLeft } from 'react-feather'
+import {updateCoordinates} from "../../../redux/actions/globalActions";
 
 interface Props {
 	placeId?: string
 }
 
+interface State  {
+	places: {
+		place: {
+			address: {
+				city: string,
+				street: string,
+				number: number
+			},
+			coordinates: [
+				{
+					_id: string,
+					lat: number,
+					long: number
+				}
+			],
+			createdAt: string,
+			description: string,
+			phoneNumber: number,
+			placeImage: "",
+			placeType: string,
+			title: string,
+			updatedAt: string,
+			_id: string
+		},
+		loadingSinglePlace: boolean
+	},
+}
+
 const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 	const dispatch = useDispatch()
-	const { placeData, loadingSinglePlace } = useSelector((state: any) => {
+
+	const { placeData, loadingSinglePlace } = useSelector((state: State) => {
 		return {
 			placeData: state.places.place,
 			loadingSinglePlace: state.places.loadingSinglePlace,
 		}
-	})
+	}, shallowEqual)
 
 	useEffect(() => {
 		dispatch(getSinglePlace(placeId))
@@ -29,7 +59,7 @@ const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 		return () => {
 			dispatch(clearSingePlace())
 		}
-	}, [dispatch, placeId])
+	}, [placeId])
 
 	return (
 		<>

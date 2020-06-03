@@ -38,7 +38,6 @@ const LoginForm: React.FC = () => {
 				validationSchema={validationSchema}
 			>
 				{() => (
-
 					<S.CustomForm className={classes.root}>
 						<Field name="login" label="Login" component={Input} />
 						<Field
@@ -49,8 +48,6 @@ const LoginForm: React.FC = () => {
 						/>
 						<Button>Submit</Button>
 					</S.CustomForm>
-
-
 				)}
 			</Formik>
 			<p>

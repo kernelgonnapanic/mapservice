@@ -26,6 +26,7 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
+		"test-covarage": "react-scripts test --coverage",
 		"eject": "react-scripts eject",
 		"format": "prettier --write \"src/**/*.{js,jsx}\"",
 		"lint": "eslint . --ext .js,.jsx,"
@@ -46,6 +47,8 @@
 		]
 	},
 	"devDependencies": {
+		"@testing-library/jest-dom": "^5.9.0",
+		"@testing-library/react": "^10.0.4",
 		"@types/jest": "^25.2.3",
 		"@types/material-ui": "^0.21.7",
 		"@types/node": "^13.13.9",

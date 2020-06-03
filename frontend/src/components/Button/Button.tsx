@@ -6,6 +6,7 @@ interface Props {
 }
 
 const Button: React.FC<Props> = ({ text = 'Wyślij' }) => {
+
     return <S.Button type="submit">{text}</S.Button>
 }
 

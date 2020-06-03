@@ -16,8 +16,6 @@ import * as S from './Navigation.styles'
 import ProtectedRoute from './ProtectedRoute'
 import Route from './Route'
 
-
-
 const Navigation: FunctionComponent = () => {
 
 	const dispatch = useDispatch();
@@ -66,7 +64,7 @@ const Navigation: FunctionComponent = () => {
 
 				}
 				<Route component={Places} path="/places" >
-					<Route component={PlacesList} path="/list" />
+					<Route component={PlacesList} path="/list/" />
 					<Route component={PlaceSingle} path="/single" />
 				</Route>
 			</S.CustomRouter>

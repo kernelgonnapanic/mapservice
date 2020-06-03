@@ -27,19 +27,6 @@ const storeIds = data => {
     return data.map(item => item._id);
 };
 
-const checkIfIsSearch = (isSearching, placeType, state, places,placesIds) => {
-    if ((isSearching && placeType) || isSearching) {
-        return {
-            ...state,
-            list: places,
-            listIds: placesIds,
-            hasMoreData: true,
-            placeType: placeType,
-            loadingPlaces: false,
-        }
-    }
-}
-
 export const placesReducer = (state = initialState, action) => {
     switch (action.type) {
         case TYPES.GET_PLACES: {
@@ -132,9 +119,6 @@ export const placesReducer = (state = initialState, action) => {
             }
         }
         case TYPES.GET_MARKERS_SUCCESS: {
-
-            console.log(state.placeType)
-
             return {
                 ...state,
                 markers: action.payload.data.data,

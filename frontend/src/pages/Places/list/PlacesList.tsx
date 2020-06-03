@@ -4,6 +4,8 @@ import * as S from './PlacesList.styles'
 import PlacesListElement from './PlacesListElement'
 import usePlaces from '../../../assets/hooks/usePlaces'
 import PlacesSearch from './PlacesSearch'
+import {updateCoordinates} from "../../../redux/actions/globalActions";
+import {useDispatch} from "react-redux";
 
 interface Props
 	extends RouteComponentProps<{
@@ -24,6 +26,8 @@ const PlacesList: React.FC<Props> = ({}) => {
 		placeImage: string
 		placeType: string
 	}
+
+	const dispatch = useDispatch();
 
 	const [isSearch, setIsSearching] = useState(false)
 	const [pageNumber, setPageNumber] = useState(0)
@@ -67,6 +71,17 @@ const PlacesList: React.FC<Props> = ({}) => {
 		setPageNumber(0)
 	}, [placeType])
 
+
+	useEffect(() => {
+		const initialState = {
+			lat: 52.163228,
+			long: 22.269012,
+			zoom: 15,
+		}
+
+		dispatch(updateCoordinates(initialState))
+	}, []);
+
 	return (
 		<div>
 			<PlacesSearch setIsSearching={setIsSearching} />
@@ -80,6 +95,7 @@ const PlacesList: React.FC<Props> = ({}) => {
 								return (
 									<>
 										<Link
+											onClick={() => console.log("TEST")}
 											ref={lastElement}
 											style={{ textDecoration: 'none' }}
 											to={_id}
