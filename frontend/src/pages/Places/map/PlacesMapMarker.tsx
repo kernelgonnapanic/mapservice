@@ -3,7 +3,6 @@ import * as Leaflet from 'leaflet'
 import { Marker, Popup } from 'react-leaflet'
 import * as S from './PlacesMap.styles'
 import { useMarkerIcon } from '../../../assets/hooks/useMarkerIcon'
-import {navigate, useParams} from '@reach/router'
 import { updateCoordinates } from '../../../redux/actions/globalActions'
 import { useDispatch } from 'react-redux'
 import {getSinglePlace} from "../../../redux/actions/placesActions";

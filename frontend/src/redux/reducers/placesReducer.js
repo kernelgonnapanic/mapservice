@@ -7,6 +7,7 @@ const initialState = {
     notification: null,
     errorPlaces: null,
     placeTypeOptions: {},
+    placeType: null,
     markers: null,
     hasMoreData: true,
     byPlaceType: null,
@@ -37,8 +38,6 @@ export const placesReducer = (state = initialState, action) => {
                 loadingPlaces: true,
                 hasMoreData: true,
                 firstPage: false
-                // placeType: null,
-                // errorPlaces: null
             }
         }
         case TYPES.GET_PLACES_SUCCESS:
@@ -51,16 +50,17 @@ export const placesReducer = (state = initialState, action) => {
 
             const filteredStateByType = Object.values(state.list).filter(place => place.placeType === placeType) || []
 
+
               if ((isSearching && placeType) || isSearching) {
                     return {
                       ...state,
                       list: places,
                       listIds: placesIds,
                       hasMoreData: true,
-                      placeType: placeType,
+                      placeType: placeType ? placeType : null,
                       loadingPlaces: false,
                     }
-                  }
+              }
 
             if (byPlaceType && placeType) {
               return {
@@ -78,7 +78,7 @@ export const placesReducer = (state = initialState, action) => {
               list: { ...state.list, ...places },
               listIds: Array.from(new Set([...state.listIds, ...placesIds])),
               hasMoreData,
-              placeType: null,
+                placeType: null,
               loadingPlaces: false,
               byPlaceType: false
             };

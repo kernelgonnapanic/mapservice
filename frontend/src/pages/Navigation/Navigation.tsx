@@ -64,8 +64,8 @@ const Navigation: FunctionComponent = () => {
 
 				}
 				<Route component={Places} path="/places" >
-					<Route component={PlacesList} path="/list/" />
-					<Route component={PlaceSingle} path="/single" />
+					<Route component={PlacesList} path="/list" />
+					<Route component={PlaceSingle} path="/list/:_id" />
 				</Route>
 			</S.CustomRouter>
 		</>

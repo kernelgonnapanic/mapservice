@@ -1,16 +1,12 @@
-import React, {Component} from 'react'
-import {TileLayer, Map, Marker, Popup} from 'react-leaflet'
+import React from 'react'
+import {TileLayer} from 'react-leaflet'
 import * as S from './PlacesMap.styles'
 import {connect} from 'react-redux'
-import {getMarkers} from '../../../redux/actions/placesActions'
-import {extractMarkers, extractPlaces} from '../../../redux/selectors/placesSelectors'
 import PlacesMapMarkers from "./PlacesMapMarkers";
 import {defaultZoom} from "../../../assets/globalSettings/globalSettings";
 
 interface Props {
-    markers?: []
     singlePlace?: any
-    getMarkers: (perPage: number) => void
     coordinates: {
         lat: number
         long: number
@@ -26,7 +22,7 @@ class PlacesMap extends React.PureComponent<Props> {
     }
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any) {
-        console.log(prevProps.coordinates);
+
         if(prevProps.coordinates !== this.props.coordinates){
             this.setState({
                 center: this.props.coordinates,
@@ -37,7 +33,7 @@ class PlacesMap extends React.PureComponent<Props> {
 
     public render(): JSX.Element {
 
-        const {markers} = this.props
+        console.log("RERENDER MAP")
 
         return (
             <S.StyledMap
@@ -51,7 +47,6 @@ class PlacesMap extends React.PureComponent<Props> {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 <PlacesMapMarkers
-                    markers={markers}
                 />
 
             </S.StyledMap>
@@ -75,14 +70,13 @@ interface RootState {
 }
 
 const mapStateToProps = (state: RootState) => ({
-    markers: extractMarkers(state),
     coordinates: state.global.coordinates,
     zoom: state.global.zoom,
 })
 
 //@ts-ignore
 const mapDispatchToProps = (dispatch) => ({
-    getMarkers: (perPage: number) => dispatch(getMarkers(perPage)),
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlacesMap)

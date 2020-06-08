@@ -1,4 +1,4 @@
-import { Link, RouteComponentProps } from '@reach/router'
+import {Link, RouteComponentProps, useParams} from '@reach/router'
 import React, { useState, useCallback, useEffect, useRef } from 'react'
 import * as S from './PlacesList.styles'
 import PlacesListElement from './PlacesListElement'
@@ -71,7 +71,6 @@ const PlacesList: React.FC<Props> = ({}) => {
 		setPageNumber(0)
 	}, [placeType])
 
-
 	useEffect(() => {
 		const initialState = {
 			lat: 52.163228,
@@ -95,11 +94,13 @@ const PlacesList: React.FC<Props> = ({}) => {
 								return (
 									<>
 										<Link
-											onClick={() => console.log("TEST")}
 											ref={lastElement}
 											style={{ textDecoration: 'none' }}
 											to={_id}
 										>
+											<button>
+
+											</button>
 											<PlacesListElement
 												key={_id}
 												_id={_id}
