@@ -98,9 +98,6 @@ const PlacesList: React.FC<Props> = ({}) => {
 											style={{ textDecoration: 'none' }}
 											to={_id}
 										>
-											<button>
-
-											</button>
 											<PlacesListElement
 												key={_id}
 												_id={_id}

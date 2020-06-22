@@ -33,8 +33,6 @@ class PlacesMap extends React.PureComponent<Props> {
 
     public render(): JSX.Element {
 
-        console.log("RERENDER MAP")
-
         return (
             <S.StyledMap
                 animate={true}

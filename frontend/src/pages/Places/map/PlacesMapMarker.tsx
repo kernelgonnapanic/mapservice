@@ -6,6 +6,7 @@ import { useMarkerIcon } from '../../../assets/hooks/useMarkerIcon'
 import { updateCoordinates } from '../../../redux/actions/globalActions'
 import { useDispatch } from 'react-redux'
 import {getSinglePlace} from "../../../redux/actions/placesActions";
+import {navigate} from "@reach/router";
 
 interface Props {
 	marker: {
@@ -54,6 +55,8 @@ const PlacesMapMarker: React.FC<Props> = ({ marker }) => {
 
 		dispatch(updateCoordinates(updatedProperties))
 		dispatch(getSinglePlace(_id))
+
+		navigate(`/places/list/${_id}`)
 	}
 
 	return (
