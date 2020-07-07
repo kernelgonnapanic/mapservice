@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { Form } from 'formik'
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {Form} from 'formik'
+import {makeStyles, createStyles, Theme} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -23,8 +23,13 @@ export default useStyles;
 
 
 export const Wrapper = styled.div`
-    margin: 0 150px 150px 150px;
-      width: 100%;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+           height: 85%;
+           margin: 0 150px;
+       align-items: center;
+     
 `
 
 export const CustomForm = styled(Form)`

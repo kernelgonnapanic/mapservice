@@ -6,6 +6,7 @@ import useStyles, * as S from './styles/RegisterForm.styles'
 import { useDispatch } from 'react-redux'
 
 import { SignUpUser } from '../../redux/actions/authActions'
+import {Link} from "@reach/router";
 
 const RegisterForm: React.FC = () => {
     const dispatch = useDispatch();
@@ -61,6 +62,7 @@ const RegisterForm: React.FC = () => {
                     </S.CustomForm>
                 )}
             </Formik>
+
         </>
     )
 }

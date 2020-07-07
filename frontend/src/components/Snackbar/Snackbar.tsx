@@ -16,7 +16,7 @@ const CustomizedSnackbar: React.FC<CustomizedSnackbarProps> = ({ isSnackbarOpene
 
         setSnackbarOpened(false);
     };
-    
+
     const { sentStatus, message } = notification
 
     return (

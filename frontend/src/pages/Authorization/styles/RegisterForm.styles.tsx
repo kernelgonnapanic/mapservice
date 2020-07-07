@@ -24,5 +24,5 @@ export default useStyles
 export const CustomForm = styled(Form)`
     display: flex;
     flex-direction: column;
-    margin: 0 150px
+    margin: 20px 150px
 `   
