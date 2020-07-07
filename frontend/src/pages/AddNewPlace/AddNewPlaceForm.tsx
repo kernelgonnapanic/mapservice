@@ -1,4 +1,4 @@
-import { Field, Formik } from 'formik'
+import { Field, Formik,  } from 'formik'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
@@ -13,6 +13,7 @@ import {
 	Select,
 	Snackbar,
 } from '../../components'
+import {} from 'formik'
 import useStyles, * as S from './styles/AddNewPlaceForm.styles'
 import AddNewPlaceMap from './AddNewPlaceMap'
 import { extractPlacesOptions } from '../../redux/selectors/placesSelectors'
@@ -31,8 +32,6 @@ const AddNewPlaceForm: React.FC = () => {
 		}
 	}, shallowEqual)
 
-	// const { placeTypeOptions, notification } = content.places;
-
 	const initialValues = {
 		title: '',
 		street: '',
@@ -50,19 +49,26 @@ const AddNewPlaceForm: React.FC = () => {
 		dispatch(getPlaceTypeOptions())
 	}, [])
 
-	useEffect(() => {
-		if (notification) {
-			setNotification(notification)
-			setSnackbarOpened(true)
-		}
-	}, [notification])
-
 	const onSubmit = async (
 		values: Record<string, any>,
-		actions: any,
+		{resetForm} : {resetForm: () => void}
 	): Promise<void> => {
-		dispatch(sendPlace(values))
-		// actions.resetForm()
+		const response = dispatch(sendPlace(values))
+
+		//@ts-ignore
+		response.then(res => {
+
+			if(res.sentStatus === "ERROR") {
+
+				setNotification(res)
+				setSnackbarOpened(true)
+				return
+			}
+			//@ts-ignore
+			setNotification({ sentStatus: "SUCCESS", message: "CREATED" })
+			setSnackbarOpened(true)
+			resetForm()
+		})
 	}
 
 	const validationSchema = Yup.object().shape({

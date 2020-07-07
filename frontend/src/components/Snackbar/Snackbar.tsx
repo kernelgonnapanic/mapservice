@@ -8,7 +8,7 @@ interface CustomizedSnackbarProps {
     setSnackbarOpened: (value: boolean) => void
 }
 
-const CustomizedSnackbar: React.FC<CustomizedSnackbarProps> = ({ isSnackbarOpened, setSnackbarOpened, notification }) => {
+const CustomizedSnackbar: React.FC<CustomizedSnackbarProps> = ({ isSnackbarOpened, setSnackbarOpened, notification = {} }) => {
     const handleClose = (event?: SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
             return;
@@ -16,7 +16,7 @@ const CustomizedSnackbar: React.FC<CustomizedSnackbarProps> = ({ isSnackbarOpene
 
         setSnackbarOpened(false);
     };
-
+    
     const { sentStatus, message } = notification
 
     return (
@@ -32,7 +32,7 @@ const CustomizedSnackbar: React.FC<CustomizedSnackbarProps> = ({ isSnackbarOpene
             >
                 <SnackbarContentWrapper
                     onClose={handleClose}
-                    variant={sentStatus ? "success" : "error"}
+                    variant={sentStatus === "ERROR" ? "error" : "success"}
                     message={message}
                 />
             </Snackbar>

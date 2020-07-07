@@ -67,7 +67,7 @@ const PlaceSingle: React.FC<Props> = ({placeId}) => {
             //@ts-ignore
             // const {coordinates: {lat, long}} = placeData || {};
 
-            console.log(placeData);
+
             // console.log(lat);
             // console.log(long)
             // dispatch(updateCoordinates({lat: placeData.lat, long: placeData.long}))

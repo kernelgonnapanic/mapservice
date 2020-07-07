@@ -5,10 +5,10 @@ import {
   pizzaIcon,
   pointerIcon,
   restaurantIcon,
-  statueIcon,
-} from '../../pages/Places/map/PlacesMapIcons';
+  statueIcon
+} from "../../pages/Places/map/PlacesMapIcons";
 
-export function useMarkerIcon(placeType: string) {
+export function getMarkerIcon(placeType: string) {
   const getIcon = (placeType: string) => {
     switch (placeType) {
       case 'kino':

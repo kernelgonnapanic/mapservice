@@ -136,8 +136,6 @@ export const placesReducer = (state = initialState, action) => {
 
         case TYPES.SEND_PLACES:
             return {...state, payload: {...action.payload}};
-        case TYPES.SET_NOTIFICATION:
-            return {...state, notification: {...action.payload}};
         case TYPES.GET_PLACETYPE_OPTIONS:
             return {...state, placeTypeOptions: {...action.payload.data.data}};
         default:

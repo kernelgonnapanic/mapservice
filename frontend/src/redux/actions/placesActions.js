@@ -88,15 +88,15 @@ export const sendPlace = data => async dispatch => {
 			payload: response,
 		}
 
-		dispatch(
-			setNotification({
-				sentStatus: true,
-				message: 'Pomyślnie dodano nowe miejsce',
-			}),
-		)
+
 		dispatch(action)
+
+		return response;
+
 	} catch (err) {
-		dispatch(setNotification({ sentStatus: false, message: "error" }))
+		const error = { sentStatus: "ERROR", message: err && err.message }
+
+		return error
 	}
 }
 

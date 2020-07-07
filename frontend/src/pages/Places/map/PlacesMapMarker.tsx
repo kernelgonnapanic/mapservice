@@ -2,7 +2,7 @@ import React from 'react'
 import * as Leaflet from 'leaflet'
 import { Marker, Popup } from 'react-leaflet'
 import * as S from './PlacesMap.styles'
-import { useMarkerIcon } from '../../../assets/hooks/useMarkerIcon'
+import { getMarkerIcon } from '../../../assets/helpers/getMarkerIcon'
 import { updateCoordinates } from '../../../redux/actions/globalActions'
 import { useDispatch } from 'react-redux'
 import {getSinglePlace} from "../../../redux/actions/placesActions";
@@ -38,7 +38,7 @@ const PlacesMapMarker: React.FC<Props> = ({ marker }) => {
 		coordinates,
 		address: { city, street, number },
 	} = marker
-	const icon = useMarkerIcon(placeType)
+	const icon = getMarkerIcon(placeType)
 
 	const openPopUp = (e: Leaflet.LeafletMouseEvent) => e.target.openPopup()
 
