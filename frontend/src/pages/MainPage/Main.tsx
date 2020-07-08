@@ -25,7 +25,7 @@ const Main = () => {
         <div>
         </div>
         <StyledImg>
-            <img src={Cycle} alt="test" style={{width: '85%'}}/>
+            <img src={Cycle} alt="test" style={{ width: '85%' }} />
         </StyledImg>
     </StyleDiv>
 }

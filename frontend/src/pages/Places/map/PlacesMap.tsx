@@ -1,9 +1,9 @@
 import React from 'react'
-import {TileLayer} from 'react-leaflet'
+import { TileLayer } from 'react-leaflet'
 import * as S from './PlacesMap.styles'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import PlacesMapMarkers from "./PlacesMapMarkers";
-import {defaultZoom} from "../../../assets/globalSettings/globalSettings";
+import { defaultZoom } from "../../../assets/globalSettings/globalSettings";
 
 interface Props {
     singlePlace?: any
@@ -23,7 +23,7 @@ class PlacesMap extends React.PureComponent<Props> {
 
     componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>, snapshot?: any) {
 
-        if(prevProps.coordinates !== this.props.coordinates){
+        if (prevProps.coordinates !== this.props.coordinates) {
             this.setState({
                 center: this.props.coordinates,
                 zoom: defaultZoom

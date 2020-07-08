@@ -8,25 +8,25 @@ import {
   statueIcon
 } from "../../pages/Places/map/PlacesMapIcons";
 
-export function getMarkerIcon(placeType: string) {
-  const getIcon = (placeType: string) => {
+export function getMarkerIcon(placeType: string, className?: string | undefined) {
+  const getIcon = (placeType: string, className?: string | undefined) => {
     switch (placeType) {
       case 'kino':
-        return pointerIcon;
+        return pointerIcon(className);
       case 'pizzeria':
-        return pizzaIcon;
+        return pizzaIcon(className);
       case 'kebab':
-        return kebabIcon;
+        return kebabIcon(className);
       case 'restaurant':
-        return restaurantIcon;
+        return restaurantIcon(className);
       case 'pomnik':
-        return statueIcon;
+        return statueIcon(className);
       case 'muzeum':
-        return museumIcon;
+        return museumIcon(className);
       default:
-        return cinemaIcon;
+        return cinemaIcon(className);
     }
   };
 
-  return getIcon(placeType);
+  return getIcon(placeType, className);
 }

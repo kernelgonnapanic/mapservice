@@ -1,15 +1,15 @@
-import {Link, useParams} from '@reach/router'
-import React, {useEffect} from 'react'
-import {IconButton} from '@material-ui/core'
-import {shallowEqual, useDispatch, useSelector} from 'react-redux'
+import { Link, useParams } from '@reach/router'
+import React, { useEffect } from 'react'
+import { IconButton } from '@material-ui/core'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import {
     getSinglePlace,
     clearSingePlace,
 } from '../../../redux/actions/placesActions'
 import * as S from './PlaceSingle.styles'
 import DefaultPlaceImage from '../../../assets/images/default-place-image.jpg'
-import {ArrowLeft} from 'react-feather'
-import {updateCoordinates} from "../../../redux/actions/globalActions";
+import { ArrowLeft } from 'react-feather'
+import { updateCoordinates } from "../../../redux/actions/globalActions";
 
 interface Props {
     placeId?: string
@@ -43,10 +43,10 @@ interface State {
     },
 }
 
-const PlaceSingle: React.FC<Props> = ({placeId}) => {
+const PlaceSingle: React.FC<Props> = ({ placeId }) => {
     const dispatch = useDispatch()
 
-    const {placeData, loadingSinglePlace} = useSelector((state: State) => {
+    const { placeData, loadingSinglePlace } = useSelector((state: State) => {
         return {
             placeData: state.places.place,
             loadingSinglePlace: state.places.loadingSinglePlace,
@@ -62,25 +62,29 @@ const PlaceSingle: React.FC<Props> = ({placeId}) => {
     }, [placeId])
 
     useEffect(() => {
-        //@ts-ignore
-        if (placeData ) {
-            //@ts-ignore
-            // const {coordinates: {lat, long}} = placeData || {};
-
-
-            // console.log(lat);
-            // console.log(long)
-            // dispatch(updateCoordinates({lat: placeData.lat, long: placeData.long}))
+        if (placeData) {
+            if (placeData.coordinates && placeData.coordinates[0]) {
+                dispatch(updateCoordinates(
+                    {
+                        lat: placeData.coordinates[0].lat,
+                        long: placeData.coordinates[0].long,
+                        zoom: 8
+                    }
+                ))
+            }
         }
     }, [placeData])
+
+
+
 
     return (
         <>
             <S.NavigateBack to="/places/list">
                 <IconButton>
-                    <ArrowLeft/>
+                    <ArrowLeft />
                 </IconButton>
-                <span style={{paddingLeft: '25px'}}>Back</span>
+                <span style={{ paddingLeft: '25px' }}>Back</span>
             </S.NavigateBack>
             {!loadingSinglePlace && placeData && (
                 <>
@@ -112,8 +116,8 @@ const PlaceSingle: React.FC<Props> = ({placeId}) => {
                         </div>
                     </S.Wrapper>
                     <S.Wrapper>
-                        <div style={{padding: '25px 0 0 0'}}>Opis</div>
-                        <div style={{padding: '25px 0 50px 0'}}>
+                        <div style={{ padding: '25px 0 0 0' }}>Opis</div>
+                        <div style={{ padding: '25px 0 50px 0' }}>
                             {placeData.description}
                         </div>
                     </S.Wrapper>

@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import * as Leaflet from 'leaflet'
-import { Marker, Popup } from 'react-leaflet'
+import { Marker, Popup, useLeaflet } from 'react-leaflet'
 import * as S from './PlacesMap.styles'
 import { getMarkerIcon } from '../../../assets/helpers/getMarkerIcon'
 import { updateCoordinates } from '../../../redux/actions/globalActions'
 import { useDispatch } from 'react-redux'
-import {getSinglePlace} from "../../../redux/actions/placesActions";
-import {navigate} from "@reach/router";
-
+import { getSinglePlace } from "../../../redux/actions/placesActions";
+import { navigate } from "@reach/router";
+import gsap from 'gsap'
+import { Marker as LeafletMarker } from 'leaflet'
 interface Props {
 	marker: {
 		title: string
@@ -22,11 +23,12 @@ interface Props {
 		placeImage: string
 		placeType: string
 	}
-	currentMarker?: boolean
+	activeMarker?: boolean
 }
 
-const PlacesMapMarker: React.FC<Props> = ({ marker }) => {
+const PlacesMapMarker: React.FC<Props> = ({ marker, activeMarker = false }) => {
 	const dispatch = useDispatch()
+	const leaflet = useLeaflet()
 
 	const { lat, long } = marker.coordinates[0]
 
@@ -38,7 +40,10 @@ const PlacesMapMarker: React.FC<Props> = ({ marker }) => {
 		coordinates,
 		address: { city, street, number },
 	} = marker
-	const icon = getMarkerIcon(placeType)
+
+	const className = activeMarker ? "active-marker" : ""
+
+	const icon = getMarkerIcon(placeType, className)
 
 	const openPopUp = (e: Leaflet.LeafletMouseEvent) => e.target.openPopup()
 
@@ -59,16 +64,20 @@ const PlacesMapMarker: React.FC<Props> = ({ marker }) => {
 		navigate(`/places/list/${_id}`)
 	}
 
+
+
 	return (
+		//ts-ignore
 		<Marker
 			onMouseOver={openPopUp}
 			onMouseOut={closePopUp}
 			onClick={redirect}
 			icon={icon}
+			activeMarker={activeMarker}
 			key={_id}
 			position={[lat, long]}
 		>
-			<Popup>
+			<Popup >
 				<S.PopUp>
 					<S.PopUpTitle>{title}</S.PopUpTitle>
 					<S.PopUpAddress>

@@ -1,25 +1,25 @@
-import {Link, RouteComponentProps, useParams} from '@reach/router'
+import { Link, RouteComponentProps, useParams } from '@reach/router'
 import React, { useState, useCallback, useEffect, useRef } from 'react'
 import * as S from './PlacesList.styles'
 import PlacesListElement from './PlacesListElement'
 import usePlaces from '../../../assets/hooks/usePlaces'
 import PlacesSearch from './PlacesSearch'
-import {updateCoordinates} from "../../../redux/actions/globalActions";
-import {useDispatch} from "react-redux";
+import { updateCoordinates } from "../../../redux/actions/globalActions";
+import { useDispatch } from "react-redux";
 
 interface Props
 	extends RouteComponentProps<{
 		places?: any[]
 		placesLoading?: boolean
 		id: string
-	}> {}
+	}> { }
 
 interface Ref extends HTMLInputElement {
 	disconnect: () => void
 	observe(target: Element): void
 }
 
-const PlacesList: React.FC<Props> = ({}) => {
+const PlacesList: React.FC<Props> = ({ }) => {
 	interface PlaceValue {
 		title: string
 		_id: string
@@ -71,15 +71,15 @@ const PlacesList: React.FC<Props> = ({}) => {
 		setPageNumber(0)
 	}, [placeType])
 
-	useEffect(() => {
-		const initialState = {
-			lat: 52.163228,
-			long: 22.269012,
-			zoom: 15,
-		}
+	// useEffect(() => {
+	// 	const initialState = {
+	// 		lat: 52.163228,
+	// 		long: 22.269012,
+	// 		zoom: 15,
+	// 	}
 
-		dispatch(updateCoordinates(initialState))
-	}, []);
+	// 	dispatch(updateCoordinates(initialState))
+	// }, []);
 
 	return (
 		<div>
