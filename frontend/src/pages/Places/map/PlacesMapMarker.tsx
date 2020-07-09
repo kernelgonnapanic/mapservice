@@ -26,7 +26,7 @@ interface Props {
 	activeMarker?: boolean
 }
 
-const PlacesMapMarker: React.FC<Props> = ({ marker, activeMarker = false }) => {
+const PlacesMapMarker: React.FC<Props> = React.memo(({ marker, activeMarker = false }) => {
 	const dispatch = useDispatch()
 	const leaflet = useLeaflet()
 
@@ -65,7 +65,7 @@ const PlacesMapMarker: React.FC<Props> = ({ marker, activeMarker = false }) => {
 	}
 
 
-
+	console.log("GENERATE")
 	return (
 		//ts-ignore
 		<Marker
@@ -89,6 +89,6 @@ const PlacesMapMarker: React.FC<Props> = ({ marker, activeMarker = false }) => {
 			</Popup>
 		</Marker>
 	)
-}
+})
 
 export default PlacesMapMarker

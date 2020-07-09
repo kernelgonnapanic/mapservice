@@ -15,6 +15,7 @@ interface Props {
 }
 
 class PlacesMap extends React.PureComponent<Props> {
+
     public state = {
         center: this.props.coordinates,
         zoom: this.props.zoom,
@@ -35,6 +36,7 @@ class PlacesMap extends React.PureComponent<Props> {
 
         return (
             <S.StyledMap
+
                 animate={true}
                 //@ts-ignore
                 center={this.state.center}

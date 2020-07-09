@@ -3,6 +3,7 @@ import { Map } from 'react-leaflet'
 
 export const StyledMap = styled(Map)`
 	height: 100%;
+
 `
 
 export const PopUp = styled.div`
