@@ -4,19 +4,22 @@ import * as S from './Button.styles'
 interface Props {
     text?: string,
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    type?: "button" | "submit" | "reset" | undefined
+    type?: "button" | "submit" | "reset" | undefined,
+    color?: string
 }
 
 
 const Button: React.FC<Props> = ( {
                                      text= "Wyślij",
                                      onClick = () => {},
-                                     type= "button"
+                                     type= "button",
+                                     color= ""
                                  }) => {
 
     return <S.Button
         onClick={onClick}
         type={type}
+       style={{backgroundColor: color}}
     >
         {text}
     </S.Button>
