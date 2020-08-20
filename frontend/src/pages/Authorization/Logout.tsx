@@ -1,6 +1,7 @@
 import React from 'react'
 import { LogoutUser } from '../../redux/actions/authActions'
 import { useDispatch } from 'react-redux'
+import {Button} from "../../components";
 
 const Logout: React.FC = () => {
     const dispatch = useDispatch();
@@ -10,7 +11,8 @@ const Logout: React.FC = () => {
     }
 
     return (
-        <button onClick={handleClick}>Logout</button>
+        <Button onClick={handleClick}>Logout</Button>
+
     )
 }
 

@@ -1,4 +1,5 @@
 import multer from 'multer'
+import {fileFormatErrorMessage} from "../../utils/messages";
 
 export const storage = multer.diskStorage({
 	destination: function(req, file, cb) {
@@ -20,7 +21,7 @@ export const fileFilter = (req, file, cb) => {
 	if (isImage) {
 		cb(null, true)
 	} else {
-		cb(new Error('File should have jpeg/png/jpg format!'), false)
+		cb(new Error(fileFormatErrorMessage), false)
 	}
 }
 

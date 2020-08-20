@@ -58,7 +58,7 @@ const RegisterForm: React.FC = () => {
                             type="password"
                             component={Input}
                         />
-                        <Button>Submit</Button>
+                        <Button type="submit">Submit</Button>
                     </S.CustomForm>
                 )}
             </Formik>

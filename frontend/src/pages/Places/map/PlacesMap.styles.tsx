@@ -14,7 +14,7 @@ export const PopUp = styled.div`
 
 export const PopUpTitle = styled.span`
 	font-weight: bold;
-	font-size: ${({ theme }) => theme.fontSize.m}px;
+	font-size: ${({ theme }) => theme.fontSize.m};
 	padding-bottom: 5px;
 `
 

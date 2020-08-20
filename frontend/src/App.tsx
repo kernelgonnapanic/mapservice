@@ -11,13 +11,19 @@ export const theme = {
         black: '#000000',
         gray: '#6B6B6B',
         purple: 'rgb(209, 196, 233)',
+        green: '#22bfa2',
+        orange: '#e65336'
+    },
+    textColors: {
+        lightGray: '#546577',
+        darkGray: '#6B6B6B'
     },
     fontSize: {
-        s: 14,
-        m: 16,
-        l: 20,
-        xl: 24,
-        xxl: 32,
+        s: '14px',
+        m: '16px',
+        l: '20px',
+        xl: '24px',
+        xxl: '32px',
     },
     headerHeight: '64px',
     barHeight: '75px',

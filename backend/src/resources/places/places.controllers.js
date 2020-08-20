@@ -1,4 +1,6 @@
 import { Place } from './places.model'
+import {placeAlreadyExistsMessage, errorWhileAddingPlace} from "../../utils/messages";
+
 
 export const getData = async (req, res, next) => {
   const { type, search } = req.query
@@ -79,14 +81,18 @@ export const createPlace = async (req, res, next) => {
 		function(err, count) {
 			if (count.length > 0) {
 				const errorMessage = {
-					message: 'Place with this title already exists!',
+					message: placeAlreadyExistsMessage,
 				}
 				return res.status(400).send(errorMessage)
 			}
 		},
   )
 
-	const savedPlace = await place.save()
+	const savedPlace = await place.save(function(err){
+		if(err) {
+			return res.status(404).json({error: errorWhileAddingPlace})
+		}
+	})
 
 	res.status(201).json(savedPlace)
 }

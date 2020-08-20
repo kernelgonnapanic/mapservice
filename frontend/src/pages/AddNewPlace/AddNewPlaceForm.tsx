@@ -143,7 +143,7 @@ const AddNewPlaceForm: React.FC = () => {
 										rows={4}
 										component={Input}
 									/>
-									<Button />
+									<Button type="submit"/>
 								</S.Item>
 							</S.FieldsWrapper>
 							<AddNewPlaceMap setFieldValue={setFieldValue} />
