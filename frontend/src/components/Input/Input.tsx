@@ -30,7 +30,7 @@ const Input: React.FC<Props> = ({
 				multiline={multiline}
 				rows={rows}
 				{...field}
-				error={touched && touched[name] && errors[name] ? true : false}
+				error={!!(touched && touched[name] && errors[name])}
 				helperText={touched && touched[name] && errors[name] && errors[name]}
 			/>
 		</>

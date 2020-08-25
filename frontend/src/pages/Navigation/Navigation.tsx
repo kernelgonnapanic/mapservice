@@ -15,6 +15,7 @@ import * as S from './Navigation.styles'
 import ProtectedRoute from './ProtectedRoute'
 import Route from './Route'
 import {ReactComponent as LogoSvg} from "assets/images/siedlce-logo.svg";
+import {Button} from 'components'
 
 import {theme} from "../../App";
 
@@ -52,7 +53,12 @@ const Navigation: FunctionComponent = () => {
 									<S.NavBarLink to="/addplace" getProps={isActive}>Dodaj miejsce</S.NavBarLink>
 									<Logout />
 								</>
-								: <S.NavBarLink to="/auth/login" getProps={isActive}>Login</S.NavBarLink>
+								: <S.NavBarLink to="/auth/login" getProps={isActive}>
+									<Button
+										text="Login"
+										color={theme.colors.green}
+									/>
+									</S.NavBarLink>
 						}
 					</div>
 				</S.NavBar>

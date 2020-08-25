@@ -1,14 +1,12 @@
 import React, {useEffect} from 'react'
 import * as S from './Bar.styles'
 import {useDispatch, useSelector} from 'react-redux'
-import {getPlaceTypeOptions} from '../../redux/actions/placesActions'
+import {getPlaceTypeOptions, updatePlaceType} from '../../redux/actions/placesActions'
 import {extractPlacesOptions} from '../../redux/selectors/placesSelectors'
-import {updatePlaceType} from '../../redux/actions/placesActions'
-import {useLocation, useParams, navigate} from '@reach/router'
-import {getMarkerIcon} from "../../assets/helpers/getMarkerIcon";
+import {navigate, useLocation} from '@reach/router'
 import {getMarkerSvg} from "../../assets/helpers/getMarkerSvg";
-import PizzaSvg from '../../assets/mapicons/pizza-slice.svg'
 import {Tooltip} from "@material-ui/core";
+import PlaceNavItem from "../../components/PlaceNavItem/PlaceNavItem";
 
 const Bar: React.FC = React.memo(() => {
     const dispatch = useDispatch()
@@ -33,22 +31,18 @@ const Bar: React.FC = React.memo(() => {
     return (
         <S.BarWrapper>
             <S.Button onClick={handleClick('')}>
-                <S.BarItem>All</S.BarItem>
+                <S.BarItem color="red" color2="blue">All</S.BarItem>
             </S.Button>
             {placeCategories &&
             placeCategories.map((category: string) => {
 
                 const Icon = getMarkerSvg(category)
 
-                return (
-                    <S.Button key={category} onClick={handleClick(category)}>
-                        <Tooltip title={category}>
-                            <S.BarItem>
-                                <Icon height={35} width={35}/>
-                            </S.BarItem>
-                        </Tooltip>
-                    </S.Button>
-                )
+                return <PlaceNavItem
+                    icon={<Icon width={35} height={35}/>}
+                    category={category}
+                    handleClick={handleClick}
+                />
             })}
         </S.BarWrapper>
     )
