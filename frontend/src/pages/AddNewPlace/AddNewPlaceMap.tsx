@@ -78,9 +78,7 @@ class AddNewPlaceMap extends Component<Props, State> {
 				>
 					<Popup minWidth={90}>
 						<span onClick={this.toggleDraggable}>
-							{this.state.draggable
-								? 'DRAG MARKER'
-								: 'MARKER FIXED'}
+							{this.state.draggable ? 'DRAG MARKER' : 'MARKER FIXED'}
 						</span>
 					</Popup>
 				</Marker>

@@ -30,7 +30,7 @@
 		"test-covarage": "react-scripts test --coverage",
 		"eject": "react-scripts eject",
 		"format": "prettier --write \"src/**/*.{js,jsx}\"",
-		"lint": "eslint . --ext .js,.jsx,"
+		"lint": "eslint . --ext .js,.jsx,.tsx"
 	},
 	"eslintConfig": {
 		"extends": "react-app"

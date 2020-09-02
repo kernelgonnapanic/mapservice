@@ -8,9 +8,9 @@ import { SignIn } from '../../redux/actions/authActions'
 import { Link } from '@reach/router'
 
 const LoginForm: React.FC = () => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch()
 
-	const classes = useStyles();
+	const classes = useStyles()
 	const initialValues = {
 		login: '',
 		password: '',
@@ -25,12 +25,10 @@ const LoginForm: React.FC = () => {
 			.min(2, 'Nazwa jest zbyt krótka!')
 			.max(50, 'Nazwa jest zbyt długa!')
 			.required('Wpisz nazwę'),
-		password: Yup.string()
-			.required('Proszę wpisać hasło')
+		password: Yup.string().required('Proszę wpisać hasło'),
 	})
 
 	return (
-
 		<S.Wrapper>
 			<Formik
 				initialValues={initialValues}
@@ -55,7 +53,6 @@ const LoginForm: React.FC = () => {
 				<Link to="/auth/register">Zarejestruj się</Link>
 			</p>
 		</S.Wrapper>
-
 	)
 }
 
