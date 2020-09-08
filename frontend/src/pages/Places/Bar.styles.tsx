@@ -7,15 +7,15 @@ export const BarWrapper = styled.div`
 	height: ${(props) => props.theme.barHeight};
 `
 
-export const BarItem = styled.div<{color: string, color2: string}>`
+export const BarItem = styled.div<{ color: string, color2: string }>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin: 0 15px;
 	height: 50px;
-  background: linear-gradient(
-    -90deg, ${(props) => props.color}, ${props => props.color2}
-  );
+      background: linear-gradient(
+        -90deg, ${(props) => props.color}, ${props => props.color2}
+      );
 	width: 50px;
 	border-radius: 50%;
 `

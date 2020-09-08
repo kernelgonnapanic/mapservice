@@ -15,7 +15,12 @@ const Button: React.FC<Props> = ({
 	color = '',
 }) => {
 	return (
-		<S.Button onClick={onClick} type={type} style={{ backgroundColor: color }}>
+		<S.Button
+			onClick={onClick}
+			type={type}
+			backgroundColor={color}
+		>
+
 			{text}
 		</S.Button>
 	)

@@ -3,8 +3,8 @@
 exports[`render Button component 1`] = `
 <DocumentFragment>
   <button
-    class="sc-AxjAm eqawEJ"
-    type="submit"
+    class="sc-AxjAm bUZxZz"
+    type="button"
   >
     Hello!
   </button>

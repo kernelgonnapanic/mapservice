@@ -1,9 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { render, cleanup } from '@testing-library/react'
+import { render, cleanup, fireEvent } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 import Button from '../Button'
+import * as S from '../Button.styles'
 import { theme } from '../../../App'
 import { ThemeProvider } from 'styled-components'
+
 
 afterEach(cleanup)
 
@@ -25,4 +28,35 @@ test('insert text into the button', () => {
 		container,
 	)
 	expect(container.textContent).toMatch('testText')
+})
+
+test('button can have onClick as a prop', done => {
+	const handleClick = () => { done() }
+
+	const {getByText} = render(<ThemeProvider theme={theme}>
+		<Button text="testText" onClick={handleClick} />
+	</ThemeProvider>)
+
+	const node = getByText("testText")
+	fireEvent.click(node);
+})
+
+test('background color of a button can be changed by prop', () => {
+	const {getByText} = render(<ThemeProvider theme={theme}>
+		<Button text="testText" color="blue" />
+	</ThemeProvider>)
+
+	const node = getByText("testText")
+
+	expect(node).toHaveStyle(`background-color: blue`)
+})
+
+test('button attribute can be changed by prop', () => {
+	const {getByText} =  render(<ThemeProvider theme={theme}>
+		<Button text="testText" type="reset"/>
+	</ThemeProvider>)
+
+	const node = getByText("testText")
+
+	expect(node).toHaveAttribute("type", "reset")
 })

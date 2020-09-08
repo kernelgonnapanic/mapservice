@@ -6,12 +6,10 @@ import Snackbar from './Snackbar/Snackbar'
 import GoBack from './GoBack/GoBack'
 import PlaceNavItem from './PlaceNavItem/PlaceNavItem'
 
-export {PlaceNavItem}
-export {Input}
-export {Select}
-export {Button}
-export {FileUploadInput}
-export {Snackbar}
-export {GoBack}
-
-
+export { PlaceNavItem }
+export { Input }
+export { Select }
+export { Button }
+export { FileUploadInput }
+export { Snackbar }
+export { GoBack }

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Button = styled.button`
+export const Button = styled.button<{ backgroundColor: string }>`
 	cursor: pointer;
 	background-color: #ff4081;
 	color: #fff;
@@ -10,7 +10,8 @@ export const Button = styled.button`
 	text-transform: none;
 	font-weight: 600;
 	line-height: 42px;
-	// font-size: ${(props) => props.theme.fontSize.s};
+	font-size: ${(props) => props.theme.fontSize.s};
+	background-color: ${props => props.backgroundColor};
 	height: 45px;
 	padding: 0 22px;
 	border: none;
