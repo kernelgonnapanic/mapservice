@@ -19,7 +19,7 @@ const Main = () => {
 				alignItems: 'center',
 			}}
 		>
-			<div ref={ref => (testRef = ref)}>Turystyczne Siedlce</div>
+			<div ref={(ref) => (testRef = ref)}>Turystyczne Siedlce</div>
 		</div>
 	)
 }

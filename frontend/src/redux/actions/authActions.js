@@ -6,11 +6,12 @@ import { navigate } from '@reach/router'
 export const loadUser = () => (dispatch, getState) => {
 	dispatch({ type: TYPES.USER_LOADING })
 
-	api.get('/auth/user')
-		.then(res => {
+	api
+		.get('/auth/user')
+		.then((res) => {
 			dispatch({ type: TYPES.USER_LOADED, payload: res.data.data })
 		})
-		.catch(err => {
+		.catch((err) => {
 			// dispatch(getErrors(err.message, err.response.status))
 			dispatch({ type: TYPES.AUTH_ERROR })
 		})
@@ -24,7 +25,7 @@ export const LogoutUser = () => {
 	}
 }
 
-export const SignUpUser = values => async dispatch => {
+export const SignUpUser = (values) => async (dispatch) => {
 	try {
 		const { email, login, password } = values
 
@@ -48,7 +49,7 @@ export const SignUpUser = values => async dispatch => {
 	}
 }
 
-export const SignIn = values => async dispatch => {
+export const SignIn = (values) => async (dispatch) => {
 	try {
 		const { login, password } = values
 
@@ -63,11 +64,7 @@ export const SignIn = values => async dispatch => {
 		navigate(`/`)
 	} catch (err) {
 		dispatch(
-			getErrors(
-				err.response.data.error,
-				err.response.status,
-				'LOGIN_FAILED',
-			),
+			getErrors(err.response.data.error, err.response.status, 'LOGIN_FAILED'),
 		)
 		dispatch({ type: TYPES.LOGIN_FAILED })
 	}

@@ -4,22 +4,21 @@ import * as S from './PlacesList.styles'
 import PlacesListElement from './PlacesListElement'
 import usePlaces from '../../../assets/hooks/usePlaces'
 import PlacesSearch from './PlacesSearch'
-import { updateCoordinates } from "../../../redux/actions/globalActions";
-import { useDispatch } from "react-redux";
+import { updateCoordinates } from '../../../redux/actions/globalActions'
+import { useDispatch } from 'react-redux'
 
-interface Props
-	extends RouteComponentProps<{
-		places?: any[]
-		placesLoading?: boolean
-		id: string
-	}> { }
+type Props = RouteComponentProps<{
+	places?: any[]
+	placesLoading?: boolean
+	id: string
+}>
 
 interface Ref extends HTMLInputElement {
 	disconnect: () => void
 	observe(target: Element): void
 }
 
-const PlacesList: React.FC<Props> = ({ }) => {
+const PlacesList: React.FC<Props> = ({}) => {
 	interface PlaceValue {
 		title: string
 		_id: string
@@ -27,7 +26,7 @@ const PlacesList: React.FC<Props> = ({ }) => {
 		placeType: string
 	}
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch()
 
 	const [isSearch, setIsSearching] = useState(false)
 	const [pageNumber, setPageNumber] = useState(0)
@@ -39,7 +38,7 @@ const PlacesList: React.FC<Props> = ({ }) => {
 		isSearch,
 	)
 
-	let observer = useRef<Ref | null>(null)
+	const observer = useRef<Ref | null>(null)
 
 	const options = {
 		rootMargin: '-50px',

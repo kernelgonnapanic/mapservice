@@ -1,4 +1,4 @@
-import { Field, Formik,  } from 'formik'
+import { Field, Formik } from 'formik'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
@@ -51,21 +51,19 @@ const AddNewPlaceForm: React.FC = () => {
 
 	const onSubmit = async (
 		values: Record<string, any>,
-		{resetForm} : {resetForm: () => void}
+		{ resetForm }: { resetForm: () => void },
 	): Promise<void> => {
 		const response = dispatch(sendPlace(values))
 
 		//@ts-ignore
-		response.then(res => {
-
-			if(res.sentStatus === "ERROR") {
-
+		response.then((res) => {
+			if (res.sentStatus === 'ERROR') {
 				setNotification(res)
 				setSnackbarOpened(true)
 				return
 			}
 			//@ts-ignore
-			setNotification({ sentStatus: "SUCCESS", message: "CREATED" })
+			setNotification({ sentStatus: 'SUCCESS', message: 'CREATED' })
 			setSnackbarOpened(true)
 			resetForm()
 		})
@@ -143,7 +141,7 @@ const AddNewPlaceForm: React.FC = () => {
 										rows={4}
 										component={Input}
 									/>
-									<Button type="submit"/>
+									<Button type="submit" />
 								</S.Item>
 							</S.FieldsWrapper>
 							<AddNewPlaceMap setFieldValue={setFieldValue} />

@@ -12,22 +12,21 @@ const StyleDiv = styled.div`
 `
 
 const StyledImg = styled.div`
-       display: flex;
-       height: 100%;
-       justify-content: 'center';
-       align-items: 'center';
+	display: flex;
+	height: 100%;
+	justify-content: 'center';
+	align-items: 'center';
 `
 
 const Main = () => {
-
-
-    return <StyleDiv>
-        <div>
-        </div>
-        <StyledImg>
-            <img src={Cycle} alt="test" style={{ width: '85%' }} />
-        </StyledImg>
-    </StyleDiv>
+	return (
+		<StyleDiv>
+			<div></div>
+			<StyledImg>
+				<img src={Cycle} alt="test" style={{ width: '85%' }} />
+			</StyledImg>
+		</StyleDiv>
+	)
 }
 
 export default Main

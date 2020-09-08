@@ -18,7 +18,7 @@ const Input: React.FC<Props> = ({
 	rows = 0,
 	type = 'text',
 }) => {
-	const {touched, errors  } = form || {}
+	const { touched, errors } = form || {}
 	const { name } = field || {}
 
 	return (
