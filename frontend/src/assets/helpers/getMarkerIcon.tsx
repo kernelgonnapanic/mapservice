@@ -6,6 +6,9 @@ import {
 	pointerIcon,
 	restaurantIcon,
 	statueIcon,
+	clubIcon,
+	cafeIcon,
+	barIcon
 } from '../../pages/Places/map/PlacesMapIcons'
 
 export function getMarkerIcon(
@@ -14,20 +17,26 @@ export function getMarkerIcon(
 ) {
 	const getIcon = (placeType: string, className?: string | undefined) => {
 		switch (placeType) {
-			case 'kino':
-				return pointerIcon(className)
+			case 'cinema':
+				return pointerIcon(placeType, className)
 			case 'pizzeria':
-				return pizzaIcon(className)
+				return pizzaIcon(placeType, className)
 			case 'kebab':
-				return kebabIcon(className)
+				return kebabIcon(placeType, className)
 			case 'restaurant':
-				return restaurantIcon(className)
-			case 'pomnik':
-				return statueIcon(className)
-			case 'muzeum':
-				return museumIcon(className)
+				return restaurantIcon(placeType, className)
+			case 'statue':
+				return statueIcon(placeType, className)
+			case 'museum':
+				return museumIcon(placeType, className)
+			case 'cafe':
+				return cafeIcon(placeType, className)
+			case 'club':
+				return clubIcon(placeType, className)
+			case 'bar':
+				return barIcon(placeType, className)
 			default:
-				return cinemaIcon(className)
+				return cinemaIcon(placeType, className)
 		}
 	}
 

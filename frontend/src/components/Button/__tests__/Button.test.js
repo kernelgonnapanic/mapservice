@@ -7,7 +7,6 @@ import * as S from '../Button.styles'
 import { theme } from '../../../App'
 import { ThemeProvider } from 'styled-components'
 
-
 afterEach(cleanup)
 
 test('render Button component', async () => {
@@ -30,33 +29,41 @@ test('insert text into the button', () => {
 	expect(container.textContent).toMatch('testText')
 })
 
-test('button can have onClick as a prop', done => {
-	const handleClick = () => { done() }
+test('button can have onClick as a prop', (done) => {
+	const handleClick = () => {
+		done()
+	}
 
-	const {getByText} = render(<ThemeProvider theme={theme}>
-		<Button text="testText" onClick={handleClick} />
-	</ThemeProvider>)
+	const { getByText } = render(
+		<ThemeProvider theme={theme}>
+			<Button text="testText" onClick={handleClick} />
+		</ThemeProvider>,
+	)
 
-	const node = getByText("testText")
-	fireEvent.click(node);
+	const node = getByText('testText')
+	fireEvent.click(node)
 })
 
 test('background color of a button can be changed by prop', () => {
-	const {getByText} = render(<ThemeProvider theme={theme}>
-		<Button text="testText" color="blue" />
-	</ThemeProvider>)
+	const { getByText } = render(
+		<ThemeProvider theme={theme}>
+			<Button text="testText" color="blue" />
+		</ThemeProvider>,
+	)
 
-	const node = getByText("testText")
+	const node = getByText('testText')
 
 	expect(node).toHaveStyle(`background-color: blue`)
 })
 
 test('button attribute can be changed by prop', () => {
-	const {getByText} =  render(<ThemeProvider theme={theme}>
-		<Button text="testText" type="reset"/>
-	</ThemeProvider>)
+	const { getByText } = render(
+		<ThemeProvider theme={theme}>
+			<Button text="testText" type="reset" />
+		</ThemeProvider>,
+	)
 
-	const node = getByText("testText")
+	const node = getByText('testText')
 
-	expect(node).toHaveAttribute("type", "reset")
+	expect(node).toHaveAttribute('type', 'reset')
 })

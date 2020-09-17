@@ -1,38 +1,89 @@
-import FoodSvg from '../../../assets/mapicons/food.svg'
 import CinemaSvg from '../../../assets/mapicons/cinema.svg'
 import KebabSvg from '../../../assets/mapicons/kebab.svg'
 import MuseumSvg from '../../../assets/mapicons/museum.svg'
-import PizzaSvg from '../../../assets/mapicons/pizza-slice.svg'
 import RestaurantSvg from '../../../assets/mapicons/restaurant.svg'
 import StatueSvg from '../../../assets/mapicons/statue.svg'
+import CafeSvg from '../../../assets/mapicons/cafe.svg'
+import ClubSvg from '../../../assets/mapicons/club.svg'
+import BarSvg from '../../../assets/mapicons/bar.svg'
+
+import {iconGradientColors} from 'assets/helpers/iconGradientColors'
 
 import L from 'leaflet'
 
 const generateIcon = (svg: any, className?: string | undefined): any => {
-	return {
-		iconUrl: svg,
-		iconRetinaUrl: svg,
-		iconAnchor: [5, 55],
-		popupAnchor: [10, -44],
-		iconSize: [35, 55],
-		shadowUrl: '../assets/marker-shadow.png',
-		shadowSize: [68, 95],
-		shadowAnchor: [20, 92],
-		className: className,
-	}
+    return {
+        iconUrl: svg,
+        iconRetinaUrl: svg,
+        iconAnchor: [5, 55],
+        popupAnchor: [10, -44],
+        iconSize: [35, 55],
+        shadowUrl: '../assets/marker-shadow.png',
+        shadowSize: [68, 95],
+        shadowAnchor: [20, 92],
+        className: className,
+    }
 }
 
-export const pointerIcon = (className?: string | undefined) =>
-	new L.Icon(generateIcon(FoodSvg, className))
-export const cinemaIcon = (className?: string | undefined) =>
-	new L.Icon(generateIcon(CinemaSvg, className))
-export const kebabIcon = (className?: string | undefined) =>
-	new L.Icon(generateIcon(KebabSvg, className))
-export const museumIcon = (className?: string | undefined) =>
-	new L.Icon(generateIcon(MuseumSvg, className))
-export const pizzaIcon = (className?: string | undefined) =>
-	new L.Icon(generateIcon(PizzaSvg, className))
-export const restaurantIcon = (className?: string | undefined) =>
-	new L.Icon(generateIcon(RestaurantSvg, className))
-export const statueIcon = (className?: string | undefined) =>
-	new L.Icon(generateIcon(StatueSvg, className))
+const generateStyle = (placeType: string): string => {
+
+    // @ts-ignore
+    const {color, color2} = iconGradientColors[placeType] || {color: 'red', color2: 'green'}
+
+    return `
+    display: flex;
+    justify-content: center;
+    align-items; center;
+    margin: 0 5px;
+	width: 40px;
+	height: 40px;
+    background: linear-gradient(
+        -90deg, ${color}, ${color2}
+    );
+	border-radius: 50%;
+	svg {
+	    max-width: 20px;
+	}`
+}
+
+const generateDivIcon = (svg: any, placeType: string, className?: string | undefined,): any => {
+
+    return {
+        html: `<div style="${generateStyle(placeType)}">
+          <img src=${svg} alt=${placeType} />
+          </div>`,
+        iconAnchor: [12, 32],
+        popupAnchor: [0, -28],
+        className: className
+    }
+}
+
+export const pointerIcon = (placeType: string, className?: string | undefined,) =>
+    new L.DivIcon(generateDivIcon(CinemaSvg, placeType, className))
+
+export const cinemaIcon = (placeType: string, className?: string | undefined) =>
+    new L.DivIcon(generateDivIcon(CinemaSvg, placeType, className))
+
+export const kebabIcon = (placeType: string, className?: string | undefined) =>
+    new L.DivIcon(generateDivIcon(KebabSvg, placeType, className))
+
+export const museumIcon = (placeType: string, className?: string | undefined) =>
+    new L.DivIcon(generateDivIcon(MuseumSvg, placeType, className))
+
+export const pizzaIcon = (placeType: string, className?: string | undefined) =>
+    new L.DivIcon(generateDivIcon(MuseumSvg, placeType, className))
+
+export const restaurantIcon = (placeType: string, className?: string | undefined) =>
+    new L.DivIcon(generateDivIcon(RestaurantSvg, placeType, className))
+
+export const statueIcon = (placeType: string, className?: string | undefined) =>
+    new L.DivIcon(generateDivIcon(StatueSvg, placeType, className))
+
+export const clubIcon = (placeType: string, className?: string | undefined) =>
+    new L.DivIcon(generateDivIcon(ClubSvg, placeType, className))
+
+export const cafeIcon = (placeType: string, className?: string | undefined) =>
+    new L.DivIcon(generateDivIcon(CafeSvg, placeType, className))
+
+export const barIcon = (placeType: string, className?: string | undefined) =>
+    new L.DivIcon(generateDivIcon(BarSvg, placeType, className))
