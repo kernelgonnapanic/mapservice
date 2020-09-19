@@ -86,8 +86,8 @@ const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 			{!loadingSinglePlace && placeData && (
 				<>
 					<S.Wrapper>
-						<div>
-							<S.Top>
+						<div >
+							<S.Top className={`background-${placeData.placeType}`}>
 								<S.Image
 									src={
 										placeData.placeImage

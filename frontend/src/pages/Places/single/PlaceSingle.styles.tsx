@@ -3,7 +3,7 @@ import { Link } from '@reach/router'
 
 export const Wrapper = styled.div`
 	margin: 25px 50px;
-	padding: 0 50px;
+	padding: 0;
 	background-color: ${({ theme }) => theme.colors.white};
 	border-radius: ${({ theme }) => theme.borderRadius.small + 'px'};
 	box-shadow: ${({ theme }) => theme.boxshadow};
@@ -22,6 +22,7 @@ export const Top = styled.div`
 
 export const Bottom = styled.div`
 	display: flex;
+	padding: 0 50px;
 	flex-direction: column;
 	padding-bottom: 50px;
 `

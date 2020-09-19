@@ -32,8 +32,7 @@ const generateStyle = (placeType: string): string => {
 	`
 }
 
-const generateDivIcon = (svg: any, placeType: string, className?: string | undefined,): any => {
-
+const generateDivIcon = (svg: string, placeType: string, className?: string | undefined,): object => {
     return {
         html: `<div class="${className}" style="${generateStyle(placeType)}">
           <img src=${svg} alt=${placeType} />
