@@ -11,29 +11,17 @@ import {iconGradientColors} from 'assets/helpers/iconGradientColors'
 
 import L from 'leaflet'
 
-const generateIcon = (svg: any, className?: string | undefined): any => {
-    return {
-        iconUrl: svg,
-        iconRetinaUrl: svg,
-        iconAnchor: [5, 55],
-        popupAnchor: [10, -44],
-        iconSize: [35, 55],
-        shadowUrl: '../assets/marker-shadow.png',
-        shadowSize: [68, 95],
-        shadowAnchor: [20, 92],
-        className: className,
-    }
-}
-
 const generateStyle = (placeType: string): string => {
 
     // @ts-ignore
     const {color, color2} = iconGradientColors[placeType] || {color: 'red', color2: 'green'}
 
+    //Animation styles for active marker are in App.js
     return `
     display: flex;
+    z-index: 1100;
     justify-content: center;
-    align-items; center;
+    align-items: center;
     margin: 0 5px;
 	width: 40px;
 	height: 40px;
@@ -41,15 +29,13 @@ const generateStyle = (placeType: string): string => {
         -90deg, ${color}, ${color2}
     );
 	border-radius: 50%;
-	svg {
-	    max-width: 20px;
-	}`
+	`
 }
 
 const generateDivIcon = (svg: any, placeType: string, className?: string | undefined,): any => {
 
     return {
-        html: `<div style="${generateStyle(placeType)}">
+        html: `<div class="${className}" style="${generateStyle(placeType)}">
           <img src=${svg} alt=${placeType} />
           </div>`,
         iconAnchor: [12, 32],
