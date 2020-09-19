@@ -1,15 +1,12 @@
-import { Link, useParams } from '@reach/router'
-import React, { useEffect } from 'react'
-import { IconButton } from '@material-ui/core'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import {
-	getSinglePlace,
-	clearSingePlace,
-} from '../../../redux/actions/placesActions'
+import React, {useEffect} from 'react'
+import {IconButton} from '@material-ui/core'
+import {shallowEqual, useDispatch, useSelector} from 'react-redux'
+import {clearSingePlace, getSinglePlace,} from 'redux/actions/placesActions'
 import * as S from './PlaceSingle.styles'
-import DefaultPlaceImage from '../../../assets/images/default-place-image.jpg'
-import { ArrowLeft } from 'react-feather'
-import { updateCoordinates } from '../../../redux/actions/globalActions'
+import DefaultPlaceImage from 'assets/images/default-place-image.jpg'
+import {ArrowLeft, Home, Phone} from 'react-feather'
+import {updateCoordinates} from 'redux/actions/globalActions'
+import {IconInfo} from 'components'
 
 interface Props {
 	placeId?: string
@@ -75,6 +72,8 @@ const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 		}
 	}, [placeData])
 
+	const { title, address, phoneNumber, description, placeType, placeImage } = placeData || {}
+
 	return (
 		<>
 			<S.NavigateBack to="/places/list">
@@ -87,35 +86,34 @@ const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 				<>
 					<S.Wrapper>
 						<div >
-							<S.Top className={`background-${placeData.placeType}`}>
+							<S.Top className={`background-${placeType}`}>
 								<S.Image
 									src={
-										placeData.placeImage
-											? placeData.placeImage
+										placeImage
+											? placeImage
 											: DefaultPlaceImage
 									}
 								/>
+								<S.HeaderTitle>
+									{title}
+								</S.HeaderTitle>
 							</S.Top>
 							<S.Bottom>
-								<S.Element>{placeData.title}</S.Element>
-								<S.Element>
-									{placeData.address?.street}
-									<span>{placeData.address?.number}</span>
-								</S.Element>
-								<S.Element>{placeData.phoneNumber}</S.Element>
-								{placeData.coordinates && (
-									<>
-										<S.Element>{placeData.coordinates[0].lat}</S.Element>
-										<S.Element>{placeData.coordinates[0].long}</S.Element>
-									</>
-								)}
+								<IconInfo
+									icon={<Home width="25" height="20"/>}
+									text={`${address?.street} ${address?.number}` }
+								/>
+								<IconInfo
+									icon={<Phone width="25" height="20"/>}
+									text={phoneNumber}
+								/>
 							</S.Bottom>
 						</div>
 					</S.Wrapper>
 					<S.Wrapper>
 						<div style={{ padding: '25px 0 0 0' }}>Opis</div>
 						<div style={{ padding: '25px 0 50px 0' }}>
-							{placeData.description}
+							{description}
 						</div>
 					</S.Wrapper>
 				</>

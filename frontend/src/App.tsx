@@ -10,6 +10,7 @@ export const theme = {
         white: '#FFFFFF',
         black: '#000000',
         gray: '#6B6B6B',
+        lightGray: '#C4C4C4',
         purple: 'rgb(209, 196, 233)',
         green: '#22bfa2',
         orange: '#e65336',

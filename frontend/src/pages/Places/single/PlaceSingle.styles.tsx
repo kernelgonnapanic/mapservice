@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
 	background-color: ${({ theme }) => theme.colors.white};
 	border-radius: ${({ theme }) => theme.borderRadius.small + 'px'};
 	box-shadow: ${({ theme }) => theme.boxshadow};
+	overflow: hidden;
 `
 
 export const Image = styled.img`
@@ -16,19 +17,23 @@ export const Image = styled.img`
 `
 
 export const Top = styled.div`
-	padding: 25px 0 75px 0;
-	border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 170px;
+    padding: 0 100px 0 50px;
+	
+
+`
+
+export const HeaderTitle = styled.h2`
+    color: ${({ theme }) => theme.colors.white};
 `
 
 export const Bottom = styled.div`
 	display: flex;
-	padding: 0 50px;
+	padding: 25px 50px;
 	flex-direction: column;
-	padding-bottom: 50px;
-`
-
-export const Element = styled.span`
-	padding: 10px 0;
 `
 
 export const NavigateBack = styled(Link)`
