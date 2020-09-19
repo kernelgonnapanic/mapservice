@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {cleanup, fireEvent, render} from '@testing-library/react'
+import { cleanup, fireEvent, render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import Button from '../Button'
-import {theme} from '../../../App'
-import {ThemeProvider} from 'styled-components'
+import { theme } from '../../../App'
+import { ThemeProvider } from 'styled-components'
 
 afterEach(cleanup)
 

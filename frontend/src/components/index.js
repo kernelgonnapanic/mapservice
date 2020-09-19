@@ -5,7 +5,7 @@ import FileUploadInput from './FileUploadInput/FileUploadInput'
 import Snackbar from './Snackbar/Snackbar'
 import GoBack from './GoBack/GoBack'
 import PlaceNavItem from './PlaceNavItem/PlaceNavItem'
-import IconInfo from "./IconInfo/IconInfo";
+import IconInfo from './IconInfo/IconInfo'
 
 export { PlaceNavItem }
 export { Input }
@@ -14,4 +14,4 @@ export { Button }
 export { FileUploadInput }
 export { Snackbar }
 export { GoBack }
-export {IconInfo}
+export { IconInfo }

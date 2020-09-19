@@ -11,7 +11,7 @@ export const Button = styled.button<{ backgroundColor: string }>`
 	font-weight: 600;
 	line-height: 42px;
 	font-size: ${(props) => props.theme.fontSize.s};
-	background-color: ${props => props.backgroundColor};
+	background-color: ${(props) => props.backgroundColor};
 	height: 45px;
 	padding: 0 22px;
 	border: none;

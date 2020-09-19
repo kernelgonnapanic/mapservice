@@ -8,8 +8,10 @@ interface Props {
 }
 
 const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
-	const [uploadedFile, setUploadedFile] = useState<Object>('')
+	const [uploadedFile, setUploadedFile] = useState<any>({})
 	const fileInputRef = useRef<HTMLInputElement>(null!)
+
+	const isFileNotEmpty = typeof uploadedFile.name == 'string'
 
 	const onChangeHandler = (e: React.FormEvent<HTMLInputElement>): void => {
 		if (e.currentTarget.files && e.currentTarget.files.length) {
@@ -44,7 +46,8 @@ const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
 					className="form-control"
 					ref={fileInputRef}
 				/>
-				{uploadedFile && (
+				{/* //ts-ignore */}
+				{isFileNotEmpty ? (
 					<>
 						<S.Image src={URL.createObjectURL(uploadedFile)} />
 						//@ts-ignore
@@ -54,7 +57,7 @@ const FileUploadInput: React.FC<Props> = ({ setFieldValue }) => {
 							Usuń
 						</S.Button>
 					</>
-				)}
+				) : null}
 			</S.Label>
 		</>
 	)

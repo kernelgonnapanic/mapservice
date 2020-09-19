@@ -17,17 +17,15 @@ export const Image = styled.img`
 `
 
 export const Top = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 170px;
-    padding: 0 100px 0 50px;
-	
-
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 170px;
+	padding: 0 100px 0 50px;
 `
 
 export const HeaderTitle = styled.h2`
-    color: ${({ theme }) => theme.colors.white};
+	color: ${({ theme }) => theme.colors.white};
 `
 
 export const Bottom = styled.div`

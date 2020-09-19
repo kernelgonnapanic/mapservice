@@ -41,8 +41,8 @@ export const placesReducer = (state = initialState, action) => {
 			}
 		}
 		case TYPES.GET_PLACES_SUCCESS:
-			let places = storeById(action.payload.data.data)
-			let placesIds = storeIds(action.payload.data.data)
+			const places = storeById(action.payload.data.data)
+			const placesIds = storeIds(action.payload.data.data)
 			const {
 				currentPage,
 				numberOfPages,
@@ -108,7 +108,11 @@ export const placesReducer = (state = initialState, action) => {
 				firstPage: true,
 			}
 		case TYPES.GET_SINGLE_PLACE:
-			return { ...state, loadingSinglePlace: true, errorsSinglePlace: null }
+			return {
+				...state,
+				loadingSinglePlace: true,
+				errorsSinglePlace: null,
+			}
 		case TYPES.GET_SINGLE_PLACE_SUCCESS:
 			return {
 				...state,
@@ -156,7 +160,10 @@ export const placesReducer = (state = initialState, action) => {
 		case TYPES.SEND_PLACES:
 			return { ...state, payload: { ...action.payload } }
 		case TYPES.GET_PLACETYPE_OPTIONS:
-			return { ...state, placeTypeOptions: { ...action.payload.data.data } }
+			return {
+				...state,
+				placeTypeOptions: { ...action.payload.data.data },
+			}
 		default:
 			return state
 	}

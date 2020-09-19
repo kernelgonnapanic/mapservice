@@ -6,8 +6,8 @@ import { ReactComponent as PizzaSvg } from '../mapicons/pizza-slice.svg'
 import { ReactComponent as RestaurantSvg } from '../mapicons/restaurant.svg'
 import { ReactComponent as StatueSvg } from '../mapicons/statue.svg'
 import { ReactComponent as ClubSvg } from '../mapicons/club.svg'
-import {ReactComponent as BarSvg} from "../mapicons/bar.svg";
-import {ReactComponent as CafeSvg} from "../mapicons/cafe.svg";
+import { ReactComponent as BarSvg } from '../mapicons/bar.svg'
+import { ReactComponent as CafeSvg } from '../mapicons/cafe.svg'
 
 export const getMarkerSvg = (placeType: string) => {
 	switch (placeType) {

@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react'
-import {IconButton} from '@material-ui/core'
-import {shallowEqual, useDispatch, useSelector} from 'react-redux'
-import {clearSingePlace, getSinglePlace,} from 'redux/actions/placesActions'
+import React, { useEffect } from 'react'
+import { IconButton } from '@material-ui/core'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { clearSingePlace, getSinglePlace } from 'redux/actions/placesActions'
 import * as S from './PlaceSingle.styles'
 import DefaultPlaceImage from 'assets/images/default-place-image.jpg'
-import {ArrowLeft, Home, Phone} from 'react-feather'
-import {updateCoordinates} from 'redux/actions/globalActions'
-import {IconInfo} from 'components'
+import { ArrowLeft, Home, Phone } from 'react-feather'
+import { updateCoordinates } from 'redux/actions/globalActions'
+import { IconInfo } from 'components'
 
 interface Props {
 	placeId?: string
@@ -72,7 +72,8 @@ const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 		}
 	}, [placeData])
 
-	const { title, address, phoneNumber, description, placeType, placeImage } = placeData || {}
+	const { title, address, phoneNumber, description, placeType, placeImage } =
+		placeData || {}
 
 	return (
 		<>
@@ -85,26 +86,18 @@ const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 			{!loadingSinglePlace && placeData && (
 				<>
 					<S.Wrapper>
-						<div >
+						<div>
 							<S.Top className={`background-${placeType}`}>
-								<S.Image
-									src={
-										placeImage
-											? placeImage
-											: DefaultPlaceImage
-									}
-								/>
-								<S.HeaderTitle>
-									{title}
-								</S.HeaderTitle>
+								<S.Image src={placeImage ? placeImage : DefaultPlaceImage} />
+								<S.HeaderTitle>{title}</S.HeaderTitle>
 							</S.Top>
 							<S.Bottom>
 								<IconInfo
-									icon={<Home width="25" height="20"/>}
-									text={`${address?.street} ${address?.number}` }
+									icon={<Home width="25" height="20" />}
+									text={`${address?.street} ${address?.number}`}
 								/>
 								<IconInfo
-									icon={<Phone width="25" height="20"/>}
+									icon={<Phone width="25" height="20" />}
 									text={phoneNumber}
 								/>
 							</S.Bottom>
@@ -112,9 +105,7 @@ const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 					</S.Wrapper>
 					<S.Wrapper>
 						<div style={{ padding: '25px 0 0 0' }}>Opis</div>
-						<div style={{ padding: '25px 0 50px 0' }}>
-							{description}
-						</div>
+						<div style={{ padding: '25px 0 50px 0' }}>{description}</div>
 					</S.Wrapper>
 				</>
 			)}

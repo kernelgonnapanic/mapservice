@@ -8,7 +8,7 @@ import {
 	statueIcon,
 	clubIcon,
 	cafeIcon,
-	barIcon
+	barIcon,
 } from '../../pages/Places/map/PlacesMapIcons'
 
 export function getMarkerIcon(

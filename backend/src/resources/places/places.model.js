@@ -31,9 +31,12 @@ const placeSchema = new mongoose.Schema(
 				'pizzeria',
 				'kebab',
 				'restaurant',
-				'kino',
-				'pomnik',
-				'muzuem',
+				'cinema',
+				'statue',
+				'museum',
+				'cafe',
+				'club',
+				'bar',
 				'no-category',
 			],
 			default: 'no-category',
@@ -41,6 +44,8 @@ const placeSchema = new mongoose.Schema(
 		placeImage: String,
 		phoneNumber: Number,
 		description: String,
+		workHours: {open: Number, close: Number},
+		website: String,
 		coordinates: [
 			{
 				lat: {

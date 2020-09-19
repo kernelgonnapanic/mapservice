@@ -54,7 +54,10 @@ export const getSinglePlace = (id) => async (dispatch) => {
 	try {
 		const response = await getSinglePlaceById(id)
 
-		const action = { type: TYPES.GET_SINGLE_PLACE_SUCCESS, payload: response }
+		const action = {
+			type: TYPES.GET_SINGLE_PLACE_SUCCESS,
+			payload: response,
+		}
 		dispatch(action)
 	} catch (err) {
 		const action = { type: TYPES.GET_SINGLE_PLACE_FAIL, payload: err }
