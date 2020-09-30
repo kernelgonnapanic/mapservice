@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import * as S from './styles/LoginScreen.styles'

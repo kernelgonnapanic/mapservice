@@ -40,7 +40,7 @@ export const placesReducer = (state = initialState, action) => {
 				firstPage: false,
 			}
 		}
-		case TYPES.GET_PLACES_SUCCESS:
+		case TYPES.GET_PLACES_SUCCESS: {
 			const places = storeById(action.payload.data.data)
 			const placesIds = storeIds(action.payload.data.data)
 			const {
@@ -92,40 +92,48 @@ export const placesReducer = (state = initialState, action) => {
 				loadingPlaces: false,
 				byPlaceType: false,
 			}
-
-		case TYPES.GET_PLACES_FAIL:
+		}
+		case TYPES.GET_PLACES_FAIL: {
 			return {
 				...state,
 				loadingPlaces: false,
 				hasMoreData: false,
 				errorPlaces: { ...action.payload },
 			}
-		case TYPES.UPDATE_PLACE_TYPE:
+		}
+		case TYPES.UPDATE_PLACE_TYPE: {
 			return {
 				...state,
 				placeType: action.payload,
 				hasMoreData: true,
 				firstPage: true,
 			}
-		case TYPES.GET_SINGLE_PLACE:
+		}
+		case TYPES.GET_SINGLE_PLACE: {
 			return {
 				...state,
 				loadingSinglePlace: true,
 				errorsSinglePlace: null,
 			}
-		case TYPES.GET_SINGLE_PLACE_SUCCESS:
+		}
+
+		case TYPES.GET_SINGLE_PLACE_SUCCESS: {
 			return {
 				...state,
 				place: action.payload.data.data,
 				loadingSinglePlace: false,
 				errorsSinglePlace: null,
 			}
-		case TYPES.GET_SINGLE_PLACE_FAIL:
+		}
+
+		case TYPES.GET_SINGLE_PLACE_FAIL: {
 			return {
 				...state,
 				loadingSinglePlace: false,
 				errorsSinglePlace: { ...action.payload },
 			}
+		}
+
 		case TYPES.CLEAR_SINGLEPLACE: {
 			return {
 				...state,

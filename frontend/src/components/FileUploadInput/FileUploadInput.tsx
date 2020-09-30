@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Trash, UploadCloud } from 'react-feather'
-import { truncString } from '../../assets/helpers/index'
+import { truncString } from 'assets/helpers/index'
 import * as S from './FileUploadInput.styles'
 
 interface Props {

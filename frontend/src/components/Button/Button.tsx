@@ -10,7 +10,7 @@ interface Props {
 
 const Button: React.FC<Props> = ({
 	text = 'Wyślij',
-	onClick = () => {},
+	onClick = () => null,
 	type = 'button',
 	color = '',
 }) => {

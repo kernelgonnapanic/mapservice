@@ -3,13 +3,13 @@
 exports[`render IconInfo component 1`] = `
 <DocumentFragment>
   <div
-    class="sc-fzplWN bPfgVK"
+    class="sc-fzplWN cbZktL"
   >
     <div
       class="sc-fzpans ePyOMY"
     />
     <span
-      class="sc-fzoLsD jzUoZd"
+      class="sc-fzoLsD cyasPW"
     >
       Hello!
     </span>

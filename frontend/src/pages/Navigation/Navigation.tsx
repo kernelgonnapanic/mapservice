@@ -1,4 +1,3 @@
-import { AppBar } from '@material-ui/core'
 import React, { FunctionComponent, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import AddNewPlaceForm from '../AddNewPlace/AddNewPlaceForm'

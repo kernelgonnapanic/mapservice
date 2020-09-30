@@ -19,15 +19,13 @@ interface Ref extends HTMLInputElement {
 	observe(target: Element): void
 }
 
-const PlacesList: React.FC<Props> = ({}) => {
+const PlacesList: React.FC<Props> = () => {
 	interface PlaceValue {
 		title: string
 		_id: string
 		placeImage: string
 		placeType: string
 	}
-
-	const dispatch = useDispatch()
 
 	const [isSearch, setIsSearching] = useState(false)
 	const [pageNumber, setPageNumber] = useState(0)

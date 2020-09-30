@@ -1,4 +1,3 @@
-import FoodSvg from 'mapicons/food.svg'
 import { ReactComponent as CinemaSvg } from '../mapicons/cinema.svg'
 import { ReactComponent as KebabSvg } from '../mapicons/kebab.svg'
 import { ReactComponent as MuseumSvg } from '../mapicons/museum.svg'
@@ -9,7 +8,7 @@ import { ReactComponent as ClubSvg } from '../mapicons/club.svg'
 import { ReactComponent as BarSvg } from '../mapicons/bar.svg'
 import { ReactComponent as CafeSvg } from '../mapicons/cafe.svg'
 
-export const getMarkerSvg = (placeType: string) => {
+export const getMarkerSvg = (placeType: string): any => {
 	switch (placeType) {
 		case 'cinema':
 			return CinemaSvg

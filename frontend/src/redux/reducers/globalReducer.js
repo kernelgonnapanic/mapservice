@@ -2,7 +2,7 @@ import TYPES from '../types'
 import {
 	defaultCoordinates,
 	defaultZoom,
-} from '../../assets/globalSettings/globalSettings'
+} from 'assets/globalSettings/globalSettings'
 
 const initialState = {
 	coordinates: defaultCoordinates,
@@ -11,7 +11,7 @@ const initialState = {
 
 export const globalReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case TYPES.UPDATE_COORDINATES:
+		case TYPES.UPDATE_COORDINATES: {
 			const { lat, long, zoom } = action.payload
 
 			return {
@@ -22,6 +22,7 @@ export const globalReducer = (state = initialState, action) => {
 				},
 				zoom: zoom,
 			}
+		}
 		default:
 			return state
 	}

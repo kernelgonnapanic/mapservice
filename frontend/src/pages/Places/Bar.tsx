@@ -46,6 +46,7 @@ const Bar: React.FC = React.memo(() => {
 
 					return (
 						<PlaceNavItem
+							key={category}
 							icon={<Icon width={35} height={35} />}
 							category={category}
 							handleClick={handleClick}

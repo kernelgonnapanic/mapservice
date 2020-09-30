@@ -17,12 +17,9 @@ interface Props extends FieldProps {
 const customSelect: React.FC<Props> = ({
 	field,
 	form: { touched, errors },
-	options
+	options,
 }) => {
 	const { name } = field
-
-
-
 
 	return (
 		<>
@@ -34,15 +31,12 @@ const customSelect: React.FC<Props> = ({
 				<InputLabel htmlFor="age-native-simple">Typ</InputLabel>
 				<Select native {...field}>
 					<option value=""></option>
-					{
-						options && options.map((optionName: string) => <option value={optionName}>{optionName}</option>)
-					}
+					{options &&
+						options.map((optionName: string) => (
+							<option value={optionName}>{optionName}</option>
+						))}
 				</Select>
-				{touched[name] &&
-					<FormHelperText>
-						{errors[name]}
-					</FormHelperText>
-				}
+				{touched[name] && <FormHelperText>{errors[name]}</FormHelperText>}
 			</FormControl>
 		</>
 	)

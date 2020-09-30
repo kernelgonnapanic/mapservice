@@ -23,6 +23,10 @@
 			"allowTypedFunctionExpressions": true
 		}
 	],
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx"]
+		}
+	],
 	"include": ["src"]
-
 }

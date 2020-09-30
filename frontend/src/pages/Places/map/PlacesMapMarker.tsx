@@ -1,7 +1,7 @@
 import { navigate } from '@reach/router'
 import * as Leaflet from 'leaflet'
 import React from 'react'
-import { Marker, Popup, useLeaflet } from 'react-leaflet'
+import { Marker, Popup } from 'react-leaflet'
 import { useDispatch } from 'react-redux'
 import { getMarkerIcon } from '../../../assets/helpers/getMarkerIcon'
 import { updateCoordinates } from '../../../redux/actions/globalActions'

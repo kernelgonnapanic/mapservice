@@ -1,46 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render Input Error corretly component 1`] = `
-<DocumentFragment>
-  <div
-    class="MuiFormControl-root MuiTextField-root sc-AxjAm iNvgAx"
-  >
-    <label
-      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined"
-      data-shrink="false"
-    >
-      test
-    </label>
-    <div
-      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
-    >
-      <input
-        aria-invalid="false"
-        class="MuiInputBase-input MuiOutlinedInput-input"
-        type="text"
-        value=""
-      />
-      <fieldset
-        aria-hidden="true"
-        class="PrivateNotchedOutline-root-121 MuiOutlinedInput-notchedOutline"
-      >
-        <legend
-          class="PrivateNotchedOutline-legendLabelled-123"
-        >
-          <span>
-            test
-          </span>
-        </legend>
-      </fieldset>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
 exports[`render Input component 1`] = `
 <DocumentFragment>
   <div
-    class="MuiFormControl-root MuiTextField-root sc-AxjAm iNvgAx"
+    class="MuiFormControl-root MuiTextField-root sc-AxjAm fEWskf"
   >
     <label
       class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined"
