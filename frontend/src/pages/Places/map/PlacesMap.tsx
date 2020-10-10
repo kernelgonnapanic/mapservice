@@ -26,12 +26,14 @@ class PlacesMap extends React.PureComponent<Props> {
 		prevState: Readonly<{}>,
 		snapshot?: any,
 	) {
-		if (prevProps.coordinates !== this.props.coordinates) {
-			this.setState({
-				center: this.props.coordinates,
-				zoom: defaultZoom,
-			})
-		}
+		setTimeout(() => {
+			if (prevProps.coordinates !== this.props.coordinates) {
+				this.setState({
+					center: this.props.coordinates,
+					zoom: defaultZoom,
+				})
+			}
+		}, 1)
 	}
 
 	public render(): JSX.Element {

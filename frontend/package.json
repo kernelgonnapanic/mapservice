@@ -33,7 +33,7 @@
 		"check-format": "prettier --ignore-path .gitignore --list-different --write \"src/**/*.{js,jsx,tsx}\"",
 		"lint": "eslint .  --ext .js,.jsx,.tsx",
 		"lint-fix": "eslint . --fix --ext  .js,.jsx,.tsx",
-		"validate": "npm run check-format  && npm run build"
+		"validate": "npm run check-format && npm run build"
 	},
 	"eslintConfig": {
 		"extends": "react-app"

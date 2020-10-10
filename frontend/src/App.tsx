@@ -55,17 +55,14 @@ const GlobalStyle = createGlobalStyle`
   }
   
   @keyframes changewidth {
-     
-      
-   
-        from {
+   from {
         top: 0;
         }
     to {
         top: -15px;
     }
-      
-  
+
+
     }
 
     .active-marker {
@@ -74,8 +71,8 @@ const GlobalStyle = createGlobalStyle`
     animation-name: changewidth;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-   
-}`
+   }
+`
 
 const App: React.FC = () => {
 	return (

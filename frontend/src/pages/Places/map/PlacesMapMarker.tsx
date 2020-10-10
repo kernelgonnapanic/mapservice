@@ -51,17 +51,6 @@ const PlacesMapMarker: React.FC<Props> = React.memo(
 			e.target.closePopup()
 
 		const redirect = (): void => {
-			const { lat, long } = coordinates[0]
-
-			const updatedProperties = {
-				lat,
-				long,
-				zoom: 15,
-			}
-
-			dispatch(updateCoordinates(updatedProperties))
-			dispatch(getSinglePlace(_id))
-
 			navigate(`/places/list/${_id}`)
 		}
 
