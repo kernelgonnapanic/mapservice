@@ -4,6 +4,6 @@ export const FlagButton = styled.button`
 	border: none;
 	outline: none;
 	text-decoration: none;
-	margin-right: 25px;
+	margin-left: 10px;
 	background: ${(props) => props.theme.colors.white};
 `

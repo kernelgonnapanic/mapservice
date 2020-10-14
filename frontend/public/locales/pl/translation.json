@@ -4,5 +4,18 @@
     "addPlace": "Dodaj miejsce",
     "main": "Strona główna",
     "geoportal": "Turystyczny Geoportal",
-    "friendlyCity": "Miasto przyjazne"
+    "friendlyCity": "Miasto przyjazne",
+    "description": "Opis",
+    "back": "Powrót",
+    "placeCategories": {
+        "statue": "Pomniki",
+        "cinema": "Kina",
+        "pizzeria": "Pizzerie",
+        "kebab": "Kebaby",
+        "restaurant":  "Restauracje",
+        "museum":  "Muzea",
+        "club": "Kluby",
+        "bar":  "Bary",
+        "cafe": "Kawiarnie"
+    }
 }

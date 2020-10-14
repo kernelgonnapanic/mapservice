@@ -7,6 +7,7 @@ import DefaultPlaceImage from 'assets/images/default-place-image.jpg'
 import { ArrowLeft, Home, Phone } from 'react-feather'
 import { updateCoordinates } from 'redux/actions/globalActions'
 import { IconInfo } from 'components'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
 	placeId?: string
@@ -41,6 +42,7 @@ interface State {
 }
 
 const PlaceSingle: React.FC<Props> = ({ placeId }) => {
+	const { t } = useTranslation()
 	const dispatch = useDispatch()
 
 	const { placeData, loadingSinglePlace } = useSelector((state: State) => {
@@ -75,37 +77,38 @@ const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 	const { title, address, phoneNumber, description, placeType, placeImage } =
 		placeData || {}
 
+	console.log(placeData)
+
 	return (
 		<>
 			<S.NavigateBack to="/places/list">
 				<IconButton>
 					<ArrowLeft />
 				</IconButton>
-				<span style={{ paddingLeft: '25px' }}>Back</span>
+				<span style={{ paddingLeft: '25px' }}>{t('back')}</span>
 			</S.NavigateBack>
 			{!loadingSinglePlace && placeData && (
 				<>
 					<S.Wrapper>
-						<div>
-							<S.Top className={`background-${placeType}`}>
-								<S.Image src={placeImage ? placeImage : DefaultPlaceImage} />
-								<S.HeaderTitle>{title}</S.HeaderTitle>
-							</S.Top>
-							<S.Bottom>
-								<IconInfo
-									icon={<Home width="25" height="20" />}
-									text={`${address?.street} ${address?.number}`}
-								/>
-								<IconInfo
-									icon={<Phone width="25" height="20" />}
-									text={phoneNumber}
-								/>
-							</S.Bottom>
-						</div>
+						<S.Top className={`background-${placeType}`}>
+							<S.Image src={placeImage ? placeImage : DefaultPlaceImage} />
+							<S.HeaderTitle>{title}</S.HeaderTitle>
+							<S.TopPlaceType>{placeType}</S.TopPlaceType>
+						</S.Top>
+						<S.Bottom>
+							<IconInfo
+								icon={<Home width="25" height="20" />}
+								text={`${address?.street} ${address?.number}`}
+							/>
+							<IconInfo
+								icon={<Phone width="25" height="20" />}
+								text={phoneNumber}
+							/>
+						</S.Bottom>
 					</S.Wrapper>
 					<S.Wrapper>
-						<div style={{ padding: '25px 0 0 0' }}>Opis</div>
-						<div style={{ padding: '25px 0 50px 0' }}>{description}</div>
+						<S.DescriptionHeader>{t('description')}</S.DescriptionHeader>
+						<S.Description>{description}</S.Description>
 					</S.Wrapper>
 				</>
 			)}

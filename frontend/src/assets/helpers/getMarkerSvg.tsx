@@ -18,7 +18,7 @@ export const getMarkerSvg = (placeType: string): any => {
 			return KebabSvg
 		case 'restaurant':
 			return RestaurantSvg
-		case 'pomnik':
+		case 'statue':
 			return StatueSvg
 		case 'museum':
 			return MuseumSvg
