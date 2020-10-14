@@ -17,11 +17,13 @@ import * as S from './Navigation.styles'
 import ProtectedRoute from './ProtectedRoute'
 import Route from './Route'
 import { ReactComponent as LogoSvg } from 'assets/images/siedlce-logo.svg'
-import { Button } from 'components'
+import { Button, LanguageSettings } from 'components'
 
 import { theme } from '../../App'
+import { useTranslation } from 'react-i18next'
 
 const Navigation: FunctionComponent = () => {
+	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const isAuthenticated = useSelector(
 		(state: any) => state.auth.isAuthenticated,
@@ -41,22 +43,21 @@ const Navigation: FunctionComponent = () => {
 		<>
 			<S.AppBar position="static">
 				<S.NavBar>
-					<div style={{ display: 'flex', alignItems: 'center' }}>
+					<S.CenterWrapper>
 						<LogoSvg />
-						<S.LogoText>Miasto przyjazne</S.LogoText>
-					</div>
-
-					<div>
+						<S.LogoText>{t('friendlyCity')}</S.LogoText>
+					</S.CenterWrapper>
+					<S.CenterWrapper>
 						<S.NavBarLink to="" getProps={isActive}>
-							Main
+							{t('main')}
 						</S.NavBarLink>
 						<S.NavBarLink to="/places/list" getProps={isActive}>
-							Lista
+							{t('geoportal')}
 						</S.NavBarLink>
 						{isAuthenticated ? (
 							<>
 								<S.NavBarLink to="/addplace" getProps={isActive}>
-									Dodaj miejsce
+									{t('addPlace')}
 								</S.NavBarLink>
 								<Logout />
 							</>
@@ -65,7 +66,8 @@ const Navigation: FunctionComponent = () => {
 								<Button text="Login" color={theme.colors.green} />
 							</S.NavBarLink>
 						)}
-					</div>
+						<LanguageSettings />
+					</S.CenterWrapper>
 				</S.NavBar>
 			</S.AppBar>
 			<S.CustomRouter>

@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import './assets/translations/i18n'
 
 import App from './App'
 import * as serviceWorker from './serviceWorker'

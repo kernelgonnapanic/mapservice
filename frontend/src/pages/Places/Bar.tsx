@@ -11,10 +11,12 @@ import { getMarkerSvg } from '../../assets/helpers/getMarkerSvg'
 import PlaceNavItem from '../../components/PlaceNavItem/PlaceNavItem'
 import { theme } from '../../App'
 import { Button } from 'components'
+import { useTranslation } from 'react-i18next'
 
 const Bar: React.FC = React.memo(() => {
 	const dispatch = useDispatch()
 	const { pathname } = useLocation()
+	const { t } = useTranslation()
 
 	const placeCategories = useSelector((state: any) =>
 		extractPlacesOptions(state),
@@ -35,11 +37,10 @@ const Bar: React.FC = React.memo(() => {
 	return (
 		<S.BarWrapper>
 			<Button
-				text="Brak filtra"
+				text={t('noFilter')}
 				color={theme.colors.green}
 				onClick={handleClick('')}
 			/>
-
 			{placeCategories &&
 				placeCategories.map((category: string) => {
 					const Icon = getMarkerSvg(category)

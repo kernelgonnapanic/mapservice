@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { extractPlaces } from '../../redux/selectors/placesSelectors'
 import { getPlaces } from '../../redux/actions/placesActions'

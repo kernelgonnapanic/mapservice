@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Provider } from 'react-redux'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Navigation from './pages/Navigation/Navigation'
@@ -80,7 +80,9 @@ const App: React.FC = () => {
 			<GlobalStyle />
 			<ThemeProvider theme={theme}>
 				<StylesProvider injectFirst>
-					<Navigation />
+					<Suspense fallback={<div>Loading...</div>}>
+						<Navigation />
+					</Suspense>
 				</StylesProvider>
 			</ThemeProvider>
 		</Provider>

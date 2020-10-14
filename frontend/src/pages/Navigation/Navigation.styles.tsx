@@ -21,6 +21,11 @@ export const NavBarLink = styled(Link)`
 	}
 `
 
+export const CenterWrapper = styled.div`
+	display: flex;
+	align-items: center;
+`
+
 export const CustomRouter = styled(Router)`
 	height: calc(100% - ${(props) => props.theme.headerHeight});
 `
