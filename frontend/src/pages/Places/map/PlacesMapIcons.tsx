@@ -1,11 +1,12 @@
-import CinemaSvg from '../../../assets/mapicons/cinema.svg'
-import KebabSvg from '../../../assets/mapicons/kebab.svg'
-import MuseumSvg from '../../../assets/mapicons/museum.svg'
-import RestaurantSvg from '../../../assets/mapicons/restaurant.svg'
-import StatueSvg from '../../../assets/mapicons/statue.svg'
-import CafeSvg from '../../../assets/mapicons/cafe.svg'
-import ClubSvg from '../../../assets/mapicons/club.svg'
-import BarSvg from '../../../assets/mapicons/bar.svg'
+import CinemaSvg from 'assets/mapicons/cinema.svg'
+import KebabSvg from 'assets/mapicons/kebab.svg'
+import MuseumSvg from 'assets/mapicons/museum.svg'
+import RestaurantSvg from 'assets/mapicons/restaurant.svg'
+import StatueSvg from 'assets/mapicons/statue.svg'
+import CafeSvg from 'assets/mapicons/cafe.svg'
+import ClubSvg from 'assets/mapicons/club.svg'
+import BarSvg from 'assets/mapicons/bar.svg'
+import PizzaSvg from 'assets/mapicons/pizza-slice.svg'
 
 import { iconGradientColors } from 'assets/helpers/iconGradientColors'
 
@@ -64,7 +65,7 @@ export const museumIcon = (placeType: string, className?: string | undefined) =>
 	new L.DivIcon(generateDivIcon(MuseumSvg, placeType, className))
 
 export const pizzaIcon = (placeType: string, className?: string | undefined) =>
-	new L.DivIcon(generateDivIcon(MuseumSvg, placeType, className))
+	new L.DivIcon(generateDivIcon(PizzaSvg, placeType, className))
 
 export const restaurantIcon = (
 	placeType: string,

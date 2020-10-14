@@ -9,13 +9,24 @@
     "back": "Back",
     "placeCategories": {
         "statue": "Monuments",
-        "cinema": "Cinema",
-        "pizzeria": "Pizzeria",
+        "cinema": "Cinemas",
+        "pizzeria": "Pizzerias",
         "kebab": "Kebabs",
         "restaurant":  "Restaurants",
-        "museum":  "Museum",
+        "museum":  "Museums",
         "club": "Clubs",
         "bar":  "Bars",
+        "cafe": "Cafés"
+    },
+    "placeCategorySingle": {
+        "statue": "Monument",
+        "cinema": "Cinema",
+        "pizzeria": "Pizzeria",
+        "kebab": "Kebab",
+        "restaurant":  "Restaurant",
+        "museum":  "Museum",
+        "club": "Club",
+        "bar":  "Bar",
         "cafe": "Café"
     }
 }

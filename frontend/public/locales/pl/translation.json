@@ -17,5 +17,16 @@
         "club": "Kluby",
         "bar":  "Bary",
         "cafe": "Kawiarnie"
+    },
+    "placeCategorySingle": {
+        "statue": "Pomnik",
+        "cinema": "Kino",
+        "pizzeria": "Pizzeria",
+        "kebab": "Kebab",
+        "restaurant":  "Restauracja",
+        "museum":  "Muzeum",
+        "club": "Klub",
+        "bar":  "Bar",
+        "cafe": "Kawiarnia"
     }
 }

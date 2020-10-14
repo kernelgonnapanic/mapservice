@@ -93,7 +93,9 @@ const PlaceSingle: React.FC<Props> = ({ placeId }) => {
 						<S.Top className={`background-${placeType}`}>
 							<S.Image src={placeImage ? placeImage : DefaultPlaceImage} />
 							<S.HeaderTitle>{title}</S.HeaderTitle>
-							<S.TopPlaceType>{placeType}</S.TopPlaceType>
+							<S.TopPlaceType>
+								{t(`placeCategorySingle.${placeType}`)}
+							</S.TopPlaceType>
 						</S.Top>
 						<S.Bottom>
 							<IconInfo
