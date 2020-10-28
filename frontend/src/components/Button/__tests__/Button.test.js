@@ -28,10 +28,8 @@ test('insert text into the button', () => {
 	expect(container.textContent).toMatch('testText')
 })
 
-test('button can have onClick as a prop', (done) => {
-	const handleClick = () => {
-		done()
-	}
+test('button can have onClick as a prop', () => {
+	const handleClick = jest.fn()
 
 	const { getByText } = render(
 		<ThemeProvider theme={theme}>
@@ -39,8 +37,8 @@ test('button can have onClick as a prop', (done) => {
 		</ThemeProvider>,
 	)
 
-	const node = getByText('testText')
-	fireEvent.click(node)
+	fireEvent.click(getByText('testText'))
+	expect(handleClick).toHaveBeenCalled()
 })
 
 test('background color of a button can be changed by prop', () => {
